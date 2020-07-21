@@ -13,7 +13,7 @@ import Message from './MessageComponent';
 const mapStateToProps = (state) => ({
   activeId: state.activeId,
   item: state.activeId !== null
-    ? state.ues[state.activeId]
+    ? state.dialugues[state.activeId]
     : null,
 });
 
