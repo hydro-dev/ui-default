@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import webpack from 'webpack';
+import { argv } from 'yargs';
 import webpackConfig from './config/webpack';
 
 export default function ({ watch, production }) {
@@ -11,7 +12,7 @@ export default function ({ watch, production }) {
         if (err.details) console.error(err.details);
         reject(err);
       }
-      console.log(stats.toString());
+      if (argv.detail) console.log(stats.toString());
       if (!watch && stats.hasErrors()) process.exitCode = 1;
       resolve();
     }
