@@ -69,12 +69,22 @@ module.exports = {
     'import/first': 'off',
     'import/no-extraneous-dependencies': 'off',
     'max-classes-per-file': 'off',
-    'no-restricted-syntax': 'warn',
     'no-unused-vars': 'warn',
     'no-console': 'off',
     'no-continue': 'off',
     'no-mixed-operators': 'off',
     'no-plusplus': 'off',
+    'no-restricted-syntax': [
+      'error',
+      {
+        selector: 'LabeledStatement',
+        message: 'Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.',
+      },
+      {
+        selector: 'WithStatement',
+        message: '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
+      },
+    ],
     'no-underscore-dangle': 'off',
     'no-await-in-loop': 'off',
     'no-lonely-if': 'off',

@@ -52,7 +52,7 @@
           {{ form.form_text({
                columns:12, 
                label:'Category', 
-               help_text:'Format: category 1, sub category 1.1, sub category 1.2, ..., sub category 1.x, ..., category n, sub category n.1, sub category n.2, ..., sub category n.m, ...', 
+               help_text:'Format: category 1, category 2, ..., category n', 
                name:'category', 
                value:pdoc['category']|join(', ')
              }) }}
@@ -73,27 +73,18 @@
         </form>
       </div>
     </div>
-    <div class="section side">
-      <div class="section__header">
-        <h1 class="section__title">{{ _('Categories') }} ({{ _('click to add') }})</h1>
-      </div>
-      <div class="section__body">
-      {% for category, sub_categories in model.builtin.CATEGORIES %}
-        <div>
-          <h2 class="section__title"><a class="category-a" href="javascript:;" data-category="{{ category }}">{{ category }}</a></h2>
-          <ol>
-          {% for sub_category in sub_categories %}
-            <li><a class="category-a typo-a" href="javascript:;" data-category="{{ sub_category }}">{{ sub_category }}</a></li>
-          {% endfor %}
-          </ol>
-        </div>
-      {% endfor %}
-      </div>
-    </div>
   </div>
   <div class="medium-3 columns">
     {% set owner_udoc = udoc %}
     {% include "partials/problem_sidebar.html" %}
+    <div class="section side nojs--hide">
+      <div class="section__header">
+        <h1 class="section__title">{{ _('Categories') }} ({{ _('click to add') }})</h1>
+      </div>
+      <div class="section__body">
+        {% include "partials/category.html" %}
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

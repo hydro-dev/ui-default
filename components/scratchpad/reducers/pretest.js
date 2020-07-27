@@ -15,7 +15,7 @@ export default function reducer(state = {
     if (rdoc._id === state.rid) {
       return {
         ...state,
-        output: (rdoc.stdout || '') + (rdoc.stderr || ''),
+        output: rdoc.judgeTexts.join('\n'),
       };
     }
   }

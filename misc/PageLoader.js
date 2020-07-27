@@ -7,7 +7,7 @@ export class Page {
     if (process.env.NODE_ENV !== 'production') {
       if (typeof name !== 'string' && !(name instanceof Array)) {
         // eslint-disable-next-line quotes
-        throw new Error(`'name' should be a string or [string]`);
+        throw new Error(`'name' should be a string or string[]`);
       }
       if (typeof afterLoading !== 'function' && afterLoading != null) {
         // eslint-disable-next-line quotes
@@ -72,6 +72,9 @@ export class PageLoader {
   getNamedPage(pageName) {
     const pages = this.pageInstances.filter((page) => page && page.isNameMatch(pageName));
     if (pages.length > 0) {
+      if (pages.length > 1) {
+        console.warn(`Multiple instance for ${pageName}`);
+      }
       return pages[0];
     }
     return null;

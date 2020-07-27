@@ -1,6 +1,6 @@
 {
   "name": "@hydrooj/ui-default",
-  "version": "4.0.9",
+  "version": "4.0.10",
   "author": "masnn",
   "license": "AGPL-3.0",
   "main": "Entry.js",
@@ -102,6 +102,7 @@
   },
   "scripts": {
     "build": "node build",
+    "build:watch": "node build --watch",
     "build:production": "node build --production",
     "lint": "eslint components constant pages utils --fix"
   },

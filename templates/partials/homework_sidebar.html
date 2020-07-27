@@ -63,7 +63,7 @@
       </a></li>
     {% endif %}
     {% if attended %}
-      <li class="menu__item"><a class="menu__link" href="{{ url('record_detail', query={uidOrName:handler.user._id, tid:tdoc.docId}) }}">
+      <li class="menu__item"><a class="menu__link" href="{{ url('record_main', query={uidOrName:handler.user._id, tid:tdoc.docId}) }}">
         <span class="icon icon-flag"></span> {{ _('My Recent Submissions') }}
       </a></li>
     {% endif %}

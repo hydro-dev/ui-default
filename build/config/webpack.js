@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import webpack from 'webpack';
 import fs from 'fs';
-
 import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
 import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin';
 import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
@@ -189,19 +188,14 @@ export default function (env = {}) {
         },
       }),
 
-      env.production
-        ? new OptimizeCssAssetsPlugin()
-        : function () { },
-      env.production
-        ? new webpack.optimize.ModuleConcatenationPlugin()
-        : function () { },
-      env.production
-        ? new webpack.LoaderOptionsPlugin({ minimize: true })
-        : function () { },
-      // Replace Module Id with hash or name
-      env.production
-        ? new webpack.HashedModuleIdsPlugin()
-        : new webpack.NamedModulesPlugin(),
+      ...env.production
+        ? [
+          new OptimizeCssAssetsPlugin(),
+          new webpack.optimize.ModuleConcatenationPlugin(),
+          new webpack.LoaderOptionsPlugin({ minimize: true }),
+          new webpack.HashedModuleIdsPlugin(),
+        ]
+        : [new webpack.NamedModulesPlugin()],
 
       new webpack.LoaderOptionsPlugin({
         options: {

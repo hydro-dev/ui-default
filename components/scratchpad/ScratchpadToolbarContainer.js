@@ -20,6 +20,8 @@ const mapStateToProps = (state) => ({
   isPosting: state.ui.isPosting,
   isRunning: state.pretest.isRunning,
   editorLang: state.editor.lang,
+  editorCode: state.editor.code,
+  pretestInput: state.pretest.input,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -35,24 +37,21 @@ const mapDispatchToProps = (dispatch) => ({
       payload: lang,
     });
   },
-  postPretest(context) {
-    const state = context.store.getState();
-    const { input } = state.pretest;
+  postPretest(props) {
     const req = request.post(Context.postPretestUrl, {
-      lang: state.editor.lang,
-      code: state.editor.code,
-      input,
+      lang: props.editorLang,
+      code: props.editorCode,
+      input: props.pretestInput,
     });
     dispatch({
       type: 'SCRATCHPAD_POST_PRETEST',
       payload: req,
     });
   },
-  postSubmit(context) {
-    const state = context.store.getState();
+  postSubmit(props) {
     const req = request.post(Context.postSubmitUrl, {
-      lang: state.editor.lang,
-      code: state.editor.code,
+      lang: props.editorLang,
+      code: props.editorCode,
     });
     dispatch({
       type: 'SCRATCHPAD_POST_SUBMIT',
@@ -86,7 +85,7 @@ export default class ScratchpadToolbarContainer extends React.PureComponent {
         <ToolbarButton
           disabled={this.props.isPosting || this.props.isRunning}
           className="scratchpad__toolbar__pretest"
-          onClick={() => this.props.postPretest(this.context)}
+          onClick={() => this.props.postPretest(this.props)}
           data-global-hotkey="f9"
           data-tooltip={`${i18n('Pretest Your Code')} (F9)`}
         >
@@ -99,7 +98,7 @@ export default class ScratchpadToolbarContainer extends React.PureComponent {
         <ToolbarButton
           disabled={this.props.isPosting}
           className="scratchpad__toolbar__submit"
-          onClick={() => this.props.postSubmit(this.context)}
+          onClick={() => this.props.postSubmit(this.props)}
           data-global-hotkey="f10"
           data-tooltip={`${i18n('Submit Your Code')} (F10)`}
         >

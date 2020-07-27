@@ -25,7 +25,8 @@ __webpack_public_path__ = UiContext.cdn_prefix;
 
 const pageLoader = new PageLoader();
 
-const currentPage = pageLoader.getNamedPage(document.documentElement.getAttribute('data-page'));
+const currentPageName = document.documentElement.getAttribute('data-page');
+const currentPage = pageLoader.getNamedPage(currentPageName);
 const includedPages = pageLoader.getAutoloadPages();
 
 function buildSequence(pages, type) {
@@ -62,7 +63,7 @@ async function load() {
       console.time(`${page.name}: ${type}Loading`);
     }
     try {
-      await func();
+      await func(currentPageName);
     } catch (e) {
       console.error(`Failed to call '${type}Loading' of ${page.name}\n${e.stack}`);
     }

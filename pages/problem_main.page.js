@@ -30,7 +30,7 @@ async function updateSelection(sendRequest = true) {
     if (type === 'subcategory') {
       item = categories[category].children[subcategory];
       setDomSelected(item.$tag, item.select);
-      const selectionName = `${category},${subcategory}`;
+      const selectionName = subcategory;
       if (item.select) {
         selections.push(selectionName);
       } else {
@@ -39,7 +39,6 @@ async function updateSelection(sendRequest = true) {
     }
   });
   dirtyCategories.length = 0;
-
   if (sendRequest) {
     // a list of categories which subcategory is selected
     const requestCategoryTags = _.uniq(selections

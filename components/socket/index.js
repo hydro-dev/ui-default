@@ -44,7 +44,7 @@ export default class Sock {
     };
     this.sock.onmessage = (message) => {
       if (process.env.NODE_ENV !== 'production') console.log('Sock.onmessage: ', message);
-      const msg = JSON.parse(message);
+      const msg = JSON.parse(message.data);
       if (msg.error === 'PermissionError' || msg.error === 'PrivilegeError') {
         this.closed = true;
       }
