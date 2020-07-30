@@ -29,13 +29,13 @@
         </div>
       </div>
       <ul class="section__footer supplementary dot list">
-      {% if ddoc.owner == handler.user._id or handler.user.hasPerm(perm.PERM_EDIT_DISCUSSION) %}
+      {% if handler.user.hasPerm(perm.PERM_EDIT_DISCUSSION) or (ddoc.owner == handler.user._id and handler.user.hasPerm(perm.PERM_EDIT_DISCUSSION_SELF)) %}
         <li>
           <a href="{{ url('discussion_edit', did=ddoc.docId) }}"><span class="icon icon-edit"></span> {{ _('Edit') }}</a>
         </li>
       {% endif %}
         <li>
-          {{ _('{0} views').format(ddoc['views']) }}
+          {{ _('{0} views').format(ddoc.views) }}
         </li>
       {% if handler.user.hasPriv(PRIV.PRIV_USER_PROFILE) %}
         <li><form class="form--inline" method="post">
@@ -76,7 +76,7 @@
           comment_delete_self_perm = perm.PERM_DELETE_DISCUSSION_REPLY_SELF,
           reply_post_perm = perm.PERM_REPLY_DISCUSSION,
           reply_edit_perm = perm.PERM_EDIT_DISCUSSION_REPLY_SELF_DISCUSSION if ddoc.owner == handler.user._id else perm.PERM_EDIT_DISCUSSION_REPLY,
-          reply_delete_perm = perm.PERM_EDIT_DISCUSSION_REPLY_SELF_DISCUSSION if ddoc.owner == handler.user._id else perm.PERM_DELETE_DISCUSSION_REPLY,
+          reply_delete_perm = perm.PERM_DELETE_DISCUSSION_REPLY_SELF_DISCUSSION if ddoc.owner == handler.user._id else perm.PERM_DELETE_DISCUSSION_REPLY,
           reply_edit_self_perm = perm.PERM_EDIT_DISCUSSION_REPLY_SELF,
           reply_delete_self_perm = perm.PERM_DELETE_DISCUSSION_REPLY_SELF
         ) }}
@@ -88,13 +88,13 @@
     </div>
   </div>
   <div class="medium-3 columns">
-    {% set udoc = udict[ddoc['owner']] %}
+    {% set udoc = udict[ddoc.owner] %}
     <div class="section side">
       <div class="profile__bg user-profile-bg--1"></div>
       <div class="section__body">
         <div class="media sidebar-user-profile">
           <div class="media__left">
-            <img src="{{ gravatar(udoc['gravatar']) }}" width="80" height="80" class="medium user-profile-avatar">
+            <img src="{{ gravatar(udoc.gravatar) }}" width="80" height="80" class="medium user-profile-avatar">
           </div>
           <div class="media__body">
             <p>
@@ -107,19 +107,19 @@
         <div class="balancer sidebar-user-stat">
           <div class="balancer__body">
             <div class="numbox">
-              <div class="numbox__num medium">{{ udict[ddoc.owner].nAccept or 0 }}</div>
+              <div class="numbox__num medium">{{ udoc.nAccept|default(0) }}</div>
               <div class="numbox__text">{{ _('Accepted') }}</div>
             </div>
           </div>
           <div class="balancer__body">
             <div class="numbox">
-              <div class="numbox__num medium">{{ udict[ddoc.owner].nLike or 0 }}</div>
+              <div class="numbox__num medium">{{ udoc.nLike|default(0) }}</div>
               <div class="numbox__text">{{ _('Solutions Liked') }}</div>
             </div>
           </div>
           <div class="balancer__body">
             <div class="numbox">
-              <div class="numbox__num medium">{{ udict[ddoc.owner].nProblems or 0 }}</div>
+              <div class="numbox__num medium">{{ udoc.nProblems|default(0) }}</div>
               <div class="numbox__text">{{ _('Upload Problem') }}</div>
             </div>
           </div>
@@ -128,7 +128,7 @@
     </div>
     {% if vnode.type == model.document.TYPE_PROBLEM %}
       {% set pdoc = vnode %}
-      {% set owner_udoc = udict[vnode['owner']] %}
+      {% set owner_udoc = udict[vnode.owner] %}
       {% include "partials/problem_sidebar.html" %}
     {% endif %}
   </div>
