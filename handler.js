@@ -1,4 +1,6 @@
 /* eslint-disable camelcase */
+const markdown = require('./backendlib/markdown.js');
+
 const { system } = global.Hydro.model;
 const { Route, Handler } = global.Hydro.service.server;
 
@@ -54,9 +56,19 @@ class LocaleHandler extends Handler {
   }
 }
 
+class MarkdownHandler extends Handler {
+  async post({ text, html = false, inline = false }) {
+    this.response.body = inline
+      ? markdown.renderInline(text, html)
+      : markdown.render(text, html);
+    this.response.type = 'text/html';
+  }
+}
+
 global.Hydro.handler.ui = () => {
   Route('wiki_help', '/wiki/help', WikiHelpHandler);
   Route('wiki_about', '/wiki/about', WikiAboutHandler);
   Route('locale', '/locale/:id', LocaleHandler);
   Route('ui', '/extra.css', UiSettingsHandler);
+  Route('markdown', '/markdown', MarkdownHandler);
 };
