@@ -32,7 +32,7 @@ const page = new NamedPage('home_messages', () => {
 
     reduxStore = store;
 
-    const sock = new SockJs(`/home/messages-conn?token=${UiContext.token}`);
+    const sock = new SockJs('/home/messages-conn');
     sock.onmessage = (message) => {
       const msg = JSON.parse(message.data);
       store.dispatch({

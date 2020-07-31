@@ -9,7 +9,7 @@ const messagePage = new AutoloadPage('messagePage', () => {
   async function init() {
     const { default: SockJs } = await import('../socket');
 
-    const sock = new SockJs(`/home/messages-conn?token=${UiContext.token}`);
+    const sock = new SockJs('/home/messages-conn');
     sock.onmessage = (message) => {
       const msg = JSON.parse(message.data);
       if (msg.mdoc.flag | FLAG_ALERT) {

@@ -209,7 +209,7 @@ const page = new NamedPage(['problem_detail', 'contest_detail_problem', 'homewor
       React, render, unmountComponentAtNode, Provider, store,
     } = await loadReactRedux(ScratchpadReducer);
 
-    const sock = new SockJs(`/conn/pretest?token=${UiContext.token}&pid=${Context.problemId}`);
+    const sock = new SockJs(`/conn/pretest?pid=${Context.problemId}`);
     sock.onmessage = (message) => {
       const msg = JSON.parse(message.data);
       store.dispatch({

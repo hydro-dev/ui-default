@@ -10,14 +10,19 @@ export default class Sock {
     this.notification = null;
   }
 
+  onauth() {
+    // SockJS wouldn't send cookie. hack.
+    if (this.isreconnect) {
+      this.notification.hide();
+      Notification.info(i18n('Reconnected to the server.'));
+    }
+    if (this.onopen) this.onopen(this.isreconnect);
+  }
+
   init() {
     this.sock = new SockJS(this.url);
     this.sock.onopen = () => {
-      if (this.isreconnect) {
-        this.notification.hide();
-        Notification.info(i18n('Reconnected to the server.'));
-      }
-      if (this.onopen) this.onopen(this.isreconnect);
+      this.send(document.cookie);
     };
     this.sock.onclose = (code, reason) => {
       console.warn('Connection closed, ', code, reason);
@@ -45,10 +50,12 @@ export default class Sock {
     this.sock.onmessage = (message) => {
       if (process.env.NODE_ENV !== 'production') console.log('Sock.onmessage: ', message);
       const msg = JSON.parse(message.data);
-      if (msg.error === 'PermissionError' || msg.error === 'PrivilegeError') {
-        this.closed = true;
-      }
-      if (this.onmessage) this.onmessage(message);
+      if (msg.event === 'auth') {
+        if (msg.error === 'PermissionError' || msg.error === 'PrivilegeError') {
+          Notification.info(i18n('Connect fail: Permission denied.'));
+          this.closed = true;
+        } else this.onauth();
+      } else if (this.onmessage) this.onmessage(message);
     };
   }
 
