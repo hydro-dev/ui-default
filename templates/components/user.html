@@ -4,6 +4,7 @@
   badge=true,
   modbadge=true
 ) %}
+{% if udoc %}
 <span class="user-profile-link">
 {% if avatar %}
   <img class="small user-profile-avatar v-center" src="{{ gravatar(udoc['gravatar']|default('')) }}" width="20" height="20">
@@ -18,4 +19,17 @@
 {% endif %}
 {% endif %}
 </span>
+{% else %}
+<span class="user-profile-link">
+{% if avatar %}
+  <img class="small user-profile-avatar v-center" src="{{ static_url('img/avatar.png') }}" width="20" height="20">
+{% endif %}
+  <a class="user-profile-name" href="#">
+    {{ _('Unknown User') }}
+  </a>
+{% if badge %}
+  <a class="user-profile-badge v-center badge--lv0" href="#" title="LV0">LV 0</a>
+{% endif %}
+</span>
+{% endif %}
 {% endmacro %}

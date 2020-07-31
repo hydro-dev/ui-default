@@ -31,7 +31,7 @@
                 <td class="col--rank">{{ (page - 1) * 100 + loop.index }}</td>
                 <td class="col--user">{{ user.render_inline(udoc, badge=false) }}</td>
                 <td class="col--rp">{{ udoc.rp|default(1500)|round(0) }}</td>
-                <td class="col--bio">{{ udoc.bio|truncate(64) }}</td>
+                <td class="col--bio">{{ udoc.bio|default('')|truncate(64)|markdownInline|safe }}</td>
               </tr>
               {% endfor %}
             </tbody>
