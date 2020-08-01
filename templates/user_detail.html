@@ -84,7 +84,9 @@
               {% if not udoc.bio %}
                 {{ nothing.render("This person is lazy and didn't wrote anything.") }}
               {% else %}
-                {{ udoc.bio|markdown|safe }}
+                <div class="section__body typo">
+                  {{ udoc.bio|default('')|markdown|safe }}
+                </div>
               {% endif %}
               </div>
             </li>

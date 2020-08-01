@@ -35,7 +35,6 @@ async function updateSelection() {
       }
     }
   });
-  console.log(selections);
   const requestCategoryTags = _.uniq(selections
     .filter((s) => s.indexOf(',') !== -1)
     .map((s) => s.split(',')[0]));
@@ -135,14 +134,13 @@ function findCategory(name) {
 
 function parseCategorySelection() {
   const $txt = $('[name="category"]');
-  $txt.val().split(',').forEach((name) => {
+  $txt.val().split(',').map((name) => name.trim()).forEach((name) => {
     if (!name) return;
     const [category, subcategory] = findCategory(name);
-    console.log(category, subcategory);
     if (!subcategory) {
       categories[category].select = true;
       dirtyCategories.push({ type: 'category', category });
-    } else {
+    } else if (category) {
       categories[category].children[subcategory].select = true;
       dirtyCategories.push({ type: 'subcategory', subcategory, category });
     }
