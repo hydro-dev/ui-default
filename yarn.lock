@@ -1181,6 +1181,11 @@
   dependencies:
     mkdirp "^1.0.4"
 
+"@rimoe/react-monaco-editor@^3.5.3":
+  version "3.5.3"
+  resolved "https://registry.yarnpkg.com/@rimoe/react-monaco-editor/-/react-monaco-editor-3.5.3.tgz#d9f8efeb8e6ffd82a3cbcf699c6b75b0d9b63708"
+  integrity sha512-q4uxOZaRDgsNjAo1eR9OcC/hY+V8Fjxb8f+HMNg4vCIXJyG1l0a04vgkoj+Fwo+SmO9rQOqBF9yqxDhnqaakxw==
+
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"

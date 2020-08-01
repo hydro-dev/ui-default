@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import MonacoEditor from 'react-monaco-editor';
+import { ControlledEditor as MonacoEditor } from '@rimoe/react-monaco-editor';
 
 import * as languageEnum from 'vj/constant/language';
 
@@ -34,7 +34,7 @@ export default class ScratchpadEditorContainer extends React.PureComponent {
         value={this.props.code}
         options={getOptions(this.props.lang)}
         ref="editor"
-        onChange={(code) => this.props.handleUpdateCode(code)}
+        onChange={(_, code) => this.props.handleUpdateCode(code)}
       />
     );
   }
