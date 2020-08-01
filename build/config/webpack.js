@@ -98,7 +98,15 @@ export default function (env = {}) {
       ],
       alias: {
         vj: root(),
+        vscode: require.resolve('monaco-languageclient/lib/vscode-compatibility'),
       },
+    },
+    // languageclient compatibility
+    node: {
+      fs: 'empty',
+      child_process: 'empty',
+      net: 'empty',
+      crypto: 'empty',
     },
     module: {
       rules: [

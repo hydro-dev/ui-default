@@ -13,7 +13,7 @@ export default function ({ watch, production }) {
         reject(err);
       }
       if (argv.detail) console.log(stats.toString());
-      if (!watch && stats.hasErrors()) process.exitCode = 1;
+      if (!watch && (!stats || stats.hasErrors())) process.exitCode = 1;
       resolve();
     }
     if (watch) compiler.watch({}, compilerCallback);

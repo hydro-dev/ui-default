@@ -1,6 +1,6 @@
 {
   "name": "@hydrooj/ui-default",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "author": "masnn",
   "license": "AGPL-3.0",
   "main": "Entry.js",
@@ -64,6 +64,7 @@
     "moment": "^2.27.0",
     "monaco-editor": "^0.20.0",
     "monaco-editor-webpack-plugin": "^1.9.0",
+    "monaco-languageclient": "^0.13.0",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
@@ -96,6 +97,7 @@
     "uuid": "^8.3.0",
     "vinyl-buffer": "^1.0.1",
     "vj-simplemde": "0.0.8",
+    "vscode-ws-jsonrpc": "^0.2.0",
     "webpack": "^4.44.0",
     "yargs": "^15.4.1"
   },

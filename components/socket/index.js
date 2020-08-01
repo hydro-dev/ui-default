@@ -24,12 +24,10 @@ export default class Sock {
     this.sock.onopen = () => {
       this.send(document.cookie);
     };
-    this.sock.onclose = (code, reason) => {
+    this.sock.onclose = ({ code, reason }) => {
       console.warn('Connection closed, ', code, reason);
-      if (this.closed) {
-        if (this.onclose) this.onclose(code, reason);
-        return;
-      }
+      // 404
+      if (code === 1002 && reason === 'Cannot connect to server') this.closed = true;
       if (!this.closed) {
         if (!this.notification) {
           this.notification = new Notification({
@@ -38,9 +36,8 @@ export default class Sock {
             duration: 0,
             action: this.init.bind(this),
           });
-          console.log(this.notification);
         }
-        this.isreconnect = setTimeout(() => { this.init(); }, 3000);
+        this.isreconnect = setTimeout(this.init.bind(this), 3000);
       } else {
         if (this.notification) this.notification.hide();
         Notification.warn(i18n('Disconnected from the server.'));
