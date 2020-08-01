@@ -23,6 +23,6 @@ jobs:
         name: public
         path: public
     - uses: JS-DevTools/npm-publish@v1
-      if: ${{ github.event_name == "push" }}
+      if: ${{ github.event_name == 'push' }}
       with:
         token: ${{ secrets.NPM_TOKEN }}
