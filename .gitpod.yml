@@ -1,4 +1,4 @@
-image: gitpod/workspace-mongo
+image: gitpod/workspace-mongodb
 tasks:
   - init: yarn && yarn build
 vscode:
