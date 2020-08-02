@@ -3,18 +3,19 @@ import Notification from 'vj/components/notification/index';
 import i18n from 'vj/utils/i18n';
 
 export default class Sock {
-  constructor(url) {
+  constructor(url, showNotification = true) {
     this.url = url;
     this.isreconnect = false;
     this.init();
     this.notification = null;
+    this.showNotification = showNotification;
   }
 
   onauth() {
     // SockJS wouldn't send cookie. hack.
     if (this.isreconnect) {
       this.notification.hide();
-      Notification.info(i18n('Reconnected to the server.'));
+      if (this.showNotification) Notification.info(i18n('Reconnected to the server.'));
     }
     if (this.onopen) this.onopen(this.sock);
   }
@@ -29,7 +30,7 @@ export default class Sock {
       // 404
       if (code === 1002 && reason === 'Cannot connect to server') this.closed = true;
       if (!this.closed) {
-        if (!this.notification) {
+        if (this.showNotification && !this.notification) {
           this.notification = new Notification({
             message: i18n('Disconnected from the server. Reconnecting...'),
             type: 'warn',
@@ -40,7 +41,7 @@ export default class Sock {
         this.isreconnect = setTimeout(this.init.bind(this), 3000);
       } else {
         if (this.notification) this.notification.hide();
-        Notification.warn(i18n('Disconnected from the server.'));
+        if (this.showNotification) Notification.warn(i18n('Disconnected from the server.'));
       }
       if (this.onclose) this.onclose(code, reason);
     };
@@ -49,7 +50,7 @@ export default class Sock {
       const msg = JSON.parse(message.data);
       if (msg.event === 'auth') {
         if (msg.error === 'PermissionError' || msg.error === 'PrivilegeError') {
-          Notification.info(i18n('Connect fail: Permission denied.'));
+          if (this.showNotification) Notification.info(i18n('Connect fail: Permission denied.'));
           this.closed = true;
         } else this.onauth();
       } else if (this.onmessage) this.onmessage(message);

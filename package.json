@@ -1,6 +1,6 @@
 {
   "name": "@hydrooj/ui-default",
-  "version": "4.3.4",
+  "version": "4.3.5",
   "author": "masnn",
   "license": "AGPL-3.0",
   "main": "Entry.js",
@@ -74,7 +74,6 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-monaco-editor": "^0.39.1",
     "react-redux": "^7.2.1",
     "react-resize-detector": "^5.0.6",
     "react-split-pane": "^0.1.65",
@@ -202,7 +201,7 @@
     ]
   },
   "peerDependencies": {
-    "hydrooj": "^2.11.3"
+    "hydrooj": "^2.12.0"
   },
   "dependencies": {
     "katex": "^0.12.0",

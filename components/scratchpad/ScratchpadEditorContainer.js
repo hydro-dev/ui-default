@@ -12,7 +12,7 @@ import * as languageEnum from 'vj/constant/language';
 const mapStateToProps = (state) => ({
   value: state.editor.code,
   language: languageEnum.LANG_MONACO_MODES[state.editor.lang],
-  theme: 'vs-dark',
+  theme: 'vs-light',
   mainSize: state.ui.main.size,
   pretestSize: state.ui.pretest.size,
   recordSize: state.ui.records.size,
@@ -31,16 +31,19 @@ export default class MonacoEditor extends React.PureComponent {
   componentDidMount() {
     const value = this.props.value || '';
     const { language, theme } = this.props;
+    this.model = monaco.editor.createModel(value, language, monaco.Uri.parse('file://model'));
     if (this.containerElement) {
       // Before initializing monaco editor
       this.editor = monaco.editor.create(
         this.containerElement,
         {
-          value,
-          language,
           theme,
           lineNumbers: true,
-          mode: language,
+          glyphMargin: true,
+          lightbulb: {
+            enabled: true,
+          },
+          model: this.model,
         }
       );
       this._subscription = this.editor.onDidChangeModelContent((event) => {
@@ -58,11 +61,10 @@ export default class MonacoEditor extends React.PureComponent {
     const {
       value, language, theme, mainSize, recordSize, pretestSize,
     } = this.props;
-    const { editor } = this;
-    const model = editor.getModel();
+    const { editor, model } = this;
     if (this.props.value != null && this.props.value !== model.getValue()) {
       this.__prevent_trigger_change_event = true;
-      this.editor.pushUndoStop();
+      editor.pushUndoStop();
       model.pushEditOperations(
         [],
         [
@@ -72,7 +74,7 @@ export default class MonacoEditor extends React.PureComponent {
           },
         ]
       );
-      this.editor.pushUndoStop();
+      editor.pushUndoStop();
       this.__prevent_trigger_change_event = false;
     }
     if (prevProps.language !== language) {
@@ -89,11 +91,8 @@ export default class MonacoEditor extends React.PureComponent {
   }
 
   componentWillUnmount() {
-    if (this.editor) {
-      this.editor.dispose();
-      const model = this.editor.getModel();
-      if (model) model.dispose();
-    }
+    if (this.editor) this.editor.dispose();
+    if (this.model) this.model.dispose();
     if (this._subscription) this._subscription.dispose();
   }
 
@@ -104,7 +103,7 @@ export default class MonacoEditor extends React.PureComponent {
   async initLanguageClient(languageId) {
     const { default: SockJS } = await import('vj/components/socket/index.js');
     if (this.sock) this.sock.close();
-    this.sock = new SockJS(`/languageServer/${languageId}`);
+    this.sock = new SockJS(`/languageServer/${languageId}`, false);
     this.sock.onopen = (conn) => {
       const socket = toSocket(conn);
       const connection = createWebSocketConnection(socket, console);

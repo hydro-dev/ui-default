@@ -3,7 +3,16 @@
   {{ form.form_checkbox({
        label:'Highlight',
        name:'highlight',
-       value:ddoc.highlight|default(false)
+       value:ddoc.highlight|default(false),
+       disabled:not handler.user.hasPerm(perm.PERM_HIGHLIGHT_DISCUSSION)
+     }) }}
+{% endif %}
+{% if ddoc.pin or handler.user.hasPerm(perm.PERM_PIN_DISCUSSION) %}
+  {{ form.form_checkbox({
+       label:'Pin',
+       name:'pin',
+       value:ddoc.pin|default(false),
+       disabled:not handler.user.hasPerm(perm.PERM_PIN_DISCUSSION)
      }) }}
 {% endif %}
   {{ form.form_text({
