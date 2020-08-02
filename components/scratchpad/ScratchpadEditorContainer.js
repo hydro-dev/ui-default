@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
-import { listen } from 'vscode-ws-jsonrpc/lib/connection';
+import { toSocket } from 'vscode-ws-jsonrpc/lib/connection';
+import { createWebSocketConnection } from 'vscode-ws-jsonrpc/lib/socket/index';
 import {
   MonacoLanguageClient, CloseAction, ErrorAction,
   MonacoServices, createConnection,
@@ -49,6 +50,7 @@ export default class MonacoEditor extends React.PureComponent {
       });
       window.editor = this.editor;
     }
+    MonacoServices.install(this.editor);
     this.initLanguageClient(language);
   }
 
@@ -102,29 +104,27 @@ export default class MonacoEditor extends React.PureComponent {
   async initLanguageClient(languageId) {
     const { default: SockJS } = await import('vj/components/socket/index.js');
     if (this.sock) this.sock.close();
-    MonacoServices.install(this.editor);
     this.sock = new SockJS(`/languageServer/${languageId}`);
-    listen({
-      webSocket: this.sock.sock,
-      onConnection: (connection) => {
-        const languageClient = new MonacoLanguageClient({
-          name: 'Sample Language Client',
-          clientOptions: {
-            // use a language id as a document selector
-            documentSelector: [languageId],
-            errorHandler: {
-              error: () => ErrorAction.Continue,
-              closed: () => CloseAction.DoNotRestart,
-            },
+    this.sock.onopen = (conn) => {
+      const socket = toSocket(conn);
+      const connection = createWebSocketConnection(socket, console);
+      const languageClient = new MonacoLanguageClient({
+        name: 'A Language Client',
+        clientOptions: {
+          // use a language id as a document selector
+          documentSelector: [languageId],
+          errorHandler: {
+            error: () => ErrorAction.Continue,
+            closed: () => CloseAction.DoNotRestart,
           },
-          connectionProvider: {
-            get: (errorHandler, closeHandler) => Promise.resolve(createConnection(connection, errorHandler, closeHandler)),
-          },
-        });
-        const disposable = languageClient.start();
-        connection.onClose(() => disposable.dispose());
-      },
-    });
+        },
+        connectionProvider: {
+          get: (errorHandler, closeHandler) => Promise.resolve(createConnection(connection, errorHandler, closeHandler)),
+        },
+      });
+      const disposable = languageClient.start();
+      connection.onClose(() => disposable.dispose());
+    };
   }
 
   render() {

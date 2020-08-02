@@ -16,7 +16,7 @@ export default class Sock {
       this.notification.hide();
       Notification.info(i18n('Reconnected to the server.'));
     }
-    if (this.onopen) this.onopen(this.isreconnect);
+    if (this.onopen) this.onopen(this.sock);
   }
 
   init() {
