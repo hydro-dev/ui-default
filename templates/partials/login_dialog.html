@@ -32,12 +32,11 @@
           </label>
         </div></div>
         <input type="hidden" name="csrfToken" value="{{ handler.csrfToken }}">
+        {% for v in handler.loginMethods %}
         <div class="row"><div class="columns">
-          <a href="{{ url('user_oauth', type='github') }}" class="expanded rounded button">{{ _('Login with Github') }}</a>
+          <a href="{{ url('user_oauth', type=v.id) }}" class="expanded rounded button">{{ _(v.text) }}</a>
         </div></div>
-        <div class="row"><div class="columns">
-          <a href="{{ url('user_oauth', type='google') }}" class="expanded rounded button">{{ _('Login with Google') }}</a>
-        </div></div>
+        {% endfor %}
         <div class="row"><div class="columns">
           <input type="submit" value="{{ _('Sign In') }}" class="expanded rounded primary button">
         </div></div>
