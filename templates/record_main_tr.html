@@ -20,7 +20,11 @@
   </td>
   <td class="col--submit-by">
     <a href="{{ url('user_detail', uid=rdoc.uid) }}">
-      {{ udoc['uname'] }}
+      {% if udoc.displayName %}
+        {{ udoc.displayName }} ({{ udoc.uname }})
+      {% else %}
+        {{ udoc.uname }}
+      {% endif %}
     </a>
   </td>
   <td class="col--time">{% if rdoc['status'] == STATUS.STATUS_TIME_LIMIT_EXCEEDED or rdoc['status'] == STATUS.STATUS_MEMORY_LIMIT_EXCEEDED or rdoc['status'] == STATUS.STATUS_OUTPUT_LIMIT_EXCEEDED %}&ge;{% endif %}{{ rdoc.time }}ms</td>
