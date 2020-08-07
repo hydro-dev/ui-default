@@ -2,6 +2,15 @@
 {% block home_content %}
 <div data-heading-extract-to="#menu-item-home_security">
 <div class="row">
+  {% if handler.user.mail.endsWith('.local') %}
+    <div class="medium-12 columns">
+      <div class="section">
+        <div class="section__body">
+          <blockquote class="warn">{{ _("You haven't set an email.")}}</blockquote>
+        </div>
+      </div>
+    </div>
+  {% endif %}
   <div class="medium-6 columns">
     <div class="section">
       <div class="section__header">
