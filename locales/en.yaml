@@ -1,5 +1,7 @@
 __langname: English
 Can be Extended For: Extension
+Current Status: Status
+Handled Requests: Req
 manage: System Manage
 no_translation_warn: <blockquote class="warn">This part of content is under translation.</blockquote>
 page.problem_detail.sidebar.show_category: Click to Show

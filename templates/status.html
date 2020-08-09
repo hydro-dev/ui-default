@@ -12,6 +12,7 @@
               <col class="col--os">
               <col class="col--cpu">
               <col class="col--memory">
+              <col class="col--request">
             </colgroup>
             <thead>
               <tr>
@@ -20,16 +21,18 @@
                 <th class="col--os">{{ _('OS Info') }}</th>
                 <th class="col--cpu">{{ _('CPU Info') }}</th>
                 <th class="col--memory">{{ _('Memory Info') }}</th>
+                <th class="col--request">{{ _('Handled requests') }}</th>
               </tr>
             </thead>
             <tbody>
               {% for doc in stats %}
               <tr>
-                <td class="col--id">{{ doc._id }}</td>
+                <td class="col--id">{{ doc._id.toHexString()|truncate(6,True,'') }}</td>
                 <td class="col--status">{% if doc.isOnline %}{{ doc.status }}{% else %}{{ datetimeSpan(doc.updateAt)|safe }}{% endif %}</td>
                 <td class="col--os">{{ doc.osinfo }}</td>
                 <td class="col--cpu" data-tooltip="{{ doc.flags }}">{{ doc.cpu }}</td>
                 <td class="col--memory"{% if doc.stack %} data-tooltip="Stack size: {{ doc.stack }}MB"{% endif %}>{{ doc.memory }}</td>
+                <td class="col--request">{{ doc.reqCount }}</td>
               </tr>
               {% endfor %}
             </tbody>

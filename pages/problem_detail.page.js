@@ -2,6 +2,7 @@ import Tether from 'tether';
 import { NamedPage } from 'vj/misc/PageLoader';
 import Navigation from 'vj/components/navigation';
 import { ActionDialog } from 'vj/components/dialog';
+import Notification from 'vj/components/notification/index';
 import DomainSelectAutoComplete from 'vj/components/autocomplete/DomainSelectAutoComplete';
 import loadReactRedux from 'vj/utils/loadReactRedux';
 import delay from 'vj/utils/delay';
