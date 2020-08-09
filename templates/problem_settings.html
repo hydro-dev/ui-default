@@ -63,6 +63,30 @@
                name:'tag', 
                value:pdoc['tag']|join(', ')
              }) }}
+          <div class="row">
+            {{ form.form_select({
+                 columns:4,
+                 label:'Difficulty',
+                 name:'difficultySetting',
+                 options:model.problem.SETTING_DIFFICULTY_RANGE,
+                 value:pdoc.difficultySetting|default(0),
+                 row:false
+               }) }}
+            {{ form.form_text({
+                 columns:4,
+                 label:'Evaluated difficulty',
+                 help_text:"Effects only when Difficulty is not 'Use algorithm calculated'.",
+                 name:'difficultyAdmin',
+                 placeholder:'9',
+                 value:pdoc.difficultyAdmin or '',
+                 row:false
+               }) }}
+            <div class="medium-4 columns">
+              <p class="help-text">{{ _('Difficulty displayed') }}: {{ pdoc['difficulty'] or _('(None)') }}</p>
+              <p class="help-text">{{ _('Difficulty by algorithm') }}: {{ pdoc['difficultyAlgo'] or _('(None)') }}</p>
+              <p class="help-text">{{ _('Difficulty by admin') }}: {{ pdoc['difficultyAdmin'] or _('(None)') }}</p>
+            </div>
+          </div>
           <div class="row"><div class="columns">
             <input type="hidden" name="operation" value="setting">
             <input type="hidden" name="csrfToken" value="{{ handler.csrfToken }}">
