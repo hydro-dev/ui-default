@@ -157,9 +157,23 @@
   {% endif %}
   </div>
   <div class="large-3 columns">
-  {% if handler.user.hasPerm(perm.PERM_VIEW_DISCUSSION) %}
-    {% include 'partials/discussion_nodes_widget.html' %}
-  {% endif %}
+    <div class="section side nojs--hide">
+      <div class="section__header">
+        <h1 class="section__title">{{ _('Hitokoto') }}</h1>
+      </div>
+      <div class="section__body" name="hitokoto"></div>
+    </div>
+    {% if handler.user.hasPriv(PRIV.PRIV_USER_PROFILE) %}
+      <div class="section side">
+        <div class="section__header">
+          <h1 class="section__title">{{ _('Check In') }}</h1>
+        </div>
+        <div class="section__body">还没做好</div>
+      </div>
+    {% endif %}
+    {% if handler.user.hasPerm(perm.PERM_VIEW_DISCUSSION) %}
+      {% include 'partials/discussion_nodes_widget.html' %}
+    {% endif %}
     <div class="section side">
       <div class="section__header">
         <h1 class="section__title">{{ _('Recommended') }}</h1>
