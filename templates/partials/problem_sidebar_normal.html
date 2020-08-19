@@ -34,12 +34,12 @@
       </a></li>
     {% endif %}
     {% else %}
-      <li class="menu__item"><a class="menu__link" href="{{ url('problem_detail', pid=pdoc.pid) }}">
+      <li class="menu__item"><a class="menu__link" href="{{ url('problem_detail', pid=pdoc.pid|default('pdoc.docId')) }}">
         <span class="icon icon-flag"></span> {{ _('View Problem') }}
       </a></li>
     {% endif %}
     {% if handler.user.hasPerm(perm.PERM_SUBMIT_PROBLEM) %}
-      <li class="menu__item scratchpad--hide"><a class="menu__link{% if page_name == 'problem_submit' %} active{% endif %}" href="{{ url('problem_submit', pid=pdoc.pid) }}">
+      <li class="menu__item scratchpad--hide"><a class="menu__link{% if page_name == 'problem_submit' %} active{% endif %}" href="{{ url('problem_submit', pid=pdoc.pid|default('pdoc.docId')) }}">
         <span class="icon icon-send"></span> {{ _('Submit') }}
       </a></li>
     {% elif not handler.user.hasPriv(PRIV.PRIV_USER_PROFILE) %}
@@ -60,7 +60,7 @@
       </a></li>
     {% endif %}
     {% if handler.user.hasPerm(perm.PERM_VIEW_PROBLEM_SOLUTION) %}
-      <li class="menu__item"><a class="menu__link{% if page_name == 'problem_solution' %} active{% endif %}" href="{{ url('problem_solution', pid=pdoc.pid) }}">
+      <li class="menu__item"><a class="menu__link{% if page_name == 'problem_solution' %} active{% endif %}" href="{{ url('problem_solution', pid=pdoc.pid|default('pdoc.docId')) }}">
         <span class="icon icon-comment--text"></span> {{ _('Solutions') }}
       </a></li>
     {% endif %}
@@ -72,10 +72,10 @@
     {% endif %}
     {% if user._id == pdoc.owner or handler.user.hasPerm(perm.PERM_EDIT_PROBLEM) %}
       <li class="menu__seperator"></li>
-      <li class="menu__item"><a class="menu__link{% if page_name == 'problem_edit' %} active{% endif %}" href="{{ url('problem_edit', pid=pdoc.pid) }}">
+      <li class="menu__item"><a class="menu__link{% if page_name == 'problem_edit' %} active{% endif %}" href="{{ url('problem_edit', pid=pdoc.pid|default('pdoc.docId')) }}">
         <span class="icon icon-edit"></span> {{ _('Edit') }}
       </a></li>
-      <li class="menu__item"><a class="menu__link{% if page_name == 'problem_settings' %} active{% endif %}" href="{{ url('problem_settings', pid=pdoc.pid) }}">
+      <li class="menu__item"><a class="menu__link{% if page_name == 'problem_settings' %} active{% endif %}" href="{{ url('problem_settings', pid=pdoc.pid|default('pdoc.docId')) }}">
         <span class="icon icon-wrench"></span> {{ _('Settings') }}
       </a></li>
     {% endif %}

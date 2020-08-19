@@ -27,9 +27,9 @@
 <script>
   var Context = {{ {
     problemId: pdoc.pid,
-    postSubmitUrl: url('problem_submit', pid=pdoc.pid),
-    postPretestUrl: url('problem_pretest', pid=pdoc.pid),
-    getSubmissionsUrl: url('problem_submit', pid=pdoc.pid),
+    postSubmitUrl: url('problem_submit', pid=pdoc.pid|default('pdoc.docId')),
+    postPretestUrl: url('problem_pretest', pid=pdoc.pid|default('pdoc.docId')),
+    getSubmissionsUrl: url('problem_submit', pid=pdoc.pid|default('pdoc.docId')),
     getRecordDetailUrl: url('record_detail', rid='{rid}'),
     codeLang: handler.user.codeLang,
     codeTemplate: handler.user.codeTemplate
