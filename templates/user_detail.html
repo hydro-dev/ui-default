@@ -101,7 +101,7 @@
                 </div>
                 <div class="section__body">
                 {% for pdoc in pdocs %}
-                  <p><a href="{{ url('problem_detail', pid=pdoc.pid|default('pdoc.docId')) }}">{{ pdoc['title'] }}</a></p>
+                  <p><a href="{{ url('problem_detail', pid=pdoc.pid|default(pdoc.docId)) }}">{{ pdoc['title'] }}</a></p>
                 {% endfor %}
                 </div>
               {% endif %}
