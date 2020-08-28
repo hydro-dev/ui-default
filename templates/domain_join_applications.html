@@ -1,16 +1,16 @@
 {% extends "domain_base.html" %}
 {% block domain_content %}
-{% if join_settings != None %}
+{% if joinSettings %}
 <div class="section">
     <div class="section__header">
       <h1 class="section__title">{{ _('Information') }}</h1>
     </div>
     <div class="section__body typo">
       <p>{{ _('User can join this domain by visiting the following URL') }}:</p>
-      <pre><code class="language-data">{{ handler.UIContext['url_prefix'] }}{{ url('domain_join') }}</code></pre>
+      <pre><code class="language-data">{{ url_prefix|safe }}domain/join?domainId={{ handler.args.domainId }}</code></pre>
     {% if joinSettings['method'] == model.domain.JOIN_METHOD_CODE %}
       <p>{{ _('Or, with automatically filled invitation code') }}:</p>
-      <pre><code class="language-data">{{ handler.UIContext['url_prefix'] }}{{ url('domain_join') }}?code={{ joinSettings.code|urlencode }}</code></pre>
+      <pre><code class="language-data">{{ url_prefix|safe }}domain/join?domainId={{ handler.args.domainId }}&code={{ joinSettings.code|urlencode }}</code></pre>
     {% endif %}
     {% if not joinSettings['expire'] %}
       <br/>

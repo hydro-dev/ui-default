@@ -18,8 +18,11 @@ const hitokotoPage = new AutoloadPage('hitokotoPage', () => {
         });
     });
   }
-  getHitokoto($('[name="hitokoto"]'));
-  $(document).on('vjContentNew', (e) => getHitokoto($(e.target).find('[name="hitokoto"]').get()));
+  if ($('[name="hitokoto"]')) getHitokoto($('[name="hitokoto"]'));
+  $(document).on('vjContentNew', (e) => {
+    const elem = $(e.target).find('[name="hitokoto"]');
+    if (elem.get) getHitokoto(elem);
+  });
 });
 
 export default hitokotoPage;
