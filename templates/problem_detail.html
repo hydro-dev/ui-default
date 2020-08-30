@@ -26,7 +26,7 @@
 </div>
 <script>
   var Context = {{ {
-    problemId: pdoc.pid,
+    problemId: pdoc.pid|default(pdoc.docId),
     postSubmitUrl: url('problem_submit', pid=pdoc.pid|default(pdoc.docId)),
     postPretestUrl: url('problem_pretest', pid=pdoc.pid|default(pdoc.docId)),
     getSubmissionsUrl: url('problem_submit', pid=pdoc.pid|default(pdoc.docId)),
@@ -40,20 +40,21 @@
     <div class="section">
       <div class="problem-content-container"><div class="problem-content" data-marker-enabled>
         <div class="section__header non-scratchpad--hide">
-          <h1>{{ pdoc['title'] }}</h1>
+          <h1>{{ pdoc.title }}</h1>
         </div>
         <div class="section__body typo">
-        {% if not pdoc['data'] %}
+        {% if not pdoc.data %}
           <blockquote class="warn">
             <p>{{ _('No dataset at present.') }}</p>
           </blockquote>
         {% elif typeof(pdoc.data) == 'string' %}
+          {# TODO #}
           <blockquote class="note">
             <p>{{ _('Test data comes from') }} <a href="#" target="_blank">{{ pdoc.data.split(':')[1] }}</a></p>
           </blockquote>
         {% endif %}
         {% if tdoc %}
-        {% if tdoc['docType'] == model.document.TYPE_CONTEST %}
+        {% if tdoc.docType == model.document.TYPE_CONTEST %}
         {% if model.contest.isDone(tdoc) %}
           <blockquote class="note">
             <p>{{ _('You cannot submit for this problem because the contest is ended. You can click "Open in Problem Set" to view this problem in normal mode.') }}</p>
@@ -61,7 +62,7 @@
         {% endif %}{# handler.isDone(tdoc) #}
         {% endif %}{# tdoc['docType'] == model.document.TYPE_CONTEST #}
         {% endif %}{# tdoc #}
-          {{ pdoc['content']|markdown|safe }}
+          {{ pdoc.content|markdown|safe }}
         </div>
       </div></div>
     </div>
