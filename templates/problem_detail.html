@@ -62,7 +62,11 @@
         {% endif %}{# handler.isDone(tdoc) #}
         {% endif %}{# tdoc['docType'] == model.document.TYPE_CONTEST #}
         {% endif %}{# tdoc #}
+        {% if pdoc.html %}
+          {{ pdoc.content|xss|safe }}
+        {% else %}
           {{ pdoc.content|markdown|safe }}
+        {% endif %}
         </div>
       </div></div>
     </div>

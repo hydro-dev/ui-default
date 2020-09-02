@@ -3,6 +3,7 @@ const path = require('path');
 const serialize = require('serialize-javascript');
 const nunjucks = require('nunjucks');
 const { argv } = require('yargs');
+const xss = require('xss');
 const markdown = require('./markdown');
 
 const { misc } = global.Hydro.lib;
@@ -34,6 +35,7 @@ class Nunjucks extends nunjucks.Environment {
   constructor() {
     super(new Loader(), { autoescape: true, trimBlocks: true });
     this.addFilter('json', (self) => JSON.stringify(self), false);
+    this.addFilter('xss', (self) => xss(self));
     this.addFilter('serialize', (self, ignoreFunction = true) => serialize(self, { ignoreFunction }));
     this.addFilter('assign', (self, data) => Object.assign(self, data));
     this.addFilter('markdown', (self, html = false) => markdown.render(self, html));
