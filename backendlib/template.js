@@ -3,10 +3,76 @@ const path = require('path');
 const serialize = require('serialize-javascript');
 const nunjucks = require('nunjucks');
 const { argv } = require('yargs');
-const xss = require('xss');
+const Xss = require('xss');
 const markdown = require('./markdown');
 
 const { misc } = global.Hydro.lib;
+
+const xss = new Xss.FilterXSS({
+  whiteList: {
+    a: ['target', 'href', 'title'],
+    abbr: ['title'],
+    address: [],
+    area: ['shape', 'coords', 'href', 'alt'],
+    article: [],
+    aside: [],
+    audio: ['autoplay', 'controls', 'loop', 'preload', 'src'],
+    b: [],
+    bdi: ['dir'],
+    bdo: ['dir'],
+    big: [],
+    blockquote: ['cite'],
+    br: [],
+    caption: [],
+    center: [],
+    cite: [],
+    code: [],
+    col: ['align', 'valign', 'span', 'width'],
+    colgroup: ['align', 'valign', 'span', 'width'],
+    dd: [],
+    del: ['datetime'],
+    details: ['open'],
+    div: ['class'],
+    dl: [],
+    dt: [],
+    em: [],
+    font: ['color', 'size', 'face'],
+    h1: [],
+    h2: [],
+    h3: [],
+    h4: [],
+    h5: [],
+    h6: [],
+    header: [],
+    hr: [],
+    i: [],
+    img: ['src', 'alt', 'title', 'width', 'height'],
+    ins: ['datetime'],
+    li: [],
+    mark: [],
+    ol: [],
+    p: [],
+    pre: [],
+    s: [],
+    section: [],
+    small: [],
+    span: ['class'],
+    sub: [],
+    sup: [],
+    strong: [],
+    table: ['width', 'border', 'align', 'valign'],
+    tbody: ['align', 'valign'],
+    td: ['width', 'rowspan', 'colspan', 'align', 'valign'],
+    tfoot: ['align', 'valign'],
+    th: ['width', 'rowspan', 'colspan', 'align', 'valign'],
+    thead: ['align', 'valign'],
+    tr: ['rowspan', 'align', 'valign'],
+    tt: [],
+    u: [],
+    ul: [],
+    video: ['autoplay', 'controls', 'loop', 'preload', 'src', 'height', 'width'],
+  },
+});
 
 class Loader extends nunjucks.Loader {
   // eslint-disable-next-line class-methods-use-this
@@ -35,7 +101,7 @@ class Nunjucks extends nunjucks.Environment {
   constructor() {
     super(new Loader(), { autoescape: true, trimBlocks: true });
     this.addFilter('json', (self) => JSON.stringify(self), false);
-    this.addFilter('xss', (self) => xss(self));
+    this.addFilter('xss', (self) => xss.process(self));
     this.addFilter('serialize', (self, ignoreFunction = true) => serialize(self, { ignoreFunction }));
     this.addFilter('assign', (self, data) => Object.assign(self, data));
     this.addFilter('markdown', (self, html = false) => markdown.render(self, html));
