@@ -124,13 +124,13 @@
               </div>
               <ul class="supplementary list training__progress">
                 <li>
-                  <span class="icon icon-flag text-blue"></span> {{ _('{0} sections').format(tdoc['dag']|length) }}, {{ _('{0} problems').format(model.training.getPids(tdoc)|length) }}
+                  <span class="icon icon-flag text-blue"></span> {{ _('{0} sections').format(tdoc['dag']|length) }}, {{ _('{0} problems').format(model.training.getPids(tdoc.dag)|length) }}
                 </li>
                 <li>
                 {% if tsdict[tdoc.docId]['enroll'] %}
                   {% if not tsdict[tdoc.docId]['done'] %}
                   <span class="icon training-status--icon progress"></span>
-                  <span class="training-status--text progress">{{ _('Completed') }} {{ (100 * tsdict[tdoc.docId]['donePids']|length / model.training.getPids(tdoc)|length)|round|int }}%</span>
+                  <span class="training-status--text progress">{{ _('Completed') }} {{ (100 * tsdict[tdoc.docId]['donePids']|length / model.training.getPids(tdoc.dag)|length)|round|int }}%</span>
                   {% else %}
                   <span class="icon training-status--icon done"></span>
                   <span class="training-status--text done">{{ _('Completed') }} 100%</span>

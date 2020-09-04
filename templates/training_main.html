@@ -26,13 +26,13 @@
               </div>
               <ul class="supplementary list training__progress">
                 <li>
-                  <span class="icon icon-flag text-blue"></span> {{ _('{0} sections').format(tdoc['dag']|length) }}, {{ _('{0} problems').format(model.training.getPids(tdoc)|length) }}
+                  <span class="icon icon-flag text-blue"></span> {{ _('{0} sections').format(tdoc['dag']|length) }}, {{ _('{0} problems').format(model.training.getPids(tdoc.dag)|length) }}
                 </li>
                 <li>
                 {% if tsdict[tdoc.docId]['enroll'] %}
                   {% if not tsdict[tdoc.docId]['done'] %}
                   <span class="icon training-status--icon progress"></span>
-                  <span class="training-status--text progress">{{ _('Completed') }} {{ (100 * tsdict[tdoc.docId]['donePids']|length / model.training.getPids(tdoc)|length)|round|int }}%</span>
+                  <span class="training-status--text progress">{{ _('Completed') }} {{ (100 * tsdict[tdoc.docId]['donePids']|length / model.training.getPids(tdoc.dag)|length)|round|int }}%</span>
                   {% else %}
                   <span class="icon training-status--icon done"></span>
                   <span class="training-status--text done">{{ _('Completed') }} 100%</span>
@@ -67,7 +67,7 @@
             </div>
             <div class="media__body">
               <h1 class="training__title"><a href="{{ url('training_detail', tid=tsdoc.docId) }}" data-emoji-enabled>{{ tdict[tsdoc['docId']]['title'] }}</a></h1>
-              <div class="supplementary training__progress"><div class="training__progress-bar"><div class="training__progress-track" style="width:{{ (100 * tsdoc['donePids']|length / model.training.getPids(tdict[tsdoc['docId']])|length)|round|int }}%;"></div></div> {{ _('Complete') }} {{ (100 * tsdoc['donePids']|length / handler.getPids(tdict[tsdoc.docId])|length)|round|int }}%</div>
+              <div class="supplementary training__progress"><div class="training__progress-bar"><div class="training__progress-track" style="width:{{ (100 * tsdoc['donePids']|length / model.training.getPids(tdict[tsdoc['docId']].dag)|length)|round|int }}%;"></div></div> {{ _('Complete') }} {{ (100 * tsdoc['donePids']|length / handler.getPids(tdict[tsdoc.docId].dag)|length)|round|int }}%</div>
             </div>
           </div></li>
         {% endif %}
