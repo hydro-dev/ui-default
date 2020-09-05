@@ -1,6 +1,6 @@
 {
   "name": "@hydrooj/ui-default",
-  "version": "4.3.20",
+  "version": "4.3.21",
   "author": "masnn",
   "license": "AGPL-3.0",
   "main": "Entry.js",
@@ -210,6 +210,7 @@
     "markdown-it-imsize": "^2.0.1",
     "markdown-it-mark": "^3.0.0",
     "markdown-it-table-of-contents": "^0.4.4",
+    "nunjucks": "^3.2.2",
     "prismjs": "^1.21.0",
     "xss": "^1.0.8"
   }
