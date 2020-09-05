@@ -1,6 +1,6 @@
 {
   "name": "@hydrooj/ui-default",
-  "version": "4.3.19",
+  "version": "4.3.20",
   "author": "masnn",
   "license": "AGPL-3.0",
   "main": "Entry.js",
@@ -200,7 +200,7 @@
     ]
   },
   "peerDependencies": {
-    "hydrooj": "^2.12.27"
+    "hydrooj": "^2.13.0"
   },
   "dependencies": {
     "katex": "^0.12.0",

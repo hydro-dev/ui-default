@@ -10,7 +10,7 @@
   <div class="row"><div class="columns clearfix">
     <ol class="nav__list nav__list--main clearfix">
       <li class="nav__list-item"><a href="/" class="nav__logo">&nbsp;</a></li>
-      {% for item in Context.nav %}
+      {% for item in Context.nodes.nav %}
         {% if item.checker(handler) %}
           {{ nav_item(item.name, item.args, item.prefix) }}
         {% endif %}

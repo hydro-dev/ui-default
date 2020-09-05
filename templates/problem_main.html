@@ -48,18 +48,12 @@
             <h1 class="section__title">{{ _('Create Problem') }}</h1>
           </div>
           <ol class="menu">
-            <li class="menu__item">
-              <a href="{{ url('problem_create') }}" class="menu__link">
-                <span class="icon icon-add"></span>
-                {{ _('Create Problem') }}
+            {% for item in Context.nodes.problem_add %}
+              <a href="{{ url(item.name, item.args) }}" class="menu__link">
+                <span class="icon icon-{{ item.icon|default('add') }}"></span>
+                {{ _(item.text) }}
               </a>
-            </li>
-            <li class="menu__item">
-              <a href="{{ url('problem_import') }}" class="menu__link">
-                <span class="icon icon-copy"></span>
-                {{ _('Import Problem') }}
-              </a>
-            </li>
+            {% endfor %}
           </ol>
           <div class="section__body">
             <div class="typo supplementary">
