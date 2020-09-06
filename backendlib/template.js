@@ -32,7 +32,7 @@ const xss = new Xss.FilterXSS({
     dd: [],
     del: ['datetime'],
     details: ['open'],
-    div: ['class'],
+    div: [],
     dl: [],
     dt: [],
     em: [],
