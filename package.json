@@ -52,7 +52,6 @@
     "gulp-cli": "^2.3.0",
     "gulp-iconfont": "^10.0.2",
     "gulp-if": "^3.0.0",
-    "gulp-nunjucks": "^5.0.1",
     "gulp-plumber": "^1.2.1",
     "gulp-svgmin": "^3.0.0",
     "jquery": "^3.5.1",

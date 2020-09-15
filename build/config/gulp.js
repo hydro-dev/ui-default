@@ -9,9 +9,9 @@ import chalk from 'chalk';
 import svgmin from 'gulp-svgmin';
 import vinylBuffer from 'vinyl-buffer';
 import iconfont from 'gulp-iconfont';
-import nunjucks from 'gulp-nunjucks';
 import plumber from 'gulp-plumber';
 import gulpif from 'gulp-if';
+import nunjucks from '../plugins/gulpNunjucks';
 import vjTouch from '../plugins/gulpTouch';
 
 let isInWatchMode = false;
@@ -36,7 +36,7 @@ export default function ({ errorHandler }) {
 
   tasks['iconfont:template'] = () => gulp
     .src('misc/icons/template/*.styl')
-    .pipe(nunjucks.compile(iconfontTemplateArgs))
+    .pipe(nunjucks(iconfontTemplateArgs))
     .pipe(gulp.dest('misc/.iconfont'))
     .pipe(offsetMtimeAtFirstBuild());
 
