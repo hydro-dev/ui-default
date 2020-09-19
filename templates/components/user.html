@@ -6,9 +6,9 @@
 ) %}
 {% if udoc %}
 <span class="user-profile-link">
-{% if avatar %}
-  <img class="small user-profile-avatar v-center" src="{{ gravatar(udoc['gravatar']|default('')) }}" width="20" height="20">
-{% endif %}
+  {% if avatar %}
+    <img class="small user-profile-avatar v-center" src="{{ gravatar(udoc['gravatar']|default('')) }}" width="20" height="20">
+  {% endif %}
   <a class="user-profile-name" href="{{ url('user_detail', uid=udoc._id) }}">
     {% if udoc.displayName %}
       {{ udoc.displayName }} ({{ udoc.uname }})
@@ -16,24 +16,24 @@
       {{ udoc.uname }}
     {% endif %}
   </a>
-{% if badge %}
-  <a class="user-profile-badge v-center badge--lv{{ udoc['level']|default(0) }}" href="{{ url('user_detail', uid=udoc._id) }}" title="LV {{ udoc['level']|default(0) }}: Top {{ model.builtin.LEVELS[udoc['level']|default(0)]|default('N/A') }}%">LV {{ udoc['level']|default(0) }}</a>
-{% if modbadge and udoc.hasPerm(perm.PERM_MOD_BADGE) %}
-  <span class="user-profile-badge v-center badge--mod" title="Moderator">MOD</span>
-{% endif %}
-{% endif %}
+  {% if badge %}
+    <a class="user-profile-badge v-center badge--lv{{ udoc['level']|default(0) }}" href="{{ url('user_detail', uid=udoc._id) }}" title="LV {{ udoc['level']|default(0) }}: Top {{ model.builtin.LEVELS[udoc['level']|default(0)]|default('N/A') }}%">LV {{ udoc['level']|default(0) }}</a>
+    {% if modbadge and udoc.hasPerm(perm.PERM_MOD_BADGE) %}
+      <span class="user-profile-badge v-center badge--mod" title="Moderator">MOD</span>
+    {% endif %}
+  {% endif %}
 </span>
 {% else %}
-<span class="user-profile-link">
-{% if avatar %}
-  <img class="small user-profile-avatar v-center" src="{{ static_url('img/avatar.png') }}" width="20" height="20">
-{% endif %}
-  <a class="user-profile-name" href="#">
-    {{ _('Unknown User') }}
-  </a>
-{% if badge %}
-  <a class="user-profile-badge v-center badge--lv0" href="#" title="LV0">LV 0</a>
-{% endif %}
-</span>
+  <span class="user-profile-link">
+    {% if avatar %}
+      <img class="small user-profile-avatar v-center" src="{{ static_url('img/avatar.png') }}" width="20" height="20">
+    {% endif %}
+    <a class="user-profile-name" href="#">
+      {{ _('Unknown User') }}
+    </a>
+    {% if badge %}
+      <a class="user-profile-badge v-center badge--lv0" href="#" title="LV0">LV 0</a>
+    {% endif %}
+  </span>
 {% endif %}
 {% endmacro %}

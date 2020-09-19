@@ -20,6 +20,7 @@ const Mark = require('markdown-it-mark');
 const TOC = require('markdown-it-table-of-contents');
 const Anchor = require('markdown-it-anchor');
 const Katex = require('./markdown-it-katex');
+const Media = require('./markdown-it-media');
 
 require('prismjs/components/index');
 
@@ -37,6 +38,7 @@ class Markdown extends MarkdownIt {
       },
     });
     this.linkify.tlds('.py', false);
+    this.use(Media);
     this.use(Imsize);
     this.use(Footnote);
     this.use(Mark);

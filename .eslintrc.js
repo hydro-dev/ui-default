@@ -73,6 +73,7 @@ module.exports = {
     'no-console': 'off',
     'no-continue': 'off',
     'no-mixed-operators': 'off',
+    'no-multi-assign': 'off',
     'no-plusplus': 'off',
     'no-restricted-syntax': [
       'error',
