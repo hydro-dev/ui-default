@@ -1266,6 +1266,11 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
+"@centerforopenscience/markdown-it-video@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@centerforopenscience/markdown-it-video/-/markdown-it-video-1.0.0.tgz#4c1ab932ccb25c17a8992daa12168d0aea622664"
+  integrity sha512-6TOHqcRy7eg09aCcXLYCvLk87eMuFB8P1rBonpjJPcz++FQdEL5834c1Vq8vCePabKY2Scg3DNagRIblagXjXg==
+
 "@eslint/eslintrc@^0.1.3":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-0.1.3.tgz#7d1a2b2358552cc04834c0979bd4275362e37085"
