@@ -1,6 +1,6 @@
 {
   "name": "@hydrooj/ui-default",
-  "version": "4.3.27",
+  "version": "4.3.28",
   "author": "masnn",
   "license": "AGPL-3.0",
   "main": "Entry.js",
@@ -199,7 +199,7 @@
     ]
   },
   "peerDependencies": {
-    "hydrooj": "^2.13.0"
+    "hydrooj": "^2.13.20"
   },
   "dependencies": {
     "@centerforopenscience/markdown-it-video": "^1.0.0",
