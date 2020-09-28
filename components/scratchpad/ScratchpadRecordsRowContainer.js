@@ -13,7 +13,7 @@ import * as recordEnum from 'vj/constant/record';
 
 const shouldShowDetail = (data) => recordEnum.STATUS_SCRATCHPAD_SHOW_DETAIL_FLAGS[data.status];
 
-const isPretest = (data) => data.pretest === true;
+const isPretest = (data) => !!data.input;
 
 const getRecordDetail = (data) => {
   if (!shouldShowDetail(data)) {
@@ -24,7 +24,7 @@ const getRecordDetail = (data) => {
     );
   }
   const stat = _.pick(
-    _.groupBy(data.cases || [], 'status'),
+    _.groupBy(data.testCases || [], 'status'),
     _.keys(recordEnum.STATUS_SCRATCHPAD_SHORT_TEXTS),
   );
   return _.map(recordEnum.STATUS_SCRATCHPAD_SHORT_TEXTS, (text, status) => {
