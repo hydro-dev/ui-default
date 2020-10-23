@@ -1,6 +1,6 @@
 {
   "name": "@hydrooj/ui-default",
-  "version": "4.3.29",
+  "version": "4.3.30",
   "author": "masnn",
   "license": "AGPL-3.0",
   "main": "Entry.js",
@@ -95,8 +95,7 @@
     "vinyl-buffer": "^1.0.1",
     "vj-simplemde": "0.0.8",
     "vscode-ws-jsonrpc": "^0.2.0",
-    "webpack": "^4.44.2",
-    "yargs": "^16.0.3"
+    "webpack": "^4.44.2"
   },
   "scripts": {
     "build": "node build",
@@ -212,6 +211,7 @@
     "markdown-it-table-of-contents": "^0.4.4",
     "nunjucks": "^3.2.2",
     "prismjs": "^1.21.0",
-    "xss": "^1.0.8"
+    "xss": "^1.0.8",
+    "yargs": "^16.1.0"
   }
 }
