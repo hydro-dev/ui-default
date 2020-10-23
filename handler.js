@@ -66,7 +66,7 @@ class MarkdownHandler extends Handler {
 }
 
 global.Hydro.handler.ui = async () => {
-  global.Hydro.model.builtin.FOOTER_EXTRA_HTMLS = (await system.get('ui-default.footer_extra_html')).split('\n');
+  global.Hydro.model.builtin.FOOTER_EXTRA_HTMLS = (await system.get('ui-default.footer_extra_html') || '').split('\n');
   Route('wiki_help', '/wiki/help', WikiHelpHandler);
   Route('wiki_about', '/wiki/about', WikiAboutHandler);
   Route('locale', '/locale/:id', LocaleHandler);
