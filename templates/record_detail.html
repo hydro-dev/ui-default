@@ -54,12 +54,10 @@
             </form>
           </li>
           <li class="menu__item">
-            <form method="post" action="{{ url('judge') }}">
-              <input type="hidden" name="action" value="end">
+            <form method="post">
+              <input type="hidden" name="operation" value="cancel">
               <input type="hidden" name="rid" value="{{ rdoc._id }}">
               <input type="hidden" name="csrfToken" value="{{ handler.csrfToken }}">
-              <input type="hidden" name="score" value="0">
-              <input type="hidden" name="message" value="{{ _('score canceled') }}">
               <button type="submit" class="menu__link">
                 <span class="icon icon-close"></span> {{ _('Cancel Score') }}
               </button>
