@@ -62,10 +62,11 @@
       </div>
       <div class="footer__extra-right">
         <ol class="clearfix">
-        <!-- TODO -->
-        {% for html in model.builtin.FOOTER_EXTRA_HTMLS %}
-          <li class="footer__extra-link-item">{{ html|safe }}</li>
-        {% endfor %}
+          <!-- TODO -->
+          {% for html in model.builtin.FOOTER_EXTRA_HTMLS %}
+            <li class="footer__extra-link-item">{{ html|safe }}</li>
+          {% endfor %}
+          <li class="footer__extra-link-item">Powered by <a href="https://hydro.js.org">Hydro</a></li>
         </ol>
       </div>
     </div>
