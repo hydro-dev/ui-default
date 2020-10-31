@@ -109,6 +109,17 @@ class Nunjucks extends nunjucks.Environment {
     this.addFilter('ansi', (self) => misc.ansiToHtml(self));
     this.addFilter('base64_encode', (s) => Buffer.from(s).toString('base64'));
     this.addFilter('bitand', (self, val) => self & val);
+    this.addFilter('content', (content, language, html) => {
+      let s = '';
+      try {
+        const c = JSON.parse(content);
+        if (c[language]) s = c[language];
+        else s = c[Object.keys(c)[0]];
+      } catch (e) {
+        s = content;
+      }
+      return html ? xss.process(s) : markdown.render(s);
+    });
     this.addFilter('log', (self) => {
       console.log(self);
       return self;
