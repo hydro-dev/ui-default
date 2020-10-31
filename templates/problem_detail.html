@@ -62,7 +62,7 @@
         {% endif %}{# handler.isDone(tdoc) #}
         {% endif %}{# tdoc['docType'] == model.document.TYPE_CONTEST #}
         {% endif %}{# tdoc #}
-        {{ pdoc.content|content(handler.user.viewLang, pdoc.html) }}
+        {{ pdoc.content|content(handler.user.viewLang, pdoc.html)|safe }}
         </div>
       </div></div>
     </div>
