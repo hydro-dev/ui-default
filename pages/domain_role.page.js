@@ -57,9 +57,7 @@ const page = new NamedPage('domain_role', () => {
 
   async function handleClickDeleteSelected() {
     const selectedRoles = ensureAndGetSelectedRoles();
-    if (selectedRoles === null) {
-      return;
-    }
+    if (selectedRoles === null) return;
     const action = await new ConfirmDialog({
       $body: tpl`
         <div class="typo">
@@ -67,9 +65,7 @@ const page = new NamedPage('domain_role', () => {
           <p>${i18n('Users with those roles will be removed from the domain.')}</p>
         </div>`,
     }).open();
-    if (action !== 'yes') {
-      return;
-    }
+    if (action !== 'yes') return;
     try {
       await request.post('', {
         operation: 'delete',

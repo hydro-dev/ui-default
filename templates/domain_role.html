@@ -48,10 +48,10 @@
       <tbody>
       {% for role in roles %}
         {% set isBuiltin = role._id in ['default', 'guest', 'admin'] %}
-        <tr{% if isBuiltin %} data-role="{{ role._id }}"{% endif %}>
+        <tr{% if not isBuiltin %} data-role="{{ role._id }}"{% endif %}>
           <td class="col--checkbox">
             <label class="compact checkbox">
-              <input type="checkbox" data-checkbox-group="role" {{ "data-checkbox-range" if isBuiltin else "disabled" }}>
+              <input type="checkbox" data-checkbox-group="role" {{ "disabled" if isBuiltin else "data-checkbox-range" }}>
             </label>
           </td>
           <td class="col--id">
