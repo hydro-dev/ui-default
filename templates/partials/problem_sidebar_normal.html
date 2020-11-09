@@ -51,6 +51,17 @@
         <span class="icon icon-send"></span> {{ _('No Permission to Submit') }}
       </a></li>
     {% endif %}
+    {% if handler.user.hasPerm(perm.PERM_REJUDGE_PROBLEM) %}
+      <li class="menu__item">
+        <form method="post" action="{{ url('problem_detail', pid=pdoc.docId) }}">
+          <input type="hidden" name="operation" value="rejudge">
+          <input type="hidden" name="csrfToken" value="{{ handler.csrfToken }}">
+          <button type="submit" class="menu__link">
+            <span class="icon icon-refresh"></span> {{ _('Rejudge all submissions') }}
+          </button>
+        </form>
+      </li>
+    {% endif %}
     {% if handler.user.hasPerm(perm.PERM_VIEW_DISCUSSION) or handler.user.hasPerm(perm.PERM_VIEW_PROBLEM_SOLUTION) %}
       <li class="menu__seperator"></li>
     {% endif %}
