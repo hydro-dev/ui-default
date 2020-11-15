@@ -4,5 +4,5 @@
 {% endmacro %}
 
 {% macro render_extension(tdoc) %}
-{{ ((tdoc['endAt'].getTime() - tdoc['penaltySince'].getTime())/ 1000 / 3600/ 24)|round(1) }}
+{{ ((tdoc['endAt'].getTime() - tdoc['penaltySince'].getTime())/ 1000 / 3600)|round(1) }}
 {% endmacro %}
