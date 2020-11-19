@@ -18,7 +18,7 @@
   </div>
   <div class="section__body typo">
     {{ _('no_translation_warn')|safe }}
-    <p>Hydro使用<a href="https://github.com/hydro-dev/HydroJudge">HydroJudge</a>进行评测，以docker镜像的形式安装至评测机。所使用的编译器均为创建镜像时<a href="https://wiki.debian.org/DebianTesting">debian testing</a>分支的最新版。编译参数如下：</p>
+    <p>Hydro 使用<a href="https://github.com/hydro-dev/Hydro/tree/master/packages/hydrojudge">HydroJudge</a>进行评测，以docker镜像的形式安装至评测机。所使用的编译器均为创建镜像时<a href="https://wiki.debian.org/DebianTesting">debian testing</a>分支的最新版。编译参数如下：</p>
     <blockquote><ul>
       <li>Free Pascal <pre>fpc -O2 -o/out/foo /in/foo.pas</pre></li>
       <li>C <pre>gcc -O2 -Wall -std=c99 -o /out/foo /in/foo.c -lm</pre></li>
@@ -165,17 +165,7 @@
   </div>
   <div class="section__body typo">
     {{ _('no_translation_warn')|safe }}
-    <p>我们只接受后缀名为zip的数据包上传，格式如下：
-    </p><blockquote><ul>
-    <li>- Config.ini: 题目配置文件</li>
-    <li>+ name1.in （name为任意字母名称，下同）</li>
-    <li>+ name1.out</li>
-    <li>+ name2.in</li>
-    <li>+ name2.out</li>
-    <li>+ ...</li>
-    <li>+ config.yaml （可选）</li>
-    </ul></blockquote>
-    <p>config.yaml 格式详见<a href="https://github.com/hydro-dev/Hydrojudge/blob/master/examples/testdata.yaml">hydro-dev/HydroJudge/testdata.yaml</a></p>
+    <p>我们只接受后缀名为zip的数据包上传，格式详见<a href="https://hydro.js.org/guide/testdata.html">配置文档</a></p>
   </div>
 </div>
 <div class="section" data-heading-extract-to="#menu-item-wiki_help">
