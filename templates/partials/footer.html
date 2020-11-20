@@ -63,7 +63,7 @@
       <div class="footer__extra-right">
         <ol class="clearfix">
           <!-- TODO -->
-          {% for html in model.system.get('ui-default.footer_extra_html').split('\n') %}
+          {% for html in (model.system.get('ui-default.footer_extra_html')|default('')).split('\n') %}
             <li class="footer__extra-link-item">{{ html|safe }}</li>
           {% endfor %}
           <li class="footer__extra-link-item">Powered by <a href="https://hydro.js.org">Hydro</a></li>
