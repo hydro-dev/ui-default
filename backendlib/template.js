@@ -153,7 +153,7 @@ async function render(name, state) {
       Context: global.Hydro.ui,
       formatJudgeTexts: (texts) => texts.map((text) => {
         if (typeof text === 'string') return text;
-        return state._(text.message).format(text.params) + ((argv.debug && text.stack) ? `\n${text.stack}` : '');
+        return state._(text.message).format(...text.params) + ((argv.debug && text.stack) ? `\n${text.stack}` : '');
       }).join('\n'),
       isIE: (str) => str.includes('MSIE') || str.includes('rv:11.0'),
     }, (err, res) => {
