@@ -164,11 +164,49 @@
       <div class="section__body" name="hitokoto"></div>
     </div>
     {% if handler.user.hasPriv(PRIV.PRIV_USER_PROFILE) %}
+    {% else %}
       <div class="section side">
         <div class="section__header">
-          <h1 class="section__title">{{ _('Check In') }}</h1>
+          <h1 class="section__title">{{ _('USER') }}</h1>
+          <form action="{{ url('user_login') }}" method="post">
+          <div class="dialog--signin__close-container supplementary">
         </div>
-        <div class="section__body">还没做好（前端不会做欢迎来帮忙）</div>
+        <h1 class="dialog--signin__title">{{ _('SIGN IN') }}</h1>
+        <p class="dialog--signin__note">{{ _('Using your Hydro universal account') }}</p>
+        <div class="row"><div class="columns">
+          <label class="material textbox">
+            {{ _('Username') }}
+            <input name="uname" type="text" data-autofocus>
+          </label>
+        </div></div>
+        <div class="row"><div class="columns">
+          <label class="material textbox">
+            {{ _('Password') }}
+            <input name="password" type="password">
+          </label>
+        </div></div>
+        <div class="row"><div class="columns">
+          <label class="checkbox">
+            <input type="checkbox" name="rememberme">{{ _('Remember me') }}
+          </label>
+        </div></div>
+        <input type="hidden" name="csrfToken" value="{{ handler.csrfToken }}">
+        {% for v in handler.loginMethods %}
+        <div class="row"><div class="columns">
+          <a href="{{ url('user_oauth', type=v.id) }}" class="expanded rounded button">{{ _(v.text) }}</a>
+        </div></div>
+        {% endfor %}
+        <div class="row"><div class="columns">
+          <input type="submit" value="{{ _('Sign In') }}" class="expanded rounded primary button">
+        </div></div>
+        <div class="row"><div class="columns">
+          <div class="supplementary text-center">
+            <a href="{{ url('user_register') }}">{{ _('Dont have an account?') }}</a>
+          </div>
+        </div></div>
+        </form>
+        </div>
+        <div class="section__body"></div>
       </div>
     {% endif %}
     {% if handler.user.hasPerm(perm.PERM_VIEW_DISCUSSION) %}
