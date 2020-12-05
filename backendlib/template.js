@@ -6,7 +6,7 @@ const { argv } = require('yargs');
 const Xss = require('xss');
 const markdown = require('./markdown');
 
-const { misc } = global.Hydro.lib;
+const { misc, buildContent } = global.Hydro.lib;
 
 const xss = new Xss.FilterXSS({
   whiteList: {
@@ -109,15 +109,19 @@ class Nunjucks extends nunjucks.Environment {
     this.addFilter('ansi', (self) => misc.ansiToHtml(self));
     this.addFilter('base64_encode', (s) => Buffer.from(s).toString('base64'));
     this.addFilter('bitand', (self, val) => self & val);
+    this.addFilter('toString', (self) => (typeof self === 'string' ? self : JSON.stringify(self)));
     this.addFilter('content', (content, language, html) => {
       let s = '';
       try {
-        const c = JSON.parse(content);
-        if (c[language]) s = c[language];
-        else s = c[Object.keys(c)[0]];
-      } catch (e) {
+        s = JSON.parse(content);
+      } catch {
         s = content;
       }
+      if (typeof s === 'object' && !(s instanceof Array)) {
+        if (s[language]) s = s[language];
+        else s = s[Object.keys(s)[0]];
+      }
+      if (s instanceof Array) s = buildContent(s);
       return html ? xss.process(s) : markdown.render(s);
     });
     this.addFilter('log', (self) => {
