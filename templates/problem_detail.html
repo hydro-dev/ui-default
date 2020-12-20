@@ -25,15 +25,29 @@
   </div>
 </div>
 <script>
+{% if tdoc %}
+  var Context = {{ {
+    problemId: pdoc.pid|default(pdoc.docId),
+    postSubmitUrl: url('contest_detail_problem_submit' if tdoc.docType == model.document.TYPE_CONTEST else 'homework_detail_problem_submit', pid=pdoc.docId, tid=tdoc.docId),
+    postPretestUrl: url('problem_pretest', pid=pdoc.docId),
+    pretestConnUrl: "/conn/pretest?pid=" + pdoc.pid|default(pdoc.docId) + "&domainId=" + handler.domainId,
+    getSubmissionsUrl: url('contest_detail_problem_submit' if tdoc.docType == model.document.TYPE_CONTEST else 'homework_detail_problem_submit', pid=pdoc.docId, tid=tdoc.docId),
+    getRecordDetailUrl: url('record_detail', rid='{rid}', query={tid:tdoc.docId}),
+    codeLang: handler.user.codeLang,
+    codeTemplate: handler.user.codeTemplate
+  }|json|safe }};
+{% else %}
   var Context = {{ {
     problemId: pdoc.pid|default(pdoc.docId),
     postSubmitUrl: url('problem_submit', pid=pdoc.pid|default(pdoc.docId)),
     postPretestUrl: url('problem_pretest', pid=pdoc.pid|default(pdoc.docId)),
+    pretestConnUrl: "/conn/pretest?pid=" + pdoc.pid|default(pdoc.docId) + "&domainId=" + handler.domainId,
     getSubmissionsUrl: url('problem_submit', pid=pdoc.pid|default(pdoc.docId)),
     getRecordDetailUrl: url('record_detail', rid='{rid}'),
     codeLang: handler.user.codeLang,
     codeTemplate: handler.user.codeTemplate
   }|json|safe }};
+{% endif %}
 </script>
 <div class="row">
   <div class="medium-9 columns">

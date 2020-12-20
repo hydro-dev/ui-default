@@ -32,6 +32,21 @@ const request = {
 
   /**
    * @param {string} url
+   * @param {FormData} FormData
+   */
+  postFile(url, form) {
+    return this.ajax({
+      url,
+      data: form,
+      processData: false,
+      contentType: false,
+      type: 'POST',
+      dataType: undefined,
+    });
+  },
+
+  /**
+   * @param {string} url
    * @param {JQueryStatic | Node | string | object} dataOrForm
    * @param {object} options
    */

@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const serialize = require('serialize-javascript');
 const nunjucks = require('nunjucks');
+const { filter } = require('lodash');
 const { argv } = require('yargs');
 const Xss = require('xss');
 const markdown = require('./markdown');
@@ -133,7 +134,6 @@ class Nunjucks extends nunjucks.Environment {
 const env = new Nunjucks();
 
 async function render(name, state) {
-  const cdnPrefix = await global.Hydro.model.system.get('server.cdn');
   // eslint-disable-next-line no-return-await
   return await new Promise((resolve, reject) => {
     env.render(name, {
@@ -141,10 +141,14 @@ async function render(name, state) {
       ...state,
       typeof: (o) => typeof o,
       static_url: (assetName) => {
+        const cdnPrefix = global.Hydro.model.system.get('server.cdn');
         if (global.Hydro.ui.manifest[assetName]) {
           return `${cdnPrefix}${global.Hydro.ui.manifest[assetName]}`;
         }
         return `${cdnPrefix}${assetName}`;
+      },
+      findSubModule: (prefix) => {
+        filter(Object.keys(global.Hydro.ui.template), (n) => n.startsWith(prefix));
       },
       datetimeSpan: misc.datetimeSpan,
       paginate: misc.paginate,

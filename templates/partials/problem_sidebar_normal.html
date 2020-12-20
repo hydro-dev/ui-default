@@ -90,6 +90,9 @@
         <span class="icon icon-wrench"></span> {{ _('Settings') }}
       </a></li>
     {% endif %}
+      <li class="menu__item"><a class="menu__link{% if page_name == 'problem_files' %} active{% endif %}" href="{{ url('problem_files', pid=pdoc.pid|default(pdoc.docId)) }}">
+        <span class="icon icon-file"></span> {{ _('Files') }}
+      </a></li>
     </ol>
   </div>
 </div>
