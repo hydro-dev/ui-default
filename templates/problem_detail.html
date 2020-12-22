@@ -57,16 +57,6 @@
           <h1>{{ pdoc.title }}</h1>
         </div>
         <div class="section__body typo">
-        {% if not pdoc.data %}
-          <blockquote class="warn">
-            <p>{{ _('No dataset at present.') }}</p>
-          </blockquote>
-        {% elif typeof(pdoc.data) == 'string' %}
-          {# TODO #}
-          <blockquote class="note">
-            <p>{{ _('Test data comes from') }} <a href="#" target="_blank">{{ pdoc.data.split(':')[1] }}</a></p>
-          </blockquote>
-        {% endif %}
         {% if tdoc %}
         {% if tdoc.docType == model.document.TYPE_CONTEST %}
         {% if model.contest.isDone(tdoc) %}
