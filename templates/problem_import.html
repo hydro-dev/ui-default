@@ -4,14 +4,12 @@
   <div class="medium-9 columns">
     <div class="section">
       <div class="section__body">
-        <form method="post" enctype="multipart/form-data" action="{{ url('file_upload') }}">
+        <form method="post" enctype="multipart/form-data">
           <input type="hidden" name="csrfToken" value="{{ handler.csrfToken }}">
-            <p>{{ _('Upload zipfile') }}:
-              <input type="hidden" name="title" value="IMPORT">
-              <input type="hidden" name="redirect" value="{{ url('problem_import') }}">
-              <input type="file" name="file">
-              <input type="submit" value="{{ _('Upload') }}" class="rounded primary button">
-            </p>
+          <p>{{ _('Upload zipfile') }} ({{ _('Type') }}: {{type}}):
+            <input type="file" name="file">
+            <input type="submit" value="{{ _('Upload') }}" class="rounded primary button">
+          </p>
         </form>
       </div>
     </div>
