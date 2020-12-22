@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 const markdown = require('./backendlib/markdown.js');
 
-const { system } = global.Hydro.model;
+const { system, domain } = global.Hydro.model;
 const { Route, Handler } = global.Hydro.service.server;
 
 class WikiHelpHandler extends Handler {
@@ -17,7 +17,7 @@ class WikiAboutHandler extends Handler {
 }
 
 class UiSettingsHandler extends Handler {
-  async get() {
+  async get({ domainId }) {
     const [
       header_logo, header_logo_2x,
       nav_logo_dark, nav_logo_light,
@@ -29,6 +29,7 @@ class UiSettingsHandler extends Handler {
       'ui-default.nav_logo_dark_2x', 'ui-default.nav_logo_light_2x',
       'ui-default.header_background', 'ui-default.header_background2x',
     ]);
+    const ddoc = await domain.get(domainId);
     this.response.body = await this.renderHTML('extra.css', {
       header_logo,
       header_logo_2x,
@@ -38,6 +39,7 @@ class UiSettingsHandler extends Handler {
       nav_logo_light_2x,
       header_background,
       header_background_2x,
+      ...ddoc,
     });
     this.response.type = 'text/css';
     this.ctx.set('nolog', '1');
@@ -69,6 +71,6 @@ global.Hydro.handler.ui = async () => {
   Route('wiki_help', '/wiki/help', WikiHelpHandler);
   Route('wiki_about', '/wiki/about', WikiAboutHandler);
   Route('locale', '/locale/:id', LocaleHandler);
-  Route('ui', '/extra.css', UiSettingsHandler);
+  Route('ui_extracss', '/extra.css', UiSettingsHandler);
   Route('markdown', '/markdown', MarkdownHandler);
 };
