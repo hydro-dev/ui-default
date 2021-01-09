@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const yaml = require('js-yaml');
 const serialize = require('serialize-javascript');
 const nunjucks = require('nunjucks');
 const { filter } = require('lodash');
@@ -101,7 +102,8 @@ class Loader extends nunjucks.Loader {
 class Nunjucks extends nunjucks.Environment {
   constructor() {
     super(new Loader(), { autoescape: true, trimBlocks: true });
-    this.addFilter('json', (self) => JSON.stringify(self), false);
+    this.addFilter('json', (self) => JSON.stringify(self));
+    this.addFilter('parseYaml', (self) => yaml.load(self));
     this.addFilter('xss', (self) => xss.process(self));
     this.addFilter('serialize', (self, ignoreFunction = true) => serialize(self, { ignoreFunction }));
     this.addFilter('assign', (self, data) => Object.assign(self, data));
