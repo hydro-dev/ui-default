@@ -51,7 +51,7 @@ class LocaleHandler extends Handler {
     // eslint-disable-next-line prefer-destructuring
     id = id.split('.')[0];
     // TODO use language_default setting
-    if (!global.Hydro.locales[id]) id = 'en';
+    if (!global.Hydro.locales[id]) id = system.get('server.language');
     this.response.body = `window.LOCALES=${JSON.stringify(global.Hydro.locales[id])}`;
     this.response.type = 'text/javascript';
     this.ctx.set('nolog', '1');
