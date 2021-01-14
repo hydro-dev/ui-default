@@ -120,6 +120,17 @@ export default class ScratchpadToolbarContainer extends React.PureComponent {
           {' '}
           (Alt+F)
         </ToolbarButton>
+        <ToolbarButton
+          data-global-hotkey="alt+q"
+          data-tooltip={`${i18n('Quit Scratchpad')} (Alt+Q)`}
+          name="problem-sidebar__quit-scratchpad"
+        >
+          <Icon name="close" />
+          {' '}
+          {i18n('Exit')}
+          {' '}
+          (Alt+Q)
+        </ToolbarButton>
         <ToolbarItem>
           <select
             className="select"

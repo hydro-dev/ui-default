@@ -5,7 +5,13 @@ import { AutoloadPage } from 'vj/misc/PageLoader';
 import i18n from 'vj/utils/i18n';
 
 const locales = require.context('timeago.js/lib/lang', false, /\.js$/);
-timeago.register(i18n('timeago_locale'), locales(`./${i18n('timeago_locale')}.js`).default);
+let locale;
+try {
+  locale = locales(`./${i18n('timeago_locale')}.js`).default;
+} catch (e) {
+  locale = locales('./en_US.js').default;
+}
+timeago.register(i18n('timeago_locale'), locale);
 
 function runRelativeTime($container) {
   $container.find('span.time.relative[data-timestamp]').get().forEach((element) => {

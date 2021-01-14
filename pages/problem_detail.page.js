@@ -1,4 +1,3 @@
-import Tether from 'tether';
 import { NamedPage } from 'vj/misc/PageLoader';
 import Navigation from 'vj/components/navigation';
 import loadReactRedux from 'vj/utils/loadReactRedux';
@@ -102,7 +101,6 @@ class ProblemPageExtender {
 
 const page = new NamedPage(['problem_detail', 'contest_detail_problem', 'homework_detail_problem'], () => {
   let reactLoaded = false;
-  let $floatingSidebar = null;
   let renderReact = null;
   let unmountReact = null;
   const extender = new ProblemPageExtender();
@@ -127,33 +125,6 @@ const page = new NamedPage(['problem_detail', 'contest_detail_problem', 'homewor
         easing: 'easeOutCubic',
       })
       .promise();
-  }
-
-  function updateFloatingSidebar() {
-    $floatingSidebar.tether.position();
-  }
-
-  async function createSidebar() {
-    $floatingSidebar = $('.section--problem-sidebar')
-      .clone()
-      .addClass('scratchpad__sidebar visible')
-      .appendTo('body');
-    $floatingSidebar.find('a').attr('target', '_blank');
-    $floatingSidebar.tether = new Tether({
-      element: $floatingSidebar,
-      offset: '-20px 20px',
-      target: '.scratchpad__problem',
-      attachment: 'top right',
-      targetAttachment: 'top right',
-    });
-    await delay(100);
-    $floatingSidebar.tether.position();
-  }
-
-  async function removeSidebar() {
-    $floatingSidebar.tether.destroy();
-    $floatingSidebar.remove();
-    $floatingSidebar = null;
   }
 
   async function loadReact() {
@@ -196,18 +167,15 @@ const page = new NamedPage(['problem_detail', 'contest_detail_problem', 'homewor
     await loadReact();
     renderReact();
     await scratchpadFadeIn();
-    await createSidebar();
   }
 
   async function leaveScratchpadMode() {
-    await removeSidebar();
     await scratchpadFadeOut();
     $('.problem-content-container').append($('.problem-content'));
     await extender.collapse();
     unmountReact();
   }
 
-  $(document).on('vjScratchpadRelayout', updateFloatingSidebar);
   $(document).on('click', '[name="problem-sidebar__open-scratchpad"]', (ev) => {
     enterScratchpadMode();
     ev.preventDefault();
