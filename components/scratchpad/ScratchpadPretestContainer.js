@@ -46,7 +46,6 @@ export default class ScratchpadPretestContainer extends React.PureComponent {
           <DataInput
             title={i18n('Output')}
             value={this.props.output}
-            onChange={(v) => this.props.handleDataChange('output', v)}
           />
         </div>
       </Panel>

@@ -13,8 +13,6 @@ import * as recordEnum from 'vj/constant/record';
 
 const shouldShowDetail = (data) => recordEnum.STATUS_SCRATCHPAD_SHOW_DETAIL_FLAGS[data.status];
 
-const isPretest = (data) => !!data.input;
-
 const getRecordDetail = (data) => {
   if (!shouldShowDetail(data)) {
     return (
@@ -63,15 +61,11 @@ export default class ScratchpadRecordsRowContainer extends React.PureComponent {
   render() {
     const { data } = this.props;
     const submitAt = parseMongoId(data._id).timestamp * 1000;
-    return (
+    return data.hidden ? null : (
       <tr onClick={(ev) => this.handleRowClick(ev, data._id)}>
         <td className={`col--detail record-status--border ${recordEnum.STATUS_CODES[data.status]}`}>
           <span className={`icon record-status--icon ${recordEnum.STATUS_CODES[data.status]}`}></span>
-          <span className="icol icol--pretest">
-            {isPretest(data)
-              ? <span className={`flag record-status--background ${recordEnum.STATUS_CODES[data.status]}`}>{i18n('Pretest')}</span>
-              : ''}
-          </span>
+          <span className="icol icol--pretest"></span>
           {getRecordDetail(data)}
         </td>
         <td className="col--memory">
