@@ -46,7 +46,8 @@
       <div class="section__body no-padding">
         <ol class="menu">
           <li class="menu__item">
-            <form method="post" action="{{ url('record_rejudge', rid=rdoc._id) }}">
+            <form method="post">
+              <input type="hidden" name="operation" value="rejudge">
               <input type="hidden" name="csrfToken" value="{{ handler.csrfToken }}">
               <button type="submit" class="menu__link">
                 <span class="icon icon-refresh"></span> {{ _('Rejudge') }}
@@ -56,7 +57,6 @@
           <li class="menu__item">
             <form method="post">
               <input type="hidden" name="operation" value="cancel">
-              <input type="hidden" name="rid" value="{{ rdoc._id }}">
               <input type="hidden" name="csrfToken" value="{{ handler.csrfToken }}">
               <button type="submit" class="menu__link">
                 <span class="icon icon-close"></span> {{ _('Cancel Score') }}

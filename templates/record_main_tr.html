@@ -4,7 +4,8 @@
   {{ record.render_status_td(rdoc) }}
   <td class="col--problem col--problem-name">
   {% if handler.user.hasPerm(perm.PERM_REJUDGE) %}
-    <form class="form--inline" method="post" action="{{ url('record_rejudge', rid=rdoc._id) }}">
+    <form class="form--inline" method="post" action="{{ url('record_detail', rid=rdoc._id) }}">
+      <input type="hidden" name="operation" value="rejudge">
       <input type="hidden" name="csrfToken" value="{{ handler.csrfToken }}">
       <button type="submit" class="link text-maroon lighter">
         <span class="icon icon-refresh"></span>
