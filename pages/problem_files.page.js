@@ -77,14 +77,17 @@ const page = new NamedPage('problem_files', () => {
     input.click();
     await new Promise((resolve) => { input.onchange = resolve; });
     try {
+      Notification.info('Uploading files...');
+      const tasks = [];
       for (const file of input.files) {
         const data = new FormData();
         data.append('filename', file.name);
         data.append('file', file);
         data.append('type', type);
         data.append('operation', 'upload_file');
-        request.postFile('', data);
+        tasks.push(request.postFile('', data));
       }
+      await Promise.all(tasks);
       Notification.success('File uploaded successfully.');
       await delay(2000);
       window.location.reload();
