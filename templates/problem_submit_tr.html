@@ -5,7 +5,7 @@
     {{ (rdoc.memory / 1000)|round(0, 'ceil')|int }} MB
   </td>
   <td class="col--time">
-    {{ (rdoc.time / 1000)|round(1) }}s
+    {{ rdoc.time|round|int }}ms
   </td>
   <td class="col--submit-at">{{ datetimeSpan(rdoc._id)|safe }}</td>
 </tr>
