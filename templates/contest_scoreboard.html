@@ -1,12 +1,13 @@
 {% extends "layout/basic.html" %}
+{% set type = 'homework' if tdoc.docType == 60 else 'contest' %}
 {% block content %}
 <div class="row"><div class="medium-12 columns">
   <div class="section visible">
     <div class="section__header">
-      <a class="button" target="_blank" href="{{ url('contest_scoreboard_download', tid=tdoc.docId, ext='html') }}">
+      <a class="button" target="_blank" href="{{ url(type + '_scoreboard_download', tid=tdoc.docId, ext='html') }}">
         <span class="icon icon-download"></span> {{ _('Export as HTML') }}
       </a>
-      <a class="button" href="{{ url('contest_scoreboard_download', tid=tdoc.docId, ext='csv') }}">
+      <a class="button" href="{{ url(type + '_scoreboard_download', tid=tdoc.docId, ext='csv') }}">
         <span class="icon icon-download"></span> {{ _('Export as CSV') }}
       </a>
     </div>
@@ -22,7 +23,7 @@
           {%- for column in rows[0] -%}
             <th class="col--{{ column.type }}">
             {% if column.type == 'problem_detail' %}
-              <a href="{{ url('contest_detail_problem', tid=tdoc.docId, pid=column.raw) }}" data-tooltip="{{ pdict[column.raw].title }}">{{ column.value }}</a>
+              <a href="{{ url(type + '_detail_problem', tid=tdoc.docId, pid=column.raw) }}" data-tooltip="{{ pdict[column.raw].title }}">{{ column.value }}</a>
             {% else %}
               {{ column.value }}
             {% endif %}
