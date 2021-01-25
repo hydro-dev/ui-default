@@ -103,6 +103,9 @@
               </div>
               <div class="media__body medium typo">
                 <p>{{ _('Last Update At') }}: {{ datetimeSpan(session.updateAt)|safe }}</p>
+                {% if session.createHost %}
+                  <p>{{ _('Hostname') }}: {{ session.createHost }}</p>
+                {% endif %}
                 <p>{{ _('Location') }}: {{ _(session.updateGeoip.display) }} ({{ session.updateIp }})</p>
                 <p>{{ _('Operating System') }}: {{ session.updateUa.os }}</p>
                 <p>{{ _('Browser') }}: {{ session.updateUa.name }} {{ session.updateUa.version }}</p>
