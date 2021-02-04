@@ -21,7 +21,8 @@ const TOC = require('markdown-it-table-of-contents');
 const Anchor = require('markdown-it-anchor');
 // @[url](videourl)
 // @[youtube](https://youtube.com/watch?v=xxx)
-const Video = require('@centerforopenscience/markdown-it-video');
+// @[pdf](https://foo.com/bar.pdf)
+const Media = require('./markdown-it-media');
 const Katex = require('./markdown-it-katex');
 
 require('prismjs/components/index');
@@ -40,7 +41,7 @@ class Markdown extends MarkdownIt {
       },
     });
     this.linkify.tlds('.py', false);
-    this.use(Video);
+    this.use(Media);
     this.use(Imsize);
     this.use(Footnote);
     this.use(Mark);
