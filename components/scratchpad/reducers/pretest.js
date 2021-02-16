@@ -12,7 +12,7 @@ export default function reducer(state = {
   }
   if (action.type === 'SCRATCHPAD_RECORDS_PUSH') {
     const { rdoc } = action.payload;
-    if (rdoc._id === state.rid) {
+    if (rdoc._id === state.rid && rdoc.testCases[0]) {
       return {
         ...state,
         output: rdoc.testCases[0].message,
