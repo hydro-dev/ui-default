@@ -39,7 +39,7 @@ Prism.plugins.toolbar.registerButton('copy-to-clipboard', (env) => {
   linkCopy.textContent = 'Copy';
   const clip = new Clipboard(linkCopy, { text: () => env.code });
   clip.on('success', () => {
-    Notification.success(i18n('Code copied to clipboard!'), 1000);
+    Notification.success(i18n('Content copied to clipboard!'), 1000);
   });
   clip.on('error', () => {
     Notification.error(i18n('Copy failed :('));
