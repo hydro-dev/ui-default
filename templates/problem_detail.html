@@ -4,6 +4,8 @@
 {% if tdoc %}
   var Context = {{ {
     problemId: pdoc.pid|default(pdoc.docId),
+    problemNumId: pdoc.docId,
+    postCopyUrl: url('problem_send'),
     postSubmitUrl: url('contest_detail_problem_submit' if tdoc.docType == model.document.TYPE_CONTEST else 'homework_detail_problem_submit', pid=pdoc.docId, tid=tdoc.docId),
     postPretestUrl: url('problem_pretest', pid=pdoc.docId),
     pretestConnUrl: "/conn/pretest?pid=" + pdoc.pid|default(pdoc.docId) + "&domainId=" + handler.domainId,
@@ -15,6 +17,8 @@
 {% else %}
   var Context = {{ {
     problemId: pdoc.pid|default(pdoc.docId),
+    problemNumId: pdoc.docId,
+    postCopyUrl: url('problem_send'),
     postSubmitUrl: url('problem_submit', pid=pdoc.pid|default(pdoc.docId)),
     postPretestUrl: url('problem_pretest', pid=pdoc.pid|default(pdoc.docId)),
     pretestConnUrl: "/conn/pretest?pid=" + pdoc.pid|default(pdoc.docId) + "&domainId=" + handler.domainId,

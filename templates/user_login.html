@@ -16,11 +16,11 @@
           <input name="password" type="password">
         </label>
       </div></div>
-      {# <div class="row"><div class="columns">
+      <div class="row"><div class="columns">
         <label class="inverse material checkbox">
           <input type="checkbox" name="rememberme">{{ _('Remember me') }}
         </label>
-      </div></div> #}
+      </div></div>
         {% for v in handler.loginMethods %}
       <div class="row"><div class="columns">
         <a href="{{ url('user_oauth', type=v.id) }}" class="expanded rounded button inverse">{{ _(v.text) }}</a>

@@ -1,7 +1,10 @@
 import { NamedPage } from 'vj/misc/PageLoader';
 import Navigation from 'vj/components/navigation';
+import { ActionDialog } from 'vj/components/dialog';
 import loadReactRedux from 'vj/utils/loadReactRedux';
 import delay from 'vj/utils/delay';
+import i18n from 'vj/utils/i18n';
+import request from 'vj/utils/request';
 
 class ProblemPageExtender {
   constructor() {
@@ -105,6 +108,38 @@ const page = new NamedPage(['problem_detail', 'contest_detail_problem', 'homewor
   let unmountReact = null;
   const extender = new ProblemPageExtender();
 
+  const copyProblemDialog = new ActionDialog({
+    $body: $('.dialog__body--send-to > div'),
+    onDispatch(action) {
+      const $target = copyProblemDialog.$dom.find('[name="target"]');
+      if (action === 'ok' && $target.val() === '') {
+        $target.focus();
+        return false;
+      }
+      return true;
+    },
+  });
+  copyProblemDialog.clear = function () {
+    this.$dom.find('[name="target"]').val('');
+    return this;
+  };
+
+  async function handleClickCopyProblem() {
+    const action = await copyProblemDialog.clear().open();
+    if (action !== 'ok') return;
+    const target = copyProblemDialog.$dom.find('[name="target"]').val();
+    try {
+      await request.post(Context.postCopyUrl, {
+        operation: 'send',
+        target,
+        pids: [Context.problemNumId],
+      });
+      Notification.send(i18n('Problem Sended.'));
+    } catch (error) {
+      Notification.error(error.message);
+    }
+  }
+
   async function scratchpadFadeIn() {
     await $('#scratchpad')
       .transition({
@@ -188,6 +223,7 @@ const page = new NamedPage(['problem_detail', 'contest_detail_problem', 'homewor
     $(ev.currentTarget).hide();
     $('[name="problem-sidebar__categories"]').show();
   });
+  $('[name="problem-sidebar__send-to"]').click(() => handleClickCopyProblem());
 });
 
 export default page;
