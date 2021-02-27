@@ -124,7 +124,7 @@ class Nunjucks extends nunjucks.Environment {
         if (s[language]) s = s[language];
         else s = s[Object.keys(s)[0]];
       }
-      if (s instanceof Array) s = buildContent(s, html ? 'html' : 'markdown');
+      if (s instanceof Array) s = buildContent(s, html ? 'html' : 'markdown', (str) => str.translate(language));
       return html ? xss.process(s) : markdown.render(s);
     });
     this.addFilter('log', (self) => {
