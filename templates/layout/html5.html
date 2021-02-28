@@ -22,9 +22,10 @@
   <meta name="msapplication-TileImage" content="{{ static_url('mstile-144x144.png') }}">
   <meta name="theme-color" content="#56758f">
   {% block ogp %}
+  <meta property="og:site_name" content="{{ model.system.get('server.name') }}" />
   <meta property="og:title" content="{{ handler.renderTitle(page_name) }}" />
   <meta property="og:url" content="{{ handler.ctx.request.href }}" />
-  <meta property="og:image" content="{{ model.system.get('ui-default.header_logo_2x') }}" />
+  <meta property="og:image" content="{{ static_url('favicon-96x96.png') }}" />
   {% endblock %}
   <link rel="stylesheet" media="all" href="{{ static_url('vj4.css') }}">
   <link rel="stylesheet" media="all" href="{{ url('ui_extracss') }}">
