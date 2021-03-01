@@ -42,7 +42,7 @@
 <body>
   {% block body %}{% endblock %}
   {% if not isIE(handler.request.headers['user-agent']) %}
-  <script type="text/javascript" src="{{ static_url('locale/{0}.js'.format(handler.translate('__id'))) }}"></script>
+  <script type="text/javascript" src="{{ ('/locale/{0}.js'.format(handler.translate('__id'))) }}"></script>
   <script type="text/javascript" src="{{ static_url('vj4.js') }}"></script>
   {% endif %}
 </body>

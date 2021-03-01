@@ -11,8 +11,8 @@ import mapWebpackUrlPrefix from '../utils/mapWebpackUrlPrefix';
 import root from '../utils/root';
 
 const beautifyOutputUrl = mapWebpackUrlPrefix([
-  { prefix: 'node_modules/katex/dist/', replace: 'katex/' },
-  { prefix: 'misc/.iconfont', replace: 'ui/iconfont' },
+  { prefix: 'node_modules/katex/dist/', replace: './katex/' },
+  { prefix: 'misc/.iconfont', replace: './ui/iconfont' },
 ]);
 
 export default function (env = {}) {
