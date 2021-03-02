@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 
 import i18n from 'vj/utils/i18n';
 import request from 'vj/utils/request';
-import * as languageEnum from 'vj/constant/language';
 import Icon from 'vj/components/react/IconComponent';
 import Toolbar, {
   ToolbarItemComponent as ToolbarItem,
@@ -138,7 +137,7 @@ export default class ScratchpadToolbarContainer extends React.PureComponent {
             value={this.props.editorLang}
             onChange={(ev) => this.props.setEditorLanguage(ev.target.value)}
           >
-            {_.map(languageEnum.LANG_TEXTS, (val, key) => (
+            {_.map(window.LANG_TEXTS, (val, key) => (
               <option value={key} key={key}>{val}</option>
             ))}
           </select>

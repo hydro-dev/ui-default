@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+const yaml = require('js-yaml');
 const markdown = require('./backendlib/markdown.js');
 
 const { system, domain } = global.Hydro.model;
@@ -13,6 +14,22 @@ class WikiHelpHandler extends Handler {
 class WikiAboutHandler extends Handler {
   async get() {
     this.response.template = 'about.html';
+  }
+}
+
+class UiConstantsHandler extends Handler {
+  async get() {
+    const [LANG_TEXTS, LANG_HIGHLIGHT_ID, MONACO_MODES] = system.getMany([
+      'lang.texts',
+      'ui-default.lang_highlight_id',
+      'ui-default.lang_monaco_modes',
+    ]);
+    this.response.body = `\
+window.LANG_TEXTS=${JSON.stringify(yaml.load(LANG_TEXTS))};
+window.LANG_HIGHLIGHT_ID=${JSON.stringify(yaml.load(LANG_HIGHLIGHT_ID))};
+window.MONACO_MODES=${JSON.stringify(yaml.load(MONACO_MODES))}`;
+    this.response.type = 'text/javascript';
+    this.ctx.set('nolog', '1');
   }
 }
 
@@ -70,6 +87,7 @@ class MarkdownHandler extends Handler {
 global.Hydro.handler.ui = async () => {
   Route('wiki_help', '/wiki/help', WikiHelpHandler);
   Route('wiki_about', '/wiki/about', WikiAboutHandler);
+  Route('ui_constants', '/ui-constants.js', UiConstantsHandler);
   Route('locale', '/locale/:id', LocaleHandler);
   Route('ui_extracss', '/extra.css', UiSettingsHandler);
   Route('markdown', '/markdown', MarkdownHandler);

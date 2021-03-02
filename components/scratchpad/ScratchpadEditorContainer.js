@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
-import * as languageEnum from 'vj/constant/language';
 
 const mapStateToProps = (state) => ({
   value: state.editor.code,
-  language: languageEnum.LANG_MONACO_MODES[state.editor.lang],
+  language: window.MONACO_MODES[state.editor.lang],
   theme: 'vs-light',
   mainSize: state.ui.main.size,
   pretestSize: state.ui.pretest.size,

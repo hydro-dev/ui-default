@@ -15,7 +15,7 @@
         <h1 class="section__title">{{ _('Code') }}</h1>
       </div>
       <div class="section__body" data-syntax-hl-show-line-number>
-        <pre><code class="language-{{ model.builtin.LANG_HIGHLIGHT_ID[rdoc['lang']] }}">{{ rdoc['code'] }}</code></pre>
+        <pre><code class="language-{{ (model.system.get('ui-default.lang_highlight_id')|parseYaml)[rdoc['lang']] }}">{{ rdoc['code'] }}</code></pre>
       </div>
     </div>
     {% endif %}
@@ -84,7 +84,7 @@
           {% endif %}
           <dt>{{ _('Language') }}</dt>
           <dd>
-            {{ model.builtin.LANG_TEXTS[rdoc['lang']] }}
+            {{ model.system.get('lang.texts')[rdoc['lang']] }}
           </dd>
           <dt>
             {{ _('Submit At') }}

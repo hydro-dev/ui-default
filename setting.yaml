@@ -34,3 +34,37 @@ nav_logo_dark_2x:
   type: text
   name: Nav Logo Dark@2x
   default: /components/navigation/nav-logo-small@2x_dark.png
+lang_highlight_id:
+  type: yaml
+  name: Language Highlight ID
+  default:
+    c: c
+    cc: cpp
+    cs: csharp
+    pas: pascal
+    java: java
+    py: python
+    py3: python
+    php: php
+    rs: rust
+    hs: haskell
+    js: javascript
+    go: go
+    rb: ruby
+lang_monaco_modes:
+  type: yaml
+  name: Monaco language modes
+  default:
+    c: cpp
+    cc: cpp
+    cs: csharp
+    pas: pascal
+    java: java
+    py: python
+    py3: python
+    php: php
+    rs: rust
+    hs: haskell
+    js: javascript
+    go: go
+    rb: ruby

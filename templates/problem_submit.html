@@ -44,7 +44,7 @@
         <form method="post">
           {{ form.form_select({
                label:'Code language',
-               options:model.builtin.LANG_TEXTS,
+               options:model.system.get('lang.texts')|parseYaml,
                name:'lang',
                value:handler.user.codeLang
              }) }}

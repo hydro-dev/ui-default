@@ -104,6 +104,7 @@ class Nunjucks extends nunjucks.Environment {
     super(new Loader(), { autoescape: true, trimBlocks: true });
     this.addFilter('json', (self) => JSON.stringify(self));
     this.addFilter('parseYaml', (self) => yaml.load(self));
+    this.addFilter('dumpYaml', (self) => yaml.dump(self));
     this.addFilter('xss', (self) => xss.process(self));
     this.addFilter('serialize', (self, ignoreFunction = true) => serialize(self, { ignoreFunction }));
     this.addFilter('assign', (self, data) => Object.assign(self, data));
