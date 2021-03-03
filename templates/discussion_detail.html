@@ -94,7 +94,7 @@
       <div class="section__body">
         <div class="media sidebar-user-profile">
           <div class="media__left">
-            <img src="{{ gravatar(udoc.gravatar) }}" width="80" height="80" class="medium user-profile-avatar">
+            <img src="{{ gravatar(udoc.gravatar, 80) }}" width="80" height="80" class="medium user-profile-avatar">
           </div>
           <div class="media__body">
             <p>
@@ -115,12 +115,6 @@
             <div class="numbox">
               <div class="numbox__num medium">{{ udoc.nLike|default(0) }}</div>
               <div class="numbox__text">{{ _('Solutions Liked') }}</div>
-            </div>
-          </div>
-          <div class="balancer__body">
-            <div class="numbox">
-              <div class="numbox__num medium">{{ udoc.nProblems|default(0) }}</div>
-              <div class="numbox__text">{{ _('Upload Problem') }}</div>
             </div>
           </div>
         </div>
