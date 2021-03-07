@@ -62,9 +62,7 @@ async function updateSelection(sendRequest = true) {
 
 function buildCategoryFilter() {
   const $container = $('[data-widget-cf-container]');
-  if (!$container) {
-    return;
-  }
+  if (!$container) return;
   $container.attr('class', 'widget--category-filter row small-up-3 medium-up-2');
   $container.children('li').get().forEach((category) => {
     const $category = $(category)

@@ -83,9 +83,6 @@
       <li class="menu__item"><a class="menu__link{% if page_name == 'problem_edit' %} active{% endif %}" href="{{ url('problem_edit', pid=pdoc.pid|default(pdoc.docId)) }}">
         <span class="icon icon-edit"></span> {{ _('Edit') }}
       </a></li>
-      <li class="menu__item"><a class="menu__link{% if page_name == 'problem_settings' %} active{% endif %}" href="{{ url('problem_settings', pid=pdoc.pid|default(pdoc.docId)) }}">
-        <span class="icon icon-wrench"></span> {{ _('Settings') }}
-      </a></li>
     {% endif %}
     {% if page_name == 'problem_detail' and (handler.user._id == pdoc.owner or handler.user.hasPerm(perm.PERM_READ_PROBLEM_DATA)) %}
       <div style="display: none" class="dialog__body--send-to">

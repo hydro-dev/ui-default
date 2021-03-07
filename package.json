@@ -1,6 +1,6 @@
 {
   "name": "@hydrooj/ui-default",
-  "version": "4.4.5",
+  "version": "4.4.6",
   "author": "undefined <i@undefined.moe>",
   "license": "AGPL-3.0",
   "main": "Entry.js",
@@ -195,7 +195,7 @@
     ]
   },
   "peerDependencies": {
-    "hydrooj": "^2.15.16"
+    "hydrooj": "^2.20.0"
   },
   "dependencies": {
     "js-yaml": "^4.0.0",
