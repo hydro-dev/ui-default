@@ -72,6 +72,12 @@
           value:current[setting.key] or setting.value,
           disabled:setting.disabled
     })}}
+    {{ form.form_checkbox({
+          label:setting.name,
+          name:'booleanKeys.' + setting.key,
+          value:true,
+          extra_class:'display-hidden'
+    })}}
   {% endif %}
   {% endif %}
   {% endfor %}
