@@ -84,7 +84,7 @@
           {% endif %}
           <dt>{{ _('Language') }}</dt>
           <dd>
-            {{ model.system.get('lang.texts')[rdoc['lang']] }}
+            {{ (model.system.get('lang.texts')|parseYaml)[rdoc['lang']] }}
           </dd>
           <dt>
             {{ _('Submit At') }}
