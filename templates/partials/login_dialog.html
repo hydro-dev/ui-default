@@ -14,6 +14,7 @@
         </div>
         <h1 class="dialog--signin__title">{{ _('SIGN IN') }}</h1>
         <p class="dialog--signin__note">{{ _('Using your Hydro universal account') }}</p>
+        {% if system.get('server.login') %}
         <div class="row"><div class="columns">
           <label class="material textbox">
             {{ _('Username') }}
@@ -32,14 +33,15 @@
           </label>
         </div></div>
         <input type="hidden" name="csrfToken" value="{{ handler.csrfToken }}">
+        <div class="row"><div class="columns">
+          <input type="submit" value="{{ _('Sign In') }}" class="expanded rounded primary button">
+        </div></div>
+        {% endif %}
         {% for v in handler.loginMethods %}
         <div class="row"><div class="columns">
           <a href="{{ url('user_oauth', type=v.id) }}" class="expanded rounded button">{{ _(v.text) }}</a>
         </div></div>
         {% endfor %}
-        <div class="row"><div class="columns">
-          <input type="submit" value="{{ _('Sign In') }}" class="expanded rounded primary button">
-        </div></div>
         <div class="row"><div class="columns">
           <div class="supplementary text-center">
             <a href="{{ url('user_lostpass') }}">{{ _('Forgot password or username?') }}</a>
