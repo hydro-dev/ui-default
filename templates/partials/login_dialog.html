@@ -14,7 +14,7 @@
         </div>
         <h1 class="dialog--signin__title">{{ _('SIGN IN') }}</h1>
         <p class="dialog--signin__note">{{ _('Using your Hydro universal account') }}</p>
-        {% if system.get('server.login') %}
+        {% if model.system.get('server.login') %}
         <div class="row"><div class="columns">
           <label class="material textbox">
             {{ _('Username') }}
