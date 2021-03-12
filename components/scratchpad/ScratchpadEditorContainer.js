@@ -70,7 +70,6 @@ export default class MonacoEditor extends React.PureComponent {
     if (prevProps.language !== language) {
       monaco.editor.setModelLanguage(model, language);
       editor.updateOptions({ mode: language });
-      this.initLanguageClient(language);
     }
     if (prevProps.theme !== theme) monaco.editor.setTheme(theme);
     if (editor) {
