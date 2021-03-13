@@ -7,6 +7,20 @@ const { Route, Handler } = global.Hydro.service.server;
 
 class WikiHelpHandler extends Handler {
   async get() {
+    const [langstr, langtexts] = system.getMany(['hydrojudge.langs', 'lang.texts']);
+    if (langstr) {
+      const languages = {};
+      const LANGS = yaml.load(langstr);
+      const TEXTS = yaml.load(langtexts);
+      // eslint-disable-next-line guard-for-in
+      for (const key in LANGS) {
+        const name = TEXTS[key] || key;
+        languages[name] = LANGS[key].type === 'compiler'
+          ? LANGS[key].compile
+          : LANGS[key].execute;
+      }
+      this.response.body = { languages };
+    }
     this.response.template = 'wiki_help.html';
   }
 }

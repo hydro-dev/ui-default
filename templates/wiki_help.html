@@ -17,17 +17,13 @@
   </div>
   <div class="section__body typo">
     <p>Hydro 使用<a href="https://github.com/hydro-dev/Hydro/tree/master/packages/hydrojudge">HydroJudge</a>进行评测，以docker镜像的形式安装至评测机。所使用的编译器均为创建镜像时<a href="https://wiki.debian.org/DebianTesting">debian testing</a>分支的最新版。编译参数如下：</p>
-    <blockquote><ul>
-      <li>Free Pascal <pre>fpc -O2 -o/out/foo /in/foo.pas</pre></li>
-      <li>C <pre>gcc -O2 -Wall -std=c99 -o /out/foo /in/foo.c -lm</pre></li>
-      <li>C++ <pre>g++ -O2 -Wall -std=c++11 -o /out/foo /in/foo.cc -lm</pre></li>
-      <li>Java <pre>javac Main.java</pre></li>
-      <li>Python <pre>python foo.py</pre></li>
-      <li>Python 3 <pre>python3 foo.py</pre></li>
-      <li>PHP <pre>php foo.php</pre></li>
-      <li>Rust <pre>rustc -O -o /out/foo /in/foo.rs</pre></li>
-      <li>Haskell <pre>ghc -O -outputdir /tmp -o /out/foo /in/foo.hs</pre></li>
-    </ul></blockquote>
+    {% if languages %}
+      <blockquote><ul>
+        {% for k, v in languages %}
+          <li>{{ k }} <pre>{{ v }}</pre></li>
+        {% endfor %}
+      </ul></blockquote>
+    {% endif %}
   </div>
 </div>
 <div class="section" data-heading-extract-to="#menu-item-wiki_help">
