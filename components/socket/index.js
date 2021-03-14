@@ -27,8 +27,7 @@ export default class Sock {
     };
     this.sock.onclose = ({ code, reason }) => {
       console.warn('Connection closed, ', code, reason);
-      // 404
-      if (code === 1002 && reason === 'Cannot connect to server') this.closed = true;
+      if (code >= 4000) this.closed = true;
       if (!this.closed) {
         if (this.showNotification && !this.notification) {
           this.notification = new Notification({
