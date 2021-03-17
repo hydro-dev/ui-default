@@ -15,6 +15,7 @@ async function main() {
     root('public/vj4.css'),
     file
       .replace(/\/\.\/ui\/iconfont/g, 'ui/iconfont')
+      .replace(/\/ui\/iconfont/g, 'ui/iconfont')
       .replace(/\/misc\/icons/g, 'misc/icons')
   );
   process.chdir(dir);
