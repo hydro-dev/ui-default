@@ -134,6 +134,24 @@ class Nunjucks extends nunjucks.Environment {
     });
   }
 }
+nunjucks.runtime.memberLookup = function memberLookup(obj, val) {
+  if ((obj || {})._original) obj = obj._original;
+  if (obj === undefined || obj === null) return undefined;
+  if (typeof obj[val] === 'function') {
+    const fn = function () {
+      // eslint-disable-next-line
+      for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        // eslint-disable-next-line prefer-rest-params
+        args[_key2] = arguments[_key2];
+      }
+      // eslint-disable-next-line block-scoped-var
+      return obj[val].call(obj, ...args);
+    };
+    fn._original = obj[val];
+    return fn;
+  }
+  return obj[val];
+};
 const env = new Nunjucks();
 
 async function render(name, state) {
