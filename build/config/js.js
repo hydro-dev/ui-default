@@ -4,9 +4,7 @@ import fs from 'fs';
 import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
 import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin';
 import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
-import ExtractCssPlugin from 'mini-css-extract-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
-import StaticManifestPlugin from '../plugins/webpackStaticManifestPlugin';
 import mapWebpackUrlPrefix from '../utils/mapWebpackUrlPrefix';
 import root from '../utils/root';
 
@@ -19,9 +17,7 @@ export default function (env = {}) {
   function eslintLoader() {
     return {
       loader: 'eslint-loader',
-      options: {
-        configFile: root('.eslintrc.js'),
-      },
+      options: { configFile: root('.eslintrc.js') },
     };
   }
 
@@ -44,34 +40,21 @@ export default function (env = {}) {
   function cssLoader() {
     return {
       loader: 'css-loader',
-      options: {
-        importLoaders: 1,
-      },
+      options: { importLoaders: 1 },
     };
   }
 
   function postcssLoader() {
     return {
       loader: 'postcss-loader',
-      options: {
-        sourceMap: env.production,
-      },
+      options: { sourceMap: env.production },
     };
   }
 
   function fileLoader() {
     return {
       loader: 'file-loader',
-      options: {
-        name: '[path][name].[ext]?[sha1:hash:hex:10]',
-      },
-    };
-  }
-
-  function extractCssLoader() {
-    return {
-      loader: ExtractCssPlugin.loader,
-      options: { publicPath: '/' },
+      options: { name: '[path][name].[ext]?[sha1:hash:hex:10]' },
     };
   }
 
@@ -81,7 +64,7 @@ export default function (env = {}) {
     profile: true,
     context: root(),
     entry: {
-      vj4: './Entry.js',
+      hydro: './hydro.js',
     },
     output: {
       path: root('public'),
@@ -93,12 +76,8 @@ export default function (env = {}) {
       chunkFilename: '[name].chunk.js?[chunkhash]',
     },
     resolve: {
-      modules: [
-        root('node_modules'),
-      ],
-      alias: {
-        vj: root(),
-      },
+      modules: [root('node_modules')],
+      alias: { vj: root() },
     },
     module: {
       rules: [
@@ -120,14 +99,8 @@ export default function (env = {}) {
           use: [babelLoader()],
         },
         {
-          test: /\.styl$/,
-          use: [extractCssLoader(), cssLoader(), postcssLoader(), 'stylus-loader']
-          ,
-        },
-        {
           test: /\.css$/,
-          use: [extractCssLoader(), cssLoader(), postcssLoader()]
-          ,
+          use: [cssLoader(), postcssLoader()],
         },
       ],
     },
@@ -138,7 +111,6 @@ export default function (env = {}) {
     },
     plugins: [
       new webpack.ProgressPlugin(),
-
       new webpack.ProvidePlugin({
         $: 'jquery',
         jQuery: 'jquery',
@@ -146,47 +118,19 @@ export default function (env = {}) {
         katex: 'katex/dist/katex.js',
         React: 'react',
       }),
-
       new FriendlyErrorsPlugin(),
-
-      // don't include momentjs locale files
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-
-      new ExtractCssPlugin({
-        filename: 'vj4.css?[contenthash:10]',
-      }),
-
-      // copy static assets
       new CopyWebpackPlugin({
         patterns: [
           { from: root('static') },
           { from: root('node_modules/emojify.js/dist/images/basic'), to: 'img/emoji/' },
         ],
       }),
-
-      // Options are provided by LoaderOptionsPlugin until webpack#3136 is fixed
-      new webpack.LoaderOptionsPlugin({
-        test: /\.styl$/,
-        stylus: {
-          default: {
-            preferPathResolver: 'webpack',
-            use: [
-              require('rupture')(), // eslint-disable-line global-require
-            ],
-            import: [
-              '~vj/common/common.inc.styl',
-            ],
-          },
-        },
-      }),
-
-      // Make sure process.env.NODE_ENV === 'production' in production mode
       new webpack.DefinePlugin({
         'process.env': {
           NODE_ENV: env.production ? '"production"' : '"debug"',
         },
       }),
-
       ...env.production
         ? [
           new OptimizeCssAssetsPlugin(),
@@ -195,26 +139,15 @@ export default function (env = {}) {
           new webpack.HashedModuleIdsPlugin(),
         ]
         : [new webpack.NamedModulesPlugin()],
-
       new webpack.LoaderOptionsPlugin({
         options: {
           context: root(),
           customInterpolateName: (url) => beautifyOutputUrl(url),
         },
       }),
-
       new MonacoWebpackPlugin({
         // available options are documented at https://github.com/Microsoft/monaco-editor-webpack-plugin#options
         languages: ['cpp', 'csharp', 'java', 'javascript', 'python', 'rust', 'ruby', 'php', 'pascal', 'go'],
-      }),
-
-      // Finally, output asset hashes
-      new StaticManifestPlugin({
-        fileName: 'static-manifest.json',
-        ignore: [
-          'img/emoji/',
-          'katex/',
-        ],
       }),
     ],
   };

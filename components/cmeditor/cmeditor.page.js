@@ -2,9 +2,6 @@ import { AutoloadPage } from 'vj/misc/PageLoader';
 import delay from 'vj/utils/delay';
 import CmEditor from '.';
 
-import 'vj-simplemde/src/css/simplemde.css';
-import './cmeditor.styl';
-
 function runSubstitute($container) {
   const selector = ['textarea[data-markdown]'];
   $container.find(selector.join(', ')).get().forEach((element) => {

@@ -1,22 +1,6 @@
 import 'jquery.transit';
 
-import 'normalize.css/normalize.css';
-import 'codemirror/lib/codemirror.css';
-
 import _ from 'lodash';
-
-import 'vj/misc/float.styl';
-import 'vj/misc/typography.styl';
-import 'vj/misc/textalign.styl';
-import 'vj/misc/grid.styl';
-import 'vj/misc/slideout.styl';
-
-import 'vj/misc/.iconfont/webicon.styl';
-import 'vj/misc/immersive.styl';
-import 'vj/misc/structure.styl';
-import 'vj/misc/section.styl';
-import 'vj/misc/nothing.styl';
-
 import { PageLoader } from 'vj/misc/PageLoader';
 import delay from 'vj/utils/delay';
 

@@ -27,7 +27,7 @@
   <meta property="og:url" content="{{ handler.ctx.request.href }}" />
   <meta property="og:image" content="{{ static_url('favicon-96x96.png') }}" />
   {% endblock %}
-  <link rel="stylesheet" media="all" href="{{ static_url('vj4.css') }}">
+  <link rel="stylesheet" media="all" href="{{ static_url('theme.' + handler.user.theme|default('default') + '.css') }}">
   <link rel="stylesheet" media="all" href="{{ url('ui_extracss') }}">
   <title>{{ handler.renderTitle(page_name) }}</title>
   {% if not isIE(handler.request.headers['user-agent']) %}
@@ -44,7 +44,7 @@
   {% if not isIE(handler.request.headers['user-agent']) %}
   <script type="text/javascript" src="{{ ('/locale/{0}.js'.format(handler.translate('__id'))) }}"></script>
   <script type="text/javascript" src="/ui-constants.js"></script>
-  <script type="text/javascript" src="{{ static_url('vj4.js') }}"></script>
+  <script type="text/javascript" src="{{ static_url('hydro.js') }}"></script>
   {% endif %}
 </body>
 </html>
