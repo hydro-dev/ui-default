@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import { NamedPage } from 'vj/misc/PageLoader';
+import { NamedPage } from 'vj/misc/Page';
 import Dropdown from 'vj/components/dropdown/Dropdown';
 import pjax from 'vj/utils/pjax';
 import substitute from 'vj/utils/substitute';

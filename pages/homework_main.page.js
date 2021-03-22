@@ -1,4 +1,4 @@
-import { NamedPage } from 'vj/misc/PageLoader';
+import { NamedPage } from 'vj/misc/Page';
 import Calendar from 'vj/components/calendar';
 import i18n from 'vj/utils/i18n';
 import { parse as parseMongoId } from 'vj/utils/mongoId';

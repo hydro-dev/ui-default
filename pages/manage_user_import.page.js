@@ -1,4 +1,4 @@
-import { NamedPage } from 'vj/misc/PageLoader';
+import { NamedPage } from 'vj/misc/Page';
 import Notification from 'vj/components/notification';
 import i18n from 'vj/utils/i18n';
 import request from 'vj/utils/request';

@@ -1,4 +1,4 @@
-import { AutoloadPage } from 'vj/misc/PageLoader';
+import { AutoloadPage } from 'vj/misc/Page';
 import { InfoDialog } from 'vj/components/dialog';
 import Notification from 'vj/components/notification';
 import { FLAG_ALERT } from 'vj/constant/message';

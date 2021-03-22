@@ -1,6 +1,6 @@
 import 'jquery.easing';
 
-import { AutoloadPage } from 'vj/misc/PageLoader';
+import { AutoloadPage } from 'vj/misc/Page';
 
 const smoothScrollPage = new AutoloadPage('smoothScrollPage', null, () => {
   const HISTORY_SUPPORT = !!(typeof window.history === 'object' && window.history.pushState);

@@ -1,7 +1,7 @@
 import base64 from 'base-64';
 import Clipboard from 'clipboard';
 
-import { NamedPage } from 'vj/misc/PageLoader';
+import { NamedPage } from 'vj/misc/Page';
 import substitute from 'vj/utils/substitute';
 import Notification from 'vj/components/notification';
 import i18n from 'vj/utils/i18n';

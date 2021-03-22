@@ -1,4 +1,4 @@
-import { NamedPage } from 'vj/misc/PageLoader';
+import { NamedPage } from 'vj/misc/Page';
 import Navigation from 'vj/components/navigation';
 import { ActionDialog } from 'vj/components/dialog';
 import loadReactRedux from 'vj/utils/loadReactRedux';

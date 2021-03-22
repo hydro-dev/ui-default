@@ -1,4 +1,4 @@
-import { AutoloadPage } from 'vj/misc/PageLoader';
+import { AutoloadPage } from 'vj/misc/Page';
 import { slideDown } from 'vj/utils/slide';
 import delay from 'vj/utils/delay';
 

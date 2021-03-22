@@ -1,4 +1,4 @@
-import { AutoloadPage } from 'vj/misc/PageLoader';
+import { AutoloadPage } from 'vj/misc/Page';
 
 const formPage = new AutoloadPage('formPage', () => {
   $(document).on('vjFormDisableUpdate', 'input, select, textarea', (ev) => {

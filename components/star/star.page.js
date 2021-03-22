@@ -1,4 +1,4 @@
-import { AutoloadPage } from 'vj/misc/PageLoader';
+import { AutoloadPage } from 'vj/misc/Page';
 import request from 'vj/utils/request';
 
 function setStarButtonState($starButton, star) {

@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { NamedPage } from 'vj/misc/PageLoader';
+import { NamedPage } from 'vj/misc/Page';
 import request from 'vj/utils/request';
 import tpl from 'vj/utils/tpl';
 import i18n from 'vj/utils/i18n';

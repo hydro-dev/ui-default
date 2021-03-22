@@ -1,4 +1,4 @@
-import { NamedPage } from 'vj/misc/PageLoader';
+import { NamedPage } from 'vj/misc/Page';
 import request from 'vj/utils/request';
 import loadReactRedux from 'vj/utils/loadReactRedux';
 import parseQueryString from 'vj/utils/parseQueryString';

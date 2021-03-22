@@ -1,8 +1,8 @@
 import { WritableStream } from 'web-streams-polyfill/ponyfill/es6';
 import * as streamsaver from 'streamsaver';
-import { createZipStream } from 'vj/utils/zip';
 import _ from 'lodash';
-import { NamedPage } from 'vj/misc/PageLoader';
+import { createZipStream } from 'vj/utils/zip';
+import { NamedPage } from 'vj/misc/Page';
 import Notification from 'vj/components/notification';
 import { ConfirmDialog } from 'vj/components/dialog';
 import request from 'vj/utils/request';
@@ -11,9 +11,13 @@ import tpl from 'vj/utils/tpl';
 import delay from 'vj/utils/delay';
 import i18n from 'vj/utils/i18n';
 
-// Firefox have no WritableStream
-if (!window.WritableStream) streamsaver.WritableStream = WritableStream;
-streamsaver.mitm = '/streamsaver/mitm.html';
+try {
+  // Firefox have no WritableStream
+  if (!window.WritableStream) streamsaver.WritableStream = WritableStream;
+  streamsaver.mitm = '/streamsaver/mitm.html';
+} catch (e) {
+  // Extending not allowed in snowpack
+}
 
 async function downloadProblemFilesAsArchive(type, files) {
   const { links, pdoc } = await request.post('', { operation: 'get_links', files, type });

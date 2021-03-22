@@ -1,6 +1,6 @@
 import 'jquery.easing';
 
-import { AutoloadPage } from 'vj/misc/PageLoader';
+import { AutoloadPage } from 'vj/misc/Page';
 import CommentBox from 'vj/components/discussion/CommentBox';
 import { ConfirmDialog } from 'vj/components/dialog';
 

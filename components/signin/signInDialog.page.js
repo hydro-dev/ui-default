@@ -1,4 +1,4 @@
-import { AutoloadPage } from 'vj/misc/PageLoader';
+import { AutoloadPage } from 'vj/misc/Page';
 import DomDialog from 'vj/components/dialog/DomDialog';
 import responsiveCutoff from 'vj/breakpoints.json';
 import { isBelow } from 'vj/utils/mediaQuery';

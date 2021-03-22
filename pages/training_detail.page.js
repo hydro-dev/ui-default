@@ -1,4 +1,4 @@
-import { NamedPage } from 'vj/misc/PageLoader';
+import { NamedPage } from 'vj/misc/Page';
 import { slideDown, slideUp } from 'vj/utils/slide';
 
 async function handleSectionExpand(ev) {

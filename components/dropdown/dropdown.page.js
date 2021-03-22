@@ -1,4 +1,4 @@
-import { AutoloadPage } from 'vj/misc/PageLoader';
+import { AutoloadPage } from 'vj/misc/Page';
 import Dropdown from './Dropdown';
 
 const dropdownPage = new AutoloadPage('dropdownPage', () => {

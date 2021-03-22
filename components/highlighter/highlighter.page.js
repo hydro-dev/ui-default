@@ -1,4 +1,4 @@
-import { AutoloadPage } from 'vj/misc/PageLoader';
+import { AutoloadPage } from 'vj/misc/Page';
 
 const highlighterPage = new AutoloadPage('highlighterPage', () => {
   import('./prismjs').then((module) => {

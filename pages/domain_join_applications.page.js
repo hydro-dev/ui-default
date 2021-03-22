@@ -1,4 +1,4 @@
-import { NamedPage } from 'vj/misc/PageLoader';
+import { NamedPage } from 'vj/misc/Page';
 import * as domainEnum from 'vj/constant/domain';
 
 const page = new NamedPage('domain_join_applications', () => {

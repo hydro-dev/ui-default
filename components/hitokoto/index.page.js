@@ -1,4 +1,4 @@
-import { AutoloadPage } from 'vj/misc/PageLoader';
+import { AutoloadPage } from 'vj/misc/Page';
 import request from 'vj/utils/request';
 import i18n from 'vj/utils/i18n';
 import tpl from 'vj/utils/tpl';

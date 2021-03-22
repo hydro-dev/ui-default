@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { AutoloadPage } from 'vj/misc/PageLoader';
+import { AutoloadPage } from 'vj/misc/Page';
 
 const KEY_MAP = {
   10: 'enter',

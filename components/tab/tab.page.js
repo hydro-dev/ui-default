@@ -1,4 +1,4 @@
-import { AutoloadPage } from 'vj/misc/PageLoader';
+import { AutoloadPage } from 'vj/misc/Page';
 import Tab from './Tab';
 
 const tabPage = new AutoloadPage('tabPage', () => {

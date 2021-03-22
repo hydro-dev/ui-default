@@ -1,11 +1,10 @@
 import 'jquery.transit';
-
 import _ from 'lodash';
-import { PageLoader } from 'vj/misc/PageLoader';
+import PageLoader from 'vj/misc/PageLoader';
 import delay from 'vj/utils/delay';
 
-// eslint-disable-next-line camelcase
-__webpack_public_path__ = UiContext.cdn_prefix;
+// eslint-disable-next-line
+try { __webpack_public_path__ = UiContext.cdn_prefix } catch (e) { }
 
 const pageLoader = new PageLoader();
 
@@ -75,3 +74,5 @@ async function load() {
 }
 
 load();
+
+import.meta?.hot?.accept();

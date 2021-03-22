@@ -1,7 +1,7 @@
 import 'sticky-kit/dist/sticky-kit';
 import _ from 'lodash';
 
-import { AutoloadPage } from 'vj/misc/PageLoader';
+import { AutoloadPage } from 'vj/misc/Page';
 import Navigation from 'vj/components/navigation';
 import { isAbove } from 'vj/utils/mediaQuery';
 import responsiveCutoff from 'vj/breakpoints.json';

@@ -1,4 +1,4 @@
-import { AutoloadPage } from 'vj/misc/PageLoader';
+import { AutoloadPage } from 'vj/misc/Page';
 import { isBelow } from 'vj/utils/mediaQuery';
 import { slideUp, slideDown } from 'vj/utils/slide';
 import responsiveCutoff from 'vj/breakpoints.json';

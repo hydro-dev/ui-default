@@ -1,4 +1,4 @@
-import { AutoloadPage } from 'vj/misc/PageLoader';
+import { AutoloadPage } from 'vj/misc/Page';
 
 const textboxPage = new AutoloadPage('textboxPage', () => {
   $(document).on('focusin', '.textbox.material input', (ev) => {

@@ -1,4 +1,4 @@
-import { NamedPage } from 'vj/misc/PageLoader';
+import { NamedPage } from 'vj/misc/Page';
 
 const page = new NamedPage('manage_dashboard', async () => {
   const { default: SockJs } = await import('../components/socket');

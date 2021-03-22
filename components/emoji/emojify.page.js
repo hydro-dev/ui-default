@@ -1,6 +1,6 @@
 import emojify from 'emojify.js';
 
-import { AutoloadPage } from 'vj/misc/PageLoader';
+import { AutoloadPage } from 'vj/misc/Page';
 
 function runEmojify($container) {
   if ($container.is('[data-emoji-enabled]')) {

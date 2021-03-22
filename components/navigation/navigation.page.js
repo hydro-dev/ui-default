@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import Slideout from 'slideout';
 
-import { AutoloadPage } from 'vj/misc/PageLoader';
+import { AutoloadPage } from 'vj/misc/Page';
 import request from 'vj/utils/request';
 import responsiveCutoff from 'vj/breakpoints.json';
 import { isAbove } from 'vj/utils/mediaQuery';

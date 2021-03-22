@@ -1,4 +1,4 @@
-import { NamedPage } from 'vj/misc/PageLoader';
+import { NamedPage } from 'vj/misc/Page';
 
 const page = new NamedPage('problem_solution', async () => {
   $(document).on('click', '[name="problem-sidebar__show-category"]', (ev) => {

@@ -1,4 +1,4 @@
-import { NamedPage } from 'vj/misc/PageLoader';
+import { NamedPage } from 'vj/misc/Page';
 import Notification from 'vj/components/notification';
 import { ActionDialog } from 'vj/components/dialog';
 

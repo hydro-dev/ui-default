@@ -1,4 +1,4 @@
-import { AutoloadPage } from 'vj/misc/PageLoader';
+import { AutoloadPage } from 'vj/misc/Page';
 
 const katexPage = new AutoloadPage('katexPage', () => {
   import('katex/dist/contrib/auto-render.min.js').then(({ default: katex }) => {

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import { NamedPage } from 'vj/misc/PageLoader';
+import { NamedPage } from 'vj/misc/Page';
 import Notification from 'vj/components/notification';
 import { ConfirmDialog, ActionDialog } from 'vj/components/dialog';
 import UserSelectAutoComplete from 'vj/components/autocomplete/UserSelectAutoComplete';

@@ -1,24 +1,23 @@
 import * as timeago from 'timeago.js';
-
-import { AutoloadPage } from 'vj/misc/PageLoader';
-
+import { AutoloadPage } from 'vj/misc/Page';
 import i18n from 'vj/utils/i18n';
 
-const locales = require.context('timeago.js/lib/lang', false, /\.js$/);
-let locale;
 try {
-  locale = locales(`./${i18n('timeago_locale')}.js`).default;
+  const locales = require.context('timeago.js/lib/lang', false, /\.js$/);
+  let locale;
+  try {
+    locale = locales(`./${i18n('timeago_locale')}.js`).default;
+  } catch (e) {
+    locale = locales('./en_US.js').default;
+  }
+  timeago.register(i18n('timeago_locale'), locale);
 } catch (e) {
-  locale = locales('./en_US.js').default;
+  console.error(`Cannot register timeago locale: ${i18n('timeago_locale')}`);
 }
-timeago.register(i18n('timeago_locale'), locale);
-
 function runRelativeTime($container) {
   $container.find('span.time.relative[data-timestamp]').get().forEach((element) => {
     const $element = $(element);
-    if ($element.attr('data-has-timeago') !== undefined) {
-      return;
-    }
+    if ($element.attr('data-has-timeago') !== undefined) return;
     $element.attr('data-tooltip', $element.text());
     $element.attr('datetime', ($element.attr('data-timestamp') || 0) * 1000);
     $element.attr('data-has-timeago', '1');

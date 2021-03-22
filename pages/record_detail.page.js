@@ -1,4 +1,4 @@
-import { NamedPage } from 'vj/misc/PageLoader';
+import { NamedPage } from 'vj/misc/Page';
 
 const page = new NamedPage('record_detail', async () => {
   const { default: SockJs } = await import('../components/socket');

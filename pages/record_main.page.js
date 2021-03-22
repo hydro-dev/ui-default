@@ -1,4 +1,4 @@
-import { NamedPage } from 'vj/misc/PageLoader';
+import { NamedPage } from 'vj/misc/Page';
 import UserSelectAutoComplete from 'vj/components/autocomplete/UserSelectAutoComplete';
 
 const page = new NamedPage('record_main', async () => {
