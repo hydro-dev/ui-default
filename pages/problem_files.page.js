@@ -1,4 +1,4 @@
-import { WritableStream } from 'web-streams-polyfill/ponyfill/es6';
+import { WritableStream } from 'web-streams-polyfill/dist/ponyfill.es6';
 import * as streamsaver from 'streamsaver';
 import _ from 'lodash';
 import { createZipStream } from 'vj/utils/zip';

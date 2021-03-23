@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   plugins: [
     'babel',
     'react',
@@ -26,12 +26,16 @@ module.exports = {
       jsx: true,
       legacyDecorators: true,
     },
+    babelOptions: {
+      configFile: './babel.config.js',
+    },
   },
   settings: {
     'import/resolver': {
       webpack: {
         config: {
           resolve: {
+            extensions: ['.js', '.jsx'],
             alias: {
               vj: path.resolve(__dirname),
             },

@@ -80,7 +80,7 @@ async function requireContext(filePath) {
         source: { type: 'Literal', value: file, raw: JSON.stringify(file) },
       });
     });
-    const keys = files.map((file) => path.relative(directory, path.resolve(base, file)));
+    const keys = files.map((file) => `./${path.relative(directory, path.resolve(base, file))}`);
     const contextKeys = {
       type: 'ArrayExpression',
       elements: keys.map((file) => (

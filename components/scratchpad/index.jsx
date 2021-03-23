@@ -9,17 +9,6 @@ import ScratchpadEditor from './ScratchpadEditorContainer';
 import ScratchpadPretest from './ScratchpadPretestContainer';
 import ScratchpadRecords from './ScratchpadRecordsContainer';
 
-/*
-a: React.Component
-panes: [{
-  id: string,
-  element: React.Component,
-  props: {
-    visible: bool,
-    size: string|int,
-  },
-}]
-*/
 function buildNestedPane([a, ...panes]) {
   const elements = [
     a,

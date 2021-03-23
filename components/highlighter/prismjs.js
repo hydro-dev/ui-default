@@ -33,19 +33,23 @@ languageMeta.forEach((meta) => {
 });
 
 // Copy to Clipboard
-Prism.plugins.toolbar.registerButton('copy-to-clipboard', (env) => {
-  const linkCopy = document.createElement('a');
-  linkCopy.href = 'javascript:;'; // eslint-disable-line no-script-url
-  linkCopy.textContent = 'Copy';
-  const clip = new Clipboard(linkCopy, { text: () => env.code });
-  clip.on('success', () => {
-    Notification.success(i18n('Content copied to clipboard!'), 1000);
+try {
+  Prism.plugins.toolbar.registerButton('copy-to-clipboard', (env) => {
+    const linkCopy = document.createElement('a');
+    linkCopy.href = 'javascript:;'; // eslint-disable-line no-script-url
+    linkCopy.textContent = 'Copy';
+    const clip = new Clipboard(linkCopy, { text: () => env.code });
+    clip.on('success', () => {
+      Notification.success(i18n('Content copied to clipboard!'), 1000);
+    });
+    clip.on('error', () => {
+      Notification.error(i18n('Copy failed :('));
+    });
+    return linkCopy;
   });
-  clip.on('error', () => {
-    Notification.error(i18n('Copy failed :('));
-  });
-  return linkCopy;
-});
+} catch (e) {
+  // snowpack
+}
 
 const prismjsApiWrap = {
   highlightBlocks: ($dom) => {

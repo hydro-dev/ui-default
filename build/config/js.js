@@ -77,6 +77,7 @@ export default function (env = {}) {
     },
     resolve: {
       modules: [root('node_modules')],
+      extensions: ['.js', '.jsx'],
       alias: { vj: root() },
     },
     module: {
@@ -88,13 +89,11 @@ export default function (env = {}) {
           use: [eslintLoader()],
         },
         {
-          // fonts and images
           test: /\.(svg|ttf|eot|woff|woff2|png|jpg|jpeg|gif)$/,
           use: [fileLoader()],
         },
         {
-          // ES2015 scripts
-          test: /\.js$/,
+          test: /\.jsx?$/,
           exclude: /node_modules[/\\]/,
           use: [babelLoader()],
         },

@@ -6,12 +6,10 @@ const dest = (req, res) => proxy.web(req, res, undefined, (e) => console.error(e
 module.exports = {
   entry: 'hydro.js',
   env: process.env,
-  packageOptions: {
-    env: process.env,
-    external: ['fs'],
-  },
   plugins: [
-    ['./build/plugins/require.context', { input: ['misc/PageLoader.js'] }],
+    ['./build/plugins/require-context.snowpack', { input: ['misc/PageLoader.js'] }],
+    './build/plugins/babel.snowpack',
+    './build/plugins/provide.snowpack',
   ],
   alias: { vj: __dirname },
   routes: [

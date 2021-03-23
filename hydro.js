@@ -61,9 +61,7 @@ async function load() {
   // eslint-disable-next-line no-restricted-syntax
   for (const { $element, shouldDelay } of sections) {
     $element.addClass('visible');
-    if (shouldDelay) {
-      await delay(50);
-    }
+    if (shouldDelay) await delay(50);
   }
   await delay(500);
   // eslint-disable-next-line no-restricted-syntax
@@ -74,5 +72,3 @@ async function load() {
 }
 
 load();
-
-import.meta?.hot?.accept();
