@@ -4,15 +4,6 @@ import 'vj-simplemde/src/css/simplemde.css';
 import 'pickadate/lib/themes/classic.css';
 import 'pickadate/lib/themes/classic.date.css';
 import 'pickadate/lib/themes/classic.time.css';
-import 'codemirror/mode/clike/clike';
-import 'codemirror/mode/pascal/pascal';
-import 'codemirror/mode/python/python';
-import 'codemirror/mode/php/php';
-import 'codemirror/mode/rust/rust';
-import 'codemirror/mode/haskell/haskell';
-import 'codemirror/mode/javascript/javascript';
-import 'codemirror/mode/go/go';
-import 'codemirror/mode/ruby/ruby';
 import 'katex/dist/katex.min.css';
 
 import 'vj/misc/float.styl';
