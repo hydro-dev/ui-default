@@ -112,6 +112,7 @@ class Nunjucks extends nunjucks.Environment {
     this.addFilter('markdownInline', (self, html = false) => markdown.renderInline(self, html));
     this.addFilter('ansi', (self) => misc.ansiToHtml(self));
     this.addFilter('base64_encode', (s) => Buffer.from(s).toString('base64'));
+    this.addFilter('base64_decode', (s) => Buffer.from(s, 'base64').toString());
     this.addFilter('bitand', (self, val) => self & val);
     this.addFilter('toString', (self) => (typeof self === 'string' ? self : JSON.stringify(self)));
     this.addFilter('content', (content, language, html) => {

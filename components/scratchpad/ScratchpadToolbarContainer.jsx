@@ -68,8 +68,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-@connect(mapStateToProps, mapDispatchToProps)
-export default class ScratchpadToolbarContainer extends React.PureComponent {
+export default connect(mapStateToProps, mapDispatchToProps)(class ScratchpadToolbarContainer extends React.PureComponent {
   static contextTypes = {
     store: PropTypes.object,
   };
@@ -166,4 +165,4 @@ export default class ScratchpadToolbarContainer extends React.PureComponent {
       </Toolbar>
     );
   }
-}
+});

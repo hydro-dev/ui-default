@@ -11,8 +11,7 @@ const mapStateToProps = (state) => ({
   isLoading: state.ui.records.isLoading,
 });
 
-@connect(mapStateToProps)
-export default class ScratchpadRecordsContainer extends React.PureComponent {
+export default connect(mapStateToProps)(class ScratchpadRecordsContainer extends React.PureComponent {
   render() {
     const cn = classNames('data-table is--full-row scratchpad__records__table', {
       loading: this.props.isLoading,
@@ -43,4 +42,4 @@ export default class ScratchpadRecordsContainer extends React.PureComponent {
       </Panel>
     );
   }
-}
+});

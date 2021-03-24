@@ -13,7 +13,10 @@ module.exports = function () {
         if (!/\/(jquery-scroll-lock|jquery\.easing|jquery\.transit)\//.test(id)) return { contents };
       }
       if (contents.includes('$(')) contents = `import $ from 'jquery';\n${contents}`;
-      if (contents.includes('jQuery')) contents = `import jQuery from 'jquery'\n${contents}`;
+      if (contents.includes('jQuery')) contents = `import jQuery from 'jquery';\n${contents}`;
+      if (!contents.includes('import React')) {
+        if (contents.includes('React.') || fileExt === '.jsx') contents = `import React from 'react';\n${contents}`;
+      }
       return contents.replace(/process\.env/g, 'import.meta.env');
     },
   };

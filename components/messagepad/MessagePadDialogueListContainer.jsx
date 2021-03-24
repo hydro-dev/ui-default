@@ -19,8 +19,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-@connect(mapStateToProps, mapDispatchToProps)
-export default class MessagePadDialogueListContainer extends React.PureComponent {
+export default connect(mapStateToProps, mapDispatchToProps)(class MessagePadDialogueListContainer extends React.PureComponent {
   componentDidMount() {
     $(this.refs.list).scrollLock({ strict: true });
   }
@@ -48,4 +47,4 @@ export default class MessagePadDialogueListContainer extends React.PureComponent
       </ol>
     );
   }
-}
+});

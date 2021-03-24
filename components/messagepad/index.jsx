@@ -18,8 +18,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-@connect(null, mapDispatchToProps)
-export default class MessagePadContainer extends React.PureComponent {
+export default connect(null, mapDispatchToProps)(class MessagePadContainer extends React.PureComponent {
   static propTypes = {
     onAdd: PropTypes.func.isRequired,
   };
@@ -49,4 +48,4 @@ export default class MessagePadContainer extends React.PureComponent {
       </div>
     );
   }
-}
+});

@@ -17,8 +17,7 @@ const mapStateToProps = (state) => ({
     : null,
 });
 
-@connect(mapStateToProps, null)
-export default class MessagePadDialogueContentContainer extends React.PureComponent {
+export default connect(mapStateToProps, null)(class MessagePadDialogueContentContainer extends React.PureComponent {
   componentDidMount() {
     $(this.refs.list).scrollLock({ strict: true });
   }
@@ -72,4 +71,4 @@ export default class MessagePadDialogueContentContainer extends React.PureCompon
       </ol>
     );
   }
-}
+});

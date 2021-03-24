@@ -19,8 +19,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-@connect(mapStateToProps, mapDispatchToProps)
-export default class MonacoEditor extends React.PureComponent {
+export default connect(mapStateToProps, mapDispatchToProps)(class MonacoEditor extends React.PureComponent {
   componentDidMount() {
     const value = this.props.value || '';
     const { language, theme } = this.props;
@@ -101,4 +100,4 @@ export default class MonacoEditor extends React.PureComponent {
       />
     );
   }
-}
+});

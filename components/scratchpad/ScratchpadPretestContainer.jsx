@@ -24,8 +24,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-@connect(mapStateToProps, mapDispatchToProps)
-export default class ScratchpadPretestContainer extends React.PureComponent {
+export default connect(mapStateToProps, mapDispatchToProps)(class ScratchpadPretestContainer extends React.PureComponent {
   render() {
     return (
       <Panel
@@ -51,4 +50,4 @@ export default class ScratchpadPretestContainer extends React.PureComponent {
       </Panel>
     );
   }
-}
+});

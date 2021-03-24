@@ -48,8 +48,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
   data: stateProps.items[ownProps.id],
 });
 
-@connect(mapStateToProps, null, mergeProps)
-export default class ScratchpadRecordsRowContainer extends React.PureComponent {
+export default connect(mapStateToProps, null, mergeProps)(class ScratchpadRecordsRowContainer extends React.PureComponent {
   handleRowClick(ev, id) {
     const url = substitute(
       decodeURIComponent(Context.getRecordDetailUrl),
@@ -82,4 +81,4 @@ export default class ScratchpadRecordsRowContainer extends React.PureComponent {
       </tr>
     );
   }
-}
+});

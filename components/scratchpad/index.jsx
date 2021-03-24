@@ -48,8 +48,7 @@ const mapDispatchToProps = (dispatch) => ({
   }, 500),
 });
 
-@connect(mapStateToProps, mapDispatchToProps)
-export default class ScratchpadContainer extends React.PureComponent {
+export default connect(mapStateToProps, mapDispatchToProps)(class ScratchpadContainer extends React.PureComponent {
   handleChangeSize(uiElement, size) {
     this.props.changeUiSize(uiElement, size);
     $('#scratchpad').trigger('vjScratchpadRelayout');
@@ -86,4 +85,4 @@ export default class ScratchpadContainer extends React.PureComponent {
       </SplitPane>
     );
   }
-}
+});
