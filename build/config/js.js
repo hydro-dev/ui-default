@@ -22,7 +22,7 @@ export default function (env = {}) {
   }
 
   function babelLoader() {
-    let cacheDirectory = root('.cache/babel');
+    let cacheDirectory = root('.cache');
     try {
       fs.ensureDirSync(cacheDirectory);
     } catch (ignored) {

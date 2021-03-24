@@ -74,16 +74,19 @@ const page = new NamedPage('problem_files', () => {
     return files;
   }
 
-  async function handleClickUpload(type) {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.multiple = true;
-    input.click();
-    await new Promise((resolve) => { input.onchange = resolve; });
+  async function handleClickUpload(type, files) {
+    if (!files) {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.multiple = true;
+      input.click();
+      await new Promise((resolve) => { input.onchange = resolve; });
+      files = input.files;
+    }
     try {
       Notification.info('Uploading files...');
       const tasks = [];
-      for (const file of input.files) {
+      for (const file of files) {
         const data = new FormData();
         data.append('filename', file.name);
         data.append('file', file);
@@ -131,6 +134,42 @@ const page = new NamedPage('problem_files', () => {
     }
   }
 
+  /**
+   * @param {string} type
+   * @param {JQuery.DragOverEvent<HTMLElement, undefined, HTMLElement, HTMLElement>} ev
+   */
+  function handleDragOver(type, ev) {
+    ev.preventDefault();
+    // TODO display a drag-drop allowed hint
+  }
+
+  /**
+   * @param {string} type
+   * @param {JQuery.DropEvent<HTMLElement, undefined, HTMLElement, HTMLElement>} ev
+   */
+  function handleDrop(type, ev) {
+    ev.preventDefault();
+    ev = ev.originalEvent;
+    const files = [];
+    if (ev.dataTransfer.items) {
+      for (let i = 0; i < ev.dataTransfer.items.length; i++) {
+        if (ev.dataTransfer.items[i].kind === 'file') {
+          const file = ev.dataTransfer.items[i].getAsFile();
+          files.push(file);
+        }
+      }
+    } else {
+      for (let i = 0; i < ev.dataTransfer.files.length; i++) {
+        files.push(ev.dataTransfer.files[i]);
+      }
+    }
+    handleClickUpload(type, files);
+  }
+
+  $('.problem-files-testdata').on('dragover', (ev) => handleDragOver('testdata', ev));
+  $('.problem-files-additional_file').on('dragover', (ev) => handleDragOver('additional_file', ev));
+  $('.problem-files-testdata').on('drop', (ev) => handleDrop('testdata', ev));
+  $('.problem-files-additional_file').on('drop', (ev) => handleDrop('additional_file', ev));
   $('[name="upload_testdata"]').on('click', () => handleClickUpload('testdata'));
   $('[name="download_selected_testdata"]').on('click', () => handleClickDownloadSelected('testdata'));
   $('[name="remove_selected_testdata"]').on('click', () => handleClickRemoveSelected('testdata'));

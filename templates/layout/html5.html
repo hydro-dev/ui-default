@@ -39,6 +39,7 @@
   {% endif %}
 </head>
 <body>
+  {{ handler.request.headers.hmr|default('')|safe }}
   {% block body %}{% endblock %}
   {% if not isIE(handler.request.headers['user-agent']) %}
   <script type="text/javascript" src="{{ ('/locale/{0}.js'.format(handler.translate('__id'))) }}"></script>
