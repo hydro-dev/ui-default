@@ -27,6 +27,8 @@ jobs:
         rm -r public
         yarn build
         node build/ver --dev
+      env:
+        INPUT_TOKEN: ''
     - uses: JS-DevTools/npm-publish@v1
       if: ${{ github.event_name == 'push' }}
       with:
