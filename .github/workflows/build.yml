@@ -17,21 +17,20 @@ jobs:
         node-version: '14.x'
     - run: |
         yarn
+        yarn build:production
+    - uses: JS-DevTools/npm-publish@v1
+      if: ${{ github.event_name == 'push' }}
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+    - if: steps.publish.outputs.type != 'none'
+      run: |
+        rm -r public
         yarn build
         node build/ver --dev
     - uses: JS-DevTools/npm-publish@v1
       if: ${{ github.event_name == 'push' }}
       with:
         token: ${{ secrets.NPM_TOKEN }}
-    - uses: actions/upload-artifact@v1
-      with:
-        name: public
-        path: public
-    - run: |
-        rm -r public
-        yarn build:production
-        node build/ver
-    - uses: JS-DevTools/npm-publish@v1
-      if: ${{ github.event_name == 'push' }}
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
+        tag: dev
+      env:
+        INPUT_TOKEN: ''
