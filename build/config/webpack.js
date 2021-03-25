@@ -55,8 +55,7 @@ export default function (env = {}) {
       loader: ExtractCssPlugin.loader,
       // FIXME auto?
       options: {
-        publicPath: (resourcePath, context) => `${relative(dirname(resourcePath), context)}/`
-        ,
+        publicPath: (resourcePath, context) => `${relative(dirname(resourcePath), context).replace('../', '')}/`,
       },
     };
   }
