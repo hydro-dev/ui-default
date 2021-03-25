@@ -92,3 +92,4 @@ const request = {
 };
 
 export default request;
+window.Hydro.utils.request = request;

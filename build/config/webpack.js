@@ -67,7 +67,7 @@ export default function (env = {}) {
     profile: true,
     context: root(),
     entry: {
-      hydro: './hydro.js',
+      hydro: './entry.js',
       'theme.default': './theme/default.js',
     },
     output: {

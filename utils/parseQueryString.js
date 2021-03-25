@@ -9,3 +9,5 @@ export default function parseQueryString(str) {
     });
   return obj;
 }
+
+window.Hydro.utils.parseQueryString = parseQueryString;

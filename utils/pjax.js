@@ -2,7 +2,6 @@
 // https://github.com/defunkt/jquery-pjax/blob/master/jquery.pjax.js
 
 import { v4 as uuid } from 'uuid';
-
 import Notification from 'vj/components/notification';
 import NProgress from 'vj/components/nprogress';
 import request from './request';
@@ -148,3 +147,4 @@ function handlePopState(ev) {
 $(window).on('popstate', handlePopState);
 
 export default pjax;
+window.Hydro.utils.pjax = pjax;

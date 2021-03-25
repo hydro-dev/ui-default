@@ -1,5 +1,4 @@
 /**
- *
  * @param {Event} ev
  * @param {String} targetUrl
  * @param {Boolean} alwaysOpenInNewWindow
@@ -17,3 +16,5 @@ export default function emulateAnchorClick(ev, targetUrl, alwaysOpenInNewWindow 
     window.location.href = targetUrl;
   }
 }
+
+window.Hydro.utils.emulateAnchorClick = emulateAnchorClick;

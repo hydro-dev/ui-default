@@ -200,3 +200,4 @@ export default class AutoComplete extends DOMAttachedObject {
 }
 
 _.assign(AutoComplete, DOMAttachedObject);
+window.Hydro.components.autocomplete = AutoComplete;

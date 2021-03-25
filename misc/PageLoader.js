@@ -16,22 +16,15 @@ export default class PageLoader {
         return page;
       }),
     ];
+    if (window.Hydro.extraPages) this.pageInstances.push(...window.Hydro.extraPages);
     window.Hydro.pageInstances = this.pageInstances;
   }
 
   getAutoloadPages() {
-    const pages = this.pageInstances.filter((page) => page && page.autoload);
-    return pages;
+    return this.pageInstances.filter((page) => page && page.autoload);
   }
 
   getNamedPage(pageName) {
-    const pages = this.pageInstances.filter((page) => page && page.isNameMatch(pageName));
-    if (pages.length > 0) {
-      if (pages.length > 1) {
-        console.warn(`Multiple instance for ${pageName}`);
-      }
-      return pages[0];
-    }
-    return null;
+    return this.pageInstances.filter((page) => page && page.isNameMatch(pageName));
   }
 }

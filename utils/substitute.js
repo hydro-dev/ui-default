@@ -6,3 +6,5 @@ export default function substitute(str, obj) {
     return `{${key}}`;
   });
 }
+
+window.Hydro.utils.substitute = substitute;

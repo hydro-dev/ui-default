@@ -41,3 +41,4 @@ export default class UserSelectAutoComplete extends AutoComplete {
 }
 
 _.assign(UserSelectAutoComplete, DOMAttachedObject);
+window.Hydro.components.UserSelectAutoComplete = UserSelectAutoComplete;

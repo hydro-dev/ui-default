@@ -55,3 +55,5 @@ export async function slideUp($element, duration, fromCss = {}, toCss = {}) {
     display: 'none',
   });
 }
+
+window.Hydro.utils.slide = { slideUp, slideDown };

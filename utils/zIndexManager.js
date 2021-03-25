@@ -10,3 +10,4 @@ const manager = {
 };
 
 export default manager;
+window.Hydro.utils.zIndexManager = manager;

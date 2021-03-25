@@ -6,3 +6,5 @@ export default function i18n(str, ...params) {
   }
   return substitute(str, params);
 }
+
+window.Hydro.utils.i18n = i18n;

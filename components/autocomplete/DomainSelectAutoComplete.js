@@ -41,3 +41,4 @@ export default class DomainSelectAutoComplete extends AutoComplete {
 }
 
 _.assign(DomainSelectAutoComplete, DOMAttachedObject);
+window.Hydro.components.DomainSelectAutoComplete = DomainSelectAutoComplete;

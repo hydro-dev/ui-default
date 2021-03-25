@@ -17,3 +17,5 @@ export default async function pipeStream(read, write, abort) {
     }
   }
 }
+
+window.Hydro.utils.pipeStream = pipeStream;

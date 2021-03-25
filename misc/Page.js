@@ -43,6 +43,5 @@ export class AutoloadPage extends Page {
   }
 }
 
-window.Hydro = {
-  NamedPage, AutoloadPage,
-};
+window.Hydro.NamedPage = NamedPage;
+window.Hydro.AutoloadPage = AutoloadPage;

@@ -21,3 +21,5 @@ export function rawHtml(html) {
     html,
   };
 }
+
+global.Hydro.utils.tpl = tpl;

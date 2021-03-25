@@ -1,3 +1,4 @@
+import './modules';
 import 'jquery.transit';
 import _ from 'lodash';
 import PageLoader from 'vj/misc/PageLoader';
@@ -5,12 +6,6 @@ import delay from 'vj/utils/delay';
 
 // eslint-disable-next-line
 try { __webpack_public_path__ = UiContext.cdn_prefix } catch (e) { }
-
-const pageLoader = new PageLoader();
-
-const currentPageName = document.documentElement.getAttribute('data-page');
-const currentPage = pageLoader.getNamedPage(currentPageName);
-const includedPages = pageLoader.getAutoloadPages();
 
 function buildSequence(pages, type) {
   if (process.env.NODE_ENV !== 'production') {
@@ -28,11 +23,30 @@ function buildSequence(pages, type) {
 }
 
 async function load() {
+  if (window.UiContext.extraPages) {
+    const tasks = [];
+    for (const page of window.UiContext.extraPages) {
+      const head = document.getElementsByTagName('head')[0];
+      const script = document.createElement('script');
+      script.src = page;
+      head.appendChild(script);
+      tasks.push(new Promise((resolve) => {
+        script.onload = resolve;
+      }));
+    }
+    await Promise.all(tasks);
+  }
+
+  const pageLoader = new PageLoader();
+
+  const currentPageName = document.documentElement.getAttribute('data-page');
+  const currentPage = pageLoader.getNamedPage(currentPageName);
+  const includedPages = pageLoader.getAutoloadPages();
   const loadSequence = [
     ...buildSequence(includedPages, 'before'),
-    ...buildSequence([currentPage], 'before'),
+    ...buildSequence(currentPage, 'before'),
     ...buildSequence(includedPages, 'after'),
-    ...buildSequence([currentPage], 'after'),
+    ...buildSequence(currentPage, 'after'),
   ];
   // eslint-disable-next-line no-restricted-syntax
   for (const { page, func, type } of loadSequence) {

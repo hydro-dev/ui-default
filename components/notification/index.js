@@ -85,3 +85,5 @@ export default class Notification {
     lastNotification = null;
   }
 }
+
+window.Hydro.components.Notification = Notification;

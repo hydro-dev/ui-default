@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 // https://github.com/andrasq/node-mongoid-js/blob/master/mongoid.js
 
 export function parse(idstring) {
@@ -13,3 +12,5 @@ export function parse(idstring) {
     sequence:  parseInt(idstring.slice(18, 18+6), 16),
   };
 }
+
+window.Hydro.utils.mongoId = parse;

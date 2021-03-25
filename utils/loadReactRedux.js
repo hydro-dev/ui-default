@@ -28,3 +28,5 @@ export default async function loadReactRedux(storeReducer) {
     store,
   };
 }
+
+window.Hydro.utils.loadReactRedux = loadReactRedux;

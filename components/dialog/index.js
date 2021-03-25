@@ -92,3 +92,8 @@ export class ConfirmDialog extends Dialog {
     });
   }
 }
+
+window.Hydro.components.Dialog = Dialog;
+window.Hydro.components.InfoDialog = InfoDialog;
+window.Hydro.components.ActionDialog = ActionDialog;
+window.Hydro.components.ConfirmDialog = ConfirmDialog;

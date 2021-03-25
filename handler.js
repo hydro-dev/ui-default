@@ -1,9 +1,13 @@
 /* eslint-disable camelcase */
+const { readdirSync } = require('fs');
+const { join } = require('path');
 const yaml = require('js-yaml');
+const { tmpdir } = require('os');
 const markdown = require('./backendlib/markdown.js');
 
+const { bus } = global.Hydro.service;
 const { system, domain } = global.Hydro.model;
-const { Route, Handler } = global.Hydro.service.server;
+const { Route, Handler, UiContextBase } = global.Hydro.service.server;
 
 class WikiHelpHandler extends Handler {
   async get() {
@@ -97,6 +101,12 @@ class MarkdownHandler extends Handler {
     this.response.type = 'text/html';
   }
 }
+
+bus.on('app/started', () => {
+  const files = readdirSync(join(tmpdir(), 'hydro', 'public'));
+  const pages = files.filter((file) => file.endsWith('.page.js'));
+  UiContextBase.extraPages = pages.map((i) => `/${i}`);
+});
 
 global.Hydro.handler.ui = async () => {
   Route('wiki_help', '/wiki/help', WikiHelpHandler);
