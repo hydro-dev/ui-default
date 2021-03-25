@@ -1,6 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import webpack from 'webpack';
-import { relative, dirname } from 'path';
 import ExtractCssPlugin from 'mini-css-extract-plugin';
 import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
 import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin';
@@ -55,7 +54,7 @@ export default function (env = {}) {
       loader: ExtractCssPlugin.loader,
       // FIXME auto?
       options: {
-        publicPath: (resourcePath, context) => `${relative(dirname(resourcePath), context).replace('../', '')}/`,
+        publicPath: '',
       },
     };
   }
