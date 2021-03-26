@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
-const { readdirSync } = require('fs');
+const { readdirSync, readFileSync } = require('fs');
 const { join } = require('path');
+const crypto = require('crypto');
 const yaml = require('js-yaml');
 const { tmpdir } = require('os');
 const markdown = require('./backendlib/markdown.js');
@@ -105,7 +106,13 @@ class MarkdownHandler extends Handler {
 bus.on('app/started', () => {
   const files = readdirSync(join(tmpdir(), 'hydro', 'public'));
   const pages = files.filter((file) => file.endsWith('.page.js'));
-  UiContextBase.extraPages = pages.map((i) => `/${i}`);
+  UiContextBase.extraPages = pages.map((i) => {
+    const shasum = crypto.createHash('sha1');
+    const file = readFileSync(join(tmpdir(), 'hydro', 'public', i));
+    shasum.update(file);
+    const hash = shasum.digest('hex').substr(0, 10);
+    return `/${i}?${hash}`;
+  });
 });
 
 global.Hydro.handler.ui = async () => {

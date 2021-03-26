@@ -7,9 +7,7 @@ export default function tpl(pieces, ...substitutions) {
     let substHtml;
     if (typeof subst === 'object' && subst.templateRaw) {
       substHtml = subst.html;
-    } else {
-      substHtml = _.escape(String(subst));
-    }
+    } else substHtml = _.escape(String(subst));
     result += substHtml + pieces[i + 1];
   }
   return result;

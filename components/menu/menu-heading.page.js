@@ -6,9 +6,7 @@ const menuHeadingPage = new AutoloadPage('menuHeadingPage', null, () => {
   $('[data-heading-extract-to]').get().forEach((container) => {
     const $container = $(container);
     const $target = $('body').find($container.attr('data-heading-extract-to'));
-    if ($target.length === 0) {
-      return;
-    }
+    if ($target.length === 0) return;
     let $menu = $target.children('.menu');
     if ($menu.length === 0) {
       $menu = $(tpl`<ul class="menu collapsed"></ul>`).appendTo($target);

@@ -24,7 +24,7 @@
         <div data-heading-extract-to="#menu-item-tasks_list" class="training__section {% if nsdict[node['_id']]['isDone'] %}done{% elif nsdict[node['_id']]['isProgress'] %}progress{% elif nsdict[node['_id']]['isOpen'] %}open{% else %}invalid{% endif %}  {% if nsdict[node['_id']]['isProgress'] or nsdict[node['_id']]['isOpen'] %}expanded{% else %}collapsed{% endif %}">
           <div class="section__header clearfix">
             <div class="float-left">
-              <h1 data-heading class="section__title">{{ _('Section') }} {{ node['_id'] }}. {{ node['title'] }}</h1>
+              <h1 data-heading id="node-{{ node._id }}" class="section__title">{{ _('Section') }} {{ node['_id'] }}. {{ node['title'] }}</h1>
             </div>
             <div class="float-right">
               <h1 class="section__title training-section-status--text {% if nsdict[node['_id']]['isDone'] %}done{% elif nsdict[node['_id']]['isProgress'] %}progress{% elif nsdict[node['_id']]['isOpen'] %}open{% else %}invalid{% endif %}">
@@ -196,11 +196,11 @@
         </dl>
       </div>
     </div>
-    <div class="section side">
+    <div class="section side"><div data-sticky="large">
       <ol class="menu">
         {{ sidemenu.render_item('list', 'tasks_list') }}
       </ol>
-    </div>
+    </div></div>
   </div>
 </div>
 {% endblock %}
