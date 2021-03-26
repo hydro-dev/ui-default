@@ -13,69 +13,69 @@
       </div>
     </div>
     <div class="section">
-    {% if not tsdoc.enroll %}
-      <div class="section__body">
-        <blockquote class="typo warn">
-          <p>{{ _('page.training_detail.invalid_when_not_enrolled') }}</p>
-        </blockquote>
-      </div>
-    {% endif %}
-    {% for node in tdoc['dag'] %}
-      <div class="training__section {% if nsdict[node['_id']]['isDone'] %}done{% elif nsdict[node['_id']]['isProgress'] %}progress{% elif nsdict[node['_id']]['isOpen'] %}open{% else %}invalid{% endif %}  {% if nsdict[node['_id']]['isProgress'] or nsdict[node['_id']]['isOpen'] %}expanded{% else %}collapsed{% endif %}">
-        <div class="section__header clearfix">
-          <div class="float-left">
-            <h1 class="section__title">{{ _('Section') }} {{ node['_id'] }}. {{ node['title'] }}</h1>
-          </div>
-          <div class="float-right">
-            <h1 class="section__title training-section-status--text {% if nsdict[node['_id']]['isDone'] %}done{% elif nsdict[node['_id']]['isProgress'] %}progress{% elif nsdict[node['_id']]['isOpen'] %}open{% else %}invalid{% endif %}">
-              <span class="icon training-section-status--icon {% if nsdict[node['_id']]['isDone'] %}done{% elif nsdict[node['_id']]['isProgress'] %}progress{% elif nsdict[node['_id']]['isOpen'] %}open{% else %}invalid{% endif %}"></span>
-            {% if nsdict[node['_id']]['isDone'] %}
-              {{ _('Completed') }}
-            {% elif nsdict[node['_id']]['isProgress'] %}
-              {{ _('In Progress') }}
-            {% elif nsdict[node['_id']]['isOpen'] %}
-              {{ _('Open') }}
-            {% else %}
-              {{ _('Invalid') }}
-            {% endif %}
-            </h1>
-          </div>
-        </div>
+      {% if not tsdoc.enroll %}
         <div class="section__body">
-          <ul class="supplementary dot list">
-            <li>
-              <a href="javascript:;" name="training__section__expand" class="expanded--hidden"><span class="icon icon-expand_more"></span> {{ _('expand') }}</a>
-              <a href="javascript:;" name="training__section__collapse" class="collapsed--hidden"><span class="icon icon-expand_less"></span> {{ _('collapse') }}</a>
-            </li>
-            <!--
-            TODO(twd2): twd2 todo
-            <li>
-              递交了 ? 次完成该章节 (TOP ?%)
-            </li>
-            <li>
-              第 ? 个完成该章节 (总计 ? 用户完成)
-            </li>
-            -->
-          </ul>
+          <blockquote class="typo warn">
+            <p>{{ _('page.training_detail.invalid_when_not_enrolled') }}</p>
+          </blockquote>
         </div>
-        <div class="training__section__detail">
-        {% if nsdict[node['_id']]['isInvalid'] %}
+      {% endif %}
+      {% for node in tdoc['dag'] %}
+        <div data-heading-extract-to="#menu-item-tasks_list" class="training__section {% if nsdict[node['_id']]['isDone'] %}done{% elif nsdict[node['_id']]['isProgress'] %}progress{% elif nsdict[node['_id']]['isOpen'] %}open{% else %}invalid{% endif %}  {% if nsdict[node['_id']]['isProgress'] or nsdict[node['_id']]['isOpen'] %}expanded{% else %}collapsed{% endif %}">
+          <div class="section__header clearfix">
+            <div class="float-left">
+              <h1 data-heading class="section__title">{{ _('Section') }} {{ node['_id'] }}. {{ node['title'] }}</h1>
+            </div>
+            <div class="float-right">
+              <h1 class="section__title training-section-status--text {% if nsdict[node['_id']]['isDone'] %}done{% elif nsdict[node['_id']]['isProgress'] %}progress{% elif nsdict[node['_id']]['isOpen'] %}open{% else %}invalid{% endif %}">
+                <span class="icon training-section-status--icon {% if nsdict[node['_id']]['isDone'] %}done{% elif nsdict[node['_id']]['isProgress'] %}progress{% elif nsdict[node['_id']]['isOpen'] %}open{% else %}invalid{% endif %}"></span>
+                {% if nsdict[node['_id']]['isDone'] %}
+                  {{ _('Completed') }}
+                {% elif nsdict[node['_id']]['isProgress'] %}
+                  {{ _('In Progress') }}
+                {% elif nsdict[node['_id']]['isOpen'] %}
+                  {{ _('Open') }}
+                {% else %}
+                  {{ _('Invalid') }}
+                {% endif %}
+              </h1>
+            </div>
+          </div>
           <div class="section__body">
-            <blockquote class="typo note">
-              <p>{{ _('This section cannot be challenged at present, so please complete the following sections first') }}:</p>
-              <ul>
-              {% for nid in node['requireNids'] %}
-                <li>{{ _('Section') }} {{ _(nid) }}. {{ ndict[nid]['title'] }} ({{ _('Completed') }} {{ nsdict[nid]['progress'] }}%)</li>
-              {% endfor %}
-              </ul>
-            </blockquote>
+            <ul class="supplementary dot list">
+              <li>
+                <a href="javascript:;" name="training__section__expand" class="expanded--hidden"><span class="icon icon-expand_more"></span> {{ _('expand') }}</a>
+                <a href="javascript:;" name="training__section__collapse" class="collapsed--hidden"><span class="icon icon-expand_less"></span> {{ _('collapse') }}</a>
+              </li>
+              <!--
+              TODO(twd2): twd2 todo
+              <li>
+                递交了 ? 次完成该章节 (TOP ?%)
+              </li>
+              <li>
+                第 ? 个完成该章节 (总计 ? 用户完成)
+              </li>
+              -->
+            </ul>
           </div>
-        {% endif %}
-        {% if node['content'] %}
-          <div class="section__body typo">
-            {{ node['content']|markdown|safe }}
-          </div>
-        {% endif %}
+          <div class="training__section__detail">
+            {% if nsdict[node['_id']]['isInvalid'] %}
+              <div class="section__body">
+                <blockquote class="typo note">
+                  <p>{{ _('This section cannot be challenged at present, so please complete the following sections first') }}:</p>
+                  <ul>
+                    {% for nid in node['requireNids'] %}
+                      <li>{{ _('Section') }} {{ _(nid) }}. {{ ndict[nid]['title'] }} ({{ _('Completed') }} {{ nsdict[nid]['progress'] }}%)</li>
+                    {% endfor %}
+                  </ul>
+                </blockquote>
+              </div>
+            {% endif %}
+            {% if node['content'] %}
+              <div class="section__body typo">
+                {{ node['content']|markdown|safe }}
+              </div>
+            {% endif %}
           <div class="section__body no-padding training__problems">
             <table class="data-table">
               <colgroup>
@@ -195,6 +195,11 @@
           <dd>{{ user.render_inline(owner, badge=false) }}</dd>
         </dl>
       </div>
+    </div>
+    <div class="section side">
+      <ol class="menu">
+        {{ sidemenu.render_item('list', 'tasks_list') }}
+      </ol>
     </div>
   </div>
 </div>
