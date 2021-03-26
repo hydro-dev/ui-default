@@ -37,7 +37,7 @@ __langname: 简体中文
 'We use <a href="https://en.gravatar.com/" target="_blank">Gravatar</a> to present your avatar icon.': '我们使用 <a href="https://cn.gravatar.com/" target="_blank">Gravatar</a> 服务来呈现您的头像。'
 'Yes': 是
 "Effects only when Difficulty is not 'Use algorithm calculated'.": 仅当难度不为“使用算法计算”时才起效。
-"Splitted by ', '.": 由“, ”或“，”分隔。
+"Split by ', '.": 由“, ”或“，”分隔。
 "What's file?": 什么是文件？
 (All Problems): (所有题目)
 (None): (无)
