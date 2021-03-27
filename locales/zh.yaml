@@ -322,6 +322,10 @@ Hard Deadline: 最终截止时间
 Hash: 散列
 Have ALL PERMISSIONS in this domain: 在此域中拥有全部权限
 He: 他
+Header Background: 顶部背景
+Header Background@2x: 顶部背景（大）
+Header Logo: 顶部图标
+Header Logo@2x: 顶部图标（大）
 Help: 帮助
 Hidden: 隐藏
 Hide all tags: 隐藏所有标签
@@ -431,6 +435,7 @@ Memory: 内存
 Message {0} not found.: 消息 {0} 不存在。
 Messages: 消息
 Method: 方法
+Monaco language modes: 编译语言代号 -> Monaco 编辑器模式
 Month: 月
 Monthly Popular: 月度最受欢迎
 Most Upvoted Solutions: 最被赞同的题解
@@ -441,6 +446,10 @@ My Recent Submissions: 我的最近递交记录
 My Role: 我的角色
 name: 名称
 Name: 名称
+Nav Logo Dark: 左上角小图标（暗）
+Nav Logo Dark@2x: 左上角图标（暗）（大）
+Nav Logo Light: 左上角图标（亮）
+Nav Logo Light@2x: 左上角图标（亮）（大）
 Network error: 网络错误
 Never expire: 从不过期
 New dataset: 新测试数据
