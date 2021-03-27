@@ -33,7 +33,7 @@
           {{ form.form_text({
                columns:12,
                label:'Tags',
-               help_text:'Splitted by \', \'.',
+               help_text:'Split by \', \'.',
                name:'tag',
                value:pdoc['tag']|default([])|join(', ')
              }) }}
