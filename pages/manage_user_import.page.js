@@ -5,13 +5,13 @@ import request from 'vj/utils/request';
 import delay from 'vj/utils/delay';
 
 const page = new NamedPage('manage_user_import', () => {
-  async function post(isSubmit) {
+  async function post(draft) {
     try {
       const res = await request.post('', {
         users: $('[name="users"]').val(),
-        confirm: isSubmit ? 'on' : '',
+        draft,
       });
-      if (isSubmit) {
+      if (!draft) {
         Notification.success(i18n('Created {0} users.', res.users.length));
         await delay(2000);
         window.location.reload();
@@ -23,8 +23,8 @@ const page = new NamedPage('manage_user_import', () => {
     }
   }
 
-  $('[name="preview"]').click(() => post(false));
-  $('[name="submit"]').click(() => post(true));
+  $('[name="preview"]').click(() => post(true));
+  $('[name="submit"]').click(() => post(false));
 });
 
 export default page;
