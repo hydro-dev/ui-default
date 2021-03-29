@@ -94,14 +94,12 @@ const page = new NamedPage('domain_user', () => {
           <p>${i18n('Their account will not be deleted and they will be with the default role.')}</p>
         </div>`,
     }).open();
-    if (action !== 'yes') {
-      return;
-    }
+    if (action !== 'yes') return;
     try {
       await request.post('', {
         operation: 'set_users',
         uid: selectedUsers,
-        role: '',
+        role: 'default',
       });
       Notification.success(i18n('Selected users have been removed from the domain.'));
       await delay(2000);

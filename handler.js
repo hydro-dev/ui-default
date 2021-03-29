@@ -100,6 +100,7 @@ class MarkdownHandler extends Handler {
       ? markdown.renderInline(text, html)
       : markdown.render(text, html);
     this.response.type = 'text/html';
+    this.response.status = 200;
   }
 }
 
