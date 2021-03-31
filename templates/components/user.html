@@ -1,9 +1,4 @@
-{% macro render_inline(
-  udoc,
-  avatar=true,
-  badge=true,
-  modbadge=true
-) %}
+{% macro render_inline(udoc, avatar=true, badge=true, modbadge=true) %}
 {% if udoc %}
 <span class="user-profile-link">
   {% if avatar %}
@@ -17,7 +12,8 @@
     {% endif %}
   </a>
   {% if badge %}
-    <a class="user-profile-badge v-center badge--lv{{ udoc['level']|default(0) }}" href="{{ url('user_detail', uid=udoc._id) }}" title="LV {{ udoc['level']|default(0) }}: Top {{ model.builtin.LEVELS[udoc['level']|default(0)]|default('N/A') }}%">LV {{ udoc['level']|default(0) }}</a>
+    {% set _level = udoc.level|default(0) %}
+    <a class="user-profile-badge v-center badge--lv{{ level }}" href="{{ url('user_detail', uid=udoc._id) }}" title="LV {{ udoc.level }}: Top {{ model.builtin.LEVELS[0]|default('N/A') }}%">LV {{ level }}</a>
     {% if modbadge and udoc.hasPerm(perm.PERM_MOD_BADGE) %}
       <span class="user-profile-badge v-center badge--mod" title="Moderator">MOD</span>
     {% endif %}
