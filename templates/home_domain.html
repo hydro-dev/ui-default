@@ -27,7 +27,7 @@
         </tr>
       </thead>
       <tbody>
-      {% for ddoc in ddocs %}
+      {%- for ddoc in ddocs -%}
         <tr>
           <td class="col--icon">
             <img src="{{ gravatar(ddoc.gravatar) }}" width="32" height="32">
@@ -45,7 +45,7 @@
           {% endif %}
           </td>
         </tr>
-      {% endfor %}
+      {%- endfor -%}
       </tbody>
     </table>
   </div>

@@ -22,8 +22,8 @@
             </tr>
           </thead>
           <tbody>
-          {% for request in requests %}
-            {% for pid in request.pids %}
+          {%- for request in requests -%}
+            {%- for pid in request.pids -%}
               <tr>
                 <td class="col--id"><a href="{{ request.url }}{{ pid }}">{{ request.display }}{{ pid }}</a></td>
                 <td class="col--title">{{ request.pdocs[pid] }}</td>
@@ -36,8 +36,8 @@
                   </form>
                 </td>
               </tr>
-            {% endfor %}
-          {% endfor %}
+            {%- endfor -%}
+          {%- endfor -%}
           </tbody>
         </table>
       </div>

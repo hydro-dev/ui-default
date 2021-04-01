@@ -4,7 +4,7 @@
     <div class="media">
       <div class="media__body">
         <div class="location-path">
-        {% for c in path %}
+        {%- for c in path -%}
           / {% if loop.index < path.length %}<a href="{{ url(c[1], c[2])|default('#') }}">{{ c[0] if c[3] else _(c[0]) }}</a>{% endif %}
         {%- endfor %}
         </div>

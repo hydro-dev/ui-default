@@ -5,7 +5,7 @@
   {{ nothing.render('no discussion yet...') }}
 {% else %}
   <ol class="section__list discussion__list">
-  {% for ddoc in ddocs %}
+  {%- for ddoc in ddocs -%}
     <li class="section__list__item discussion__item{% if ddoc.highlight %} highlight{% endif %}">
       <div class="media">
         <div class="media__left">
@@ -38,7 +38,7 @@
         </div>
       </div>
     </li>
-  {% endfor %}
+  {%- endfor -%}
   </ol>
   {% if page != undefined and dpcount != undefined %}
   {{ paginator.render(page, dpcount) }}

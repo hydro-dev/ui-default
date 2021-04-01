@@ -28,7 +28,7 @@
       </tr>
     </thead>
     <tbody>
-    {% for pdoc in pdocs %}
+    {%- for pdoc in pdocs -%}
     {% set psdoc = psdict[pdoc['docId']] %}
       <tr>
       {% if handler.user.hasPriv(PRIV.PRIV_USER_PROFILE) %}
@@ -46,7 +46,7 @@
         <td class="col--ac_rate">{{ (100 * pdoc['nAccept'] / pdoc['nSubmit'])|round|int if pdoc['nSubmit'] > 0 else _('?') }}</td>
         <td class="col--difficulty">{{ pdoc['difficulty'] or _('(None)') }}</td>
       </tr>
-    {% endfor %}
+    {%- endfor -%}
     </tbody>
   </table>
   {{ paginator.render(page, ppcount) }}

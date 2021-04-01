@@ -12,9 +12,9 @@
     <p>{{ _('Type') }}: {{ error.code }}</p>
     <p>{{ _('Arguments') }}:
       <ol>
-      {% for param in error.params %}
+      {%- for param in error.params -%}
         <li>{{ param }}</li>
-      {% endfor %}
+      {%- endfor -%}
       </ol>
     </p>
   </div>

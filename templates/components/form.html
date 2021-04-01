@@ -73,11 +73,11 @@
     name="{{ args.name }}"
     {{ form_attr('select', args) }}
   >
-  {% for k, v in args.options %}
+  {%- for k, v in args.options -%}
     <option value="{{ k }}"{% if args.value == k %} selected{% endif %}>
       {{ _(v) }}
     </option>
-  {% endfor %}
+  {%- endfor -%}
   </select>
 </div>
 {% endmacro %}
@@ -93,7 +93,7 @@
   name="form_item_{{ args.name }}"
   {{ container_attr('radiobox-container', args) }}
 >
-{% for k, v in options %}
+{%- for k, v in options -%}
   <label class="radiobox">
     <input
       value="{{ k }}"
@@ -103,7 +103,7 @@
       {% if value == args.id %} checked{% endif %}
     /> {{ _(v) }}
   </label>
-{% endfor %}
+{%- endfor -%}
 </div>
 {% endmacro %}
 
@@ -118,7 +118,7 @@
   name="form_item_{{ args.name }}"
   {{ container_attr('radiobox-container with-image', args) }}
 >
-{% for k, v in options %}
+{%- for k, v in options -%}
   <label class="radiobox with-image">
     <input
       value="{{ k }}"
@@ -131,7 +131,7 @@
       <div class="radiobox__image {{ image_class.format(k) }}"></div>
     </div>
   </label>
-{% endfor %}
+{%- endfor -%}
 </div>
 {% endmacro %}
 

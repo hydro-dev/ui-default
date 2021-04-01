@@ -35,7 +35,7 @@
         </tr>
       </thead>
       <tbody>
-      {% for rcdoc in rdoc.testCases %}
+      {%- for rcdoc in rdoc.testCases -%}
         <tr>
           <td class="col--case record-status--border {{ model.builtin.STATUS_CODES[rcdoc['status']] }}">
             #{{ loop.index }}
@@ -51,7 +51,7 @@
           <td class="col--time">{% if rcdoc['status'] == STATUS.STATUS_TIME_LIMIT_EXCEEDED or rcdoc['status'] == STATUS.STATUS_MEMORY_LIMIT_EXCEEDED or rcdoc['status'] == STATUS.STATUS_OUTPUT_LIMIT_EXCEEDED %}&ge;{% endif %}{{ rcdoc.time|round|int }}ms</td>
           <td class="col--memory">{% if rcdoc['status'] == STATUS.STATUS_TIME_LIMIT_EXCEEDED or rcdoc['status'] == STATUS.STATUS_MEMORY_LIMIT_EXCEEDED or rcdoc['status'] == STATUS.STATUS_OUTPUT_LIMIT_EXCEEDED %}&ge;{% endif %}{{ size(rcdoc.memory, 1024) }}</td>
         </tr>
-      {% endfor %}
+      {%- endfor -%}
       </tbody>
     </table>
   </div>

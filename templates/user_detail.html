@@ -100,9 +100,9 @@
                   <h1 class="section__title">{{ _('Contributed Problems') }}</h1>
                 </div>
                 <div class="section__body">
-                {% for pdoc in pdocs %}
+                {%- for pdoc in pdocs -%}
                   <p><a href="{{ url('problem_detail', pid=pdoc.pid|default(pdoc.docId)) }}">{{ pdoc['title'] }}</a></p>
-                {% endfor %}
+                {%- endfor -%}
                 </div>
               {% endif %}
               </div>
@@ -139,10 +139,10 @@
                       </tr>
                     </thead>
                     <tbody>
-                    {% for rdoc in rdocs %}
+                    {%- for rdoc in rdocs -%}
                       {% set pdoc = pdict[rdoc.pid] %}
                       {% include 'record_main_tr.html' %}
-                    {% endfor %}
+                    {%- endfor -%}
                     </tbody>
                   </table>
                 </div>

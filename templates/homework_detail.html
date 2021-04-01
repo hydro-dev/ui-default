@@ -39,7 +39,7 @@
             </tr>
           </thead>
           <tbody>
-          {% for pid in tdoc['pids'] %}
+          {%- for pid in tdoc.pids -%}
             <tr>
             {% if handler.user.hasPriv(PRIV.PRIV_USER_PROFILE) %}
               {% if psdict[pid] and psdict[pid]['rid'] %}
@@ -60,7 +60,7 @@
                 {{ problem.render_problem_title(pdict[pid], tdoc=tdoc, show_invisible_flag=false, show_tags=false) }}
               </td>
             </tr>
-          {% endfor %}
+          {%- endfor -%}
           </tbody>
         </table>
       </div>

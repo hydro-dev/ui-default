@@ -20,7 +20,7 @@
           </blockquote>
         </div>
       {% endif %}
-      {% for node in tdoc['dag'] %}
+      {%- for node in tdoc['dag'] -%}
         <div data-heading-extract-to="#menu-item-training_detail" class="training__section {% if nsdict[node['_id']]['isDone'] %}done{% elif nsdict[node['_id']]['isProgress'] %}progress{% elif nsdict[node['_id']]['isOpen'] %}open{% else %}invalid{% endif %}  {% if nsdict[node['_id']]['isProgress'] or nsdict[node['_id']]['isOpen'] %}expanded{% else %}collapsed{% endif %}">
           <div class="section__header clearfix">
             <div class="float-left">
@@ -64,9 +64,9 @@
                 <blockquote class="typo note">
                   <p>{{ _('This section cannot be challenged at present, so please complete the following sections first') }}:</p>
                   <ul>
-                    {% for nid in node['requireNids'] %}
+                    {%- for nid in node['requireNids'] -%}
                       <li>{{ _('Section') }} {{ _(nid) }}. {{ ndict[nid]['title'] }} ({{ _('Completed') }} {{ nsdict[nid]['progress'] }}%)</li>
-                    {% endfor %}
+                    {%- endfor -%}
                   </ul>
                 </blockquote>
               </div>
@@ -99,7 +99,7 @@
                 </tr>
               </thead>
               <tbody>
-              {% for pid in node['pids'] %}
+              {%- for pid in node['pids'] -%}
               {% if pid in pdict %}
               {% set pdoc=pdict[pid] %}
               {% set psdoc=psdict[pid] %}
@@ -146,13 +146,13 @@
                   <td class="col--difficulty">*</td>
                 </tr>
               {% endif %}
-              {% endfor %}
+              {%- endfor -%}
               </tbody>
             </table>
           </div>
         </div>
       </div>
-      {% endfor %}
+      {%- endfor -%}
       <div class="section__body">&nbsp;<!-- space placeholder --></div>
     </div>
   </div>

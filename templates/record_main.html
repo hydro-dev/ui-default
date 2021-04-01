@@ -4,7 +4,7 @@
   var Context = {
     'socketUrl': "/record-conn?domainId={{ handler.domainId }}",
     'rids': [
-        {% for rdoc in rdocs %}"{{ rdoc._id.toString() }}",{% endfor %}
+        {%- for rdoc in rdocs -%}"{{ rdoc._id.toString() }}",{%- endfor -%}
     ]
   };
 </script>
@@ -75,11 +75,11 @@
             </tr>
           </thead>
           <tbody>
-          {% for rdoc in rdocs %}
+          {%- for rdoc in rdocs -%}
             {% set udoc = udict[rdoc['uid']] %}
             {% set pdoc = pdict[rdoc['pid']] %}
             {% include 'record_main_tr.html' %}
-          {% endfor %}
+          {%- endfor -%}
           </tbody>
         </table>
         {% if handler.user.hasPriv(PRIV.PRIV_VIEW_JUDGE_STATISTICS) %}

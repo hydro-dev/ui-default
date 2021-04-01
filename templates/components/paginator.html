@@ -1,7 +1,7 @@
 {% macro render(page, num_pages, add_qs='') %}
 {% if num_pages > 0 %}
   <ul class="pager">
-  {% for type, page0 in paginate(page, num_pages) %}
+  {%- for type, page0 in paginate(page, num_pages) -%}
     <li>
     {% if type == 'first' %}
       <a class="pager__item first link" href="?page={{ page0 }}{% if add_qs %}&{{ add_qs }}{% endif %}">{{ _('pager_first') }}</a>
@@ -19,7 +19,7 @@
       <a class="pager__item last link" href="?page={{ page0 }}{% if add_qs %}&{{ add_qs }}{% endif %}">{{ _('pager_last') }}</a>
     {% endif %}
     </li>
-  {% endfor %}
+  {%- endfor -%}
   </ul>
 {% endif %}
 {% endmacro %}

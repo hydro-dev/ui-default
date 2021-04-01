@@ -10,7 +10,7 @@
         {{ nothing.render('Sorry, there is no training plan.') }}
       {% else %}
         <ol class="section__list all primary training__list">
-          {% for tdoc in tdocs %}
+          {%- for tdoc in tdocs -%}
             <li class="section__list__item training__item">
               <div class="media">
                 <div class="media__left middle">
@@ -45,7 +45,7 @@
                 </div>
               </div>
             </li>
-          {% endfor %}
+          {%- endfor -%}
         </ol>
         {{ paginator.render(page, tpcount, add_qs=qs) }}
       {% endif %}
@@ -59,7 +59,7 @@
         </div>
         <div class="section__body">
           <ol class="my secondary training__list">
-            {% for tsdoc in tsdict %}
+            {%- for tsdoc in tsdict -%}
               {% if tsdoc['enroll'] %}
                 <li class="training__item"><div class="media">
                   <div class="media__left">
@@ -71,7 +71,7 @@
                   </div>
                 </div></li>
               {% endif %}
-            {% endfor %}
+            {%- endfor -%}
           </ol>
         </div>
       </div>

@@ -1,10 +1,10 @@
 <form method="post">
-{% for family, family_settings in settings|groupby('family') %}
+{%- for family, family_settings in settings|groupby('family') -%}
   <div class="section__header">
     <h1 class="section__title" id="{{ family }}" data-heading>{{ _(family) }}</h1>
   </div>
   <div class="section__body">
-  {% for setting in family_settings %}
+  {%- for setting in family_settings -%}
   {% if not setting.flag|bitand(model.setting.FLAG_HIDDEN) %}
   {% set secret = setting.flag|bitand(model.setting.FLAG_SECRET) != 0 %}
   {% if setting.type == 'text' or setting.type == 'password' or setting.type == 'number' %}
@@ -80,9 +80,9 @@
     })}}
   {% endif %}
   {% endif %}
-  {% endfor %}
+  {%- endfor -%}
   </div>
-{% endfor %}
+{%- endfor -%}
   <div class="section__body">
     <input type="hidden" name="csrfToken" value="{{ handler.csrfToken }}">
     <input type="submit" class="rounded primary button" value="{{ _('Save All Changes') }}">

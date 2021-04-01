@@ -38,7 +38,7 @@
         </tr>
       </thead>
       <tbody>
-      {% for id, script in scripts %}
+      {%- for id, script in scripts -%}
       {% if not script.hidden %}
         <tr>
           <td class="col--id">{{ id }}</td>
@@ -48,7 +48,7 @@
           </td>
         </tr>
       {% endif %}
-      {% endfor %}
+      {%- endfor -%}
       </tbody>
     </table>
   </div>

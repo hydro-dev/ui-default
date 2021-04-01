@@ -74,8 +74,8 @@
         </tr>
       </thead>
       <tbody>
-        {% for role in roles %}
-        {% for rudoc in rudocs[role._id] %}
+        {%- for role in roles -%}
+        {%- for rudoc in rudocs[role._id] -%}
         {% set is_disabled=(rudoc._id == handler.user._id) %}
         <tr data-uid="{{ rudoc._id }}">
           <td class="col--checkbox">
@@ -99,8 +99,8 @@
                }) }}
           </td>
         </tr>
-        {% endfor %}
-        {% endfor %}
+        {%- endfor -%}
+        {%- endfor -%}
       </tbody>
     </table>
   </div>

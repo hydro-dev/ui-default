@@ -46,7 +46,7 @@
         </tr>
       </thead>
       <tbody>
-      {% for role in roles %}
+      {%- for role in roles -%}
         {% set isBuiltin = role._id in ['default', 'guest', 'admin'] %}
         <tr{% if not isBuiltin %} data-role="{{ role._id }}"{% endif %}>
           <td class="col--checkbox">
@@ -61,7 +61,7 @@
             {{ role.count|default('--') }}
           </td>
         </tr>
-      {% endfor %}
+      {%- endfor -%}
       </tbody>
     </table>
   </div>

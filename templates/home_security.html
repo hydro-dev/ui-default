@@ -95,7 +95,7 @@
       </div>
       <div class="section__body">
         <ul class="sessionlist">
-          {% for session in sessions %}
+          {%- for session in sessions -%}
           <li class="sessionlist__item">
             <div class="media">
               <div class="media__left medium">
@@ -125,7 +125,7 @@
               {% endif %}
             </div>
           </li>
-          {% endfor %}
+          {%- endfor -%}
         </ul>
       </div>
       <div class="section__body">

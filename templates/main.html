@@ -22,7 +22,7 @@
         <h1 class="section__title">{{ _('Contest') }}</h1>
       </div>
       <ol class="section__list contest__list">
-      {% for tdoc in tdocs %}
+      {%- for tdoc in tdocs -%}
         <li class="section__list__item contest__item contest-type--{{ tdoc.rule }}">
           <div class="media">
             <div class="media__left medium">
@@ -52,7 +52,7 @@
             </div>
           </div>
         </li>
-      {% endfor %}
+      {%- endfor -%}
       </ol>
     </div>
   {% endif %}
@@ -62,7 +62,7 @@
         <h1 class="section__title">{{ _('Homework') }}</h1>
       </div>
       <ol class="section__list homework__list">
-        {% for tdoc in htdocs %}
+        {%- for tdoc in htdocs -%}
           <li class="section__list__item homework__item">
             <div class="media">
               <div class="media__left medium">
@@ -96,7 +96,7 @@
               </div>
             </div>
           </li>
-        {% endfor %}
+        {%- endfor -%}
       </ol>
     </div>
   {% endif %}
@@ -108,7 +108,7 @@
       {% set tdocs = trdocs %}
       {% set tsdict = trsdict %}
       <ol class="section__list all primary training__list">
-        {% for tdoc in tdocs %}
+        {%- for tdoc in tdocs -%}
         <li class="section__list__item training__item">
           <div class="media">
             <div class="media__left middle">
@@ -143,7 +143,7 @@
             </div>
           </div>
         </li>
-        {% endfor %}
+        {%- endfor -%}
       </ol>
     </div>
   {% endif %}

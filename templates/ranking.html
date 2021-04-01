@@ -26,14 +26,14 @@
               </tr>
             </thead>
             <tbody>
-              {% for udoc in udocs %}
+              {%- for udoc in udocs -%}
               <tr>
                 <td class="col--rank">{{ (page - 1) * 100 + loop.index }}</td>
                 <td class="col--user">{{ user.render_inline(udoc) }}</td>
                 <td class="col--rp">{{ udoc.rp|default(1500)|round(0) }}</td>
                 <td class="col--bio">{{ udoc.bio|default('')|truncate(64, true)|markdownInline|safe }}</td>
               </tr>
-              {% endfor %}
+              {%- endfor -%}
             </tbody>
           </table>
           {{ paginator.render(page, upcount) }}

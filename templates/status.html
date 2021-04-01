@@ -25,7 +25,7 @@
               </tr>
             </thead>
             <tbody>
-              {% for doc in stats %}
+              {%- for doc in stats -%}
               <tr>
                 <td class="col--id">{{ doc._id.toHexString()|truncate(6,True,'') }}</td>
                 <td class="col--status">{% if doc.isOnline %}{{ doc.status }}{% else %}{{ datetimeSpan(doc.updateAt)|safe }}{% endif %}</td>
@@ -34,7 +34,7 @@
                 <td class="col--memory"{% if doc.stack %} data-tooltip="Stack size: {{ doc.stack }}MB"{% endif %}>{{ doc.memory }}</td>
                 <td class="col--request">{{ doc.reqCount }}</td>
               </tr>
-              {% endfor %}
+              {%- endfor -%}
             </tbody>
           </table>
         </div>

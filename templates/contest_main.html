@@ -47,13 +47,13 @@
 {% block content %}
 <div class="row">
   <div class="medium-9 columns">
-  {% for tdoc in tdocs %}
+  {%- for tdoc in tdocs -%}
   {% if model.contest.isOngoing(tdoc) %}
     {{ render_important_contest('live', 'Live...', tdoc) }}
   {% elif model.contest.isUpcoming(tdoc) %}
     {{ render_important_contest('ready', 'Ready (☆▽☆)', tdoc) }}
   {% endif %}
-  {% endfor %}
+  {%- endfor -%}
     <div class="section">
       <div class="section__header">
         <h1 class="section__title">{% if not rule %}{{ _('All Contests') }}{% else %}{{ _('All {0} Contests').format(_(model.contest.RULES[rule].TEXT)) }}{% endif %}</h1>
@@ -62,9 +62,9 @@
             {{ _('Show') }}:
             <select class="inline compact select" name="rule">
               <option value="0"{% if not rule %} selected{% endif %}>{{ _('All') }}</option>
-            {% for k, v in model.contest.RULES %}
+            {%- for k, v in model.contest.RULES -%}
               <option value="{{ k }}"{% if rule == k %} selected{% endif %}>{{ _('All {0} Contests').format(_(v.TEXT)) }}</option>
-            {% endfor %}
+            {%- endfor -%}
             </select>
             <button type="submit" class="button hasjs--hide">
               {{ _('Search') }}
@@ -77,7 +77,7 @@
         {{ nothing.render('There are no contests...') }}
       {% else %}
         <ol class="section__list contest__list">
-        {% for tdoc in tdocs %}
+        {%- for tdoc in tdocs -%}
           <li class="section__list__item contest__item contest-type--{{ tdoc['rule'] }}">
             <div class="media">
               <div class="media__left medium">
@@ -107,7 +107,7 @@
               </div>
             </div>
           </li>
-        {% endfor %}
+        {%- endfor -%}
         </ol>
         {{ paginator.render(page, tpcount, add_qs=qs) }}
       {% endif %}
